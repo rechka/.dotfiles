@@ -1,0 +1,15 @@
+[time]
+disabled=false
+
+[status]
+disabled=false
+
+[memory_usage]
+disabled=false
+threshold=70
+
+[hostname]
+disabled=true
+
+[username]
+disabled=true

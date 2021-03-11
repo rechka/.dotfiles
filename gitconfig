@@ -1,0 +1,4 @@
+[core]
+	editor = micro
+[credential]
+	helper = store

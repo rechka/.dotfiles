@@ -1,0 +1,3 @@
+bind-addr: localhost:8080
+auth: none
+cert: false

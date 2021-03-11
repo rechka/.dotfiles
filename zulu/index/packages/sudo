@@ -1,0 +1,8 @@
+{
+  "name": "sudo",
+  "description": "Easily prefix your current or previous commands with sudo by pressing esc twice",
+  "repository": "https://github.com/hcgraf/zsh-sudo",
+  "author": "ohmyzsh",
+  "type": "script",
+  "init": {"sudo.plugin.zsh": "sudo.plugin.zsh"}	            
+}
