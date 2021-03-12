@@ -1,0 +1,8 @@
+{
+  "name": "aws",
+  "description": "Completion support for awscli and a few utilities to manage AWS profiles and display them in the prompt.",
+  "repository": "https://github.com/ohmyzsh/ohmyzsh",
+  "author": "ohmyzsh",
+  "type": "script",
+  "init": {"plugins/aws/aws.plugin.zsh": "aws.plugin.zsh"}	            
+}

@@ -19,14 +19,3 @@ source "${ZULU_DIR:-"${ZDOTDIR:-$HOME}/.zulu"}/core/zulu"
 zulu init
 
 eval "$(starship init zsh)"
-
-alias awsnew="aws ec2 run-instances \
-    --image-id ami-08962a4068733a2b6 \
-    --instance-type t2.micro \
-    --block-device-mappings DeviceName=/dev/sda1,Ebs={VolumeSize=30} \
-    --count 1 \
-    --key-name termius-rsa \
-    --user-data file://aws-init.sh > ~/aws-run.json"
-    
-alias awsid="cat ~/aws-run.json | jq -r '.Instances[].InstanceId'"
-

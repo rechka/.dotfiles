@@ -1,6 +1,7 @@
 .gitsecret/keys/random_seed
 !*.secret
 ssh/authorized_keys
+aws/credentials
 ssh/id_rsa
 ssh/id_rsa.pub
 ssh/known_hosts
