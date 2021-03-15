@@ -1,7 +1,5 @@
 alias python=python3
 alias myip="curl ip.smartproxy.com"
-alias l=k
-alias ls=k
 alias ka="k -A"
 alias kk="k -A"
 export DISPLAY=:0
