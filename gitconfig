@@ -2,3 +2,6 @@
 	editor = micro
 [credential]
 	helper = store
+[user]
+	name = root
+	email = root@localhost
