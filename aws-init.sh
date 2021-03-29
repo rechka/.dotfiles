@@ -4,7 +4,7 @@
 timedatectl set-timezone America/Toronto
 
 #update repos & upgrade
-apt-get update -y && sudo apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade -y && sudo apt autoremove -y && sudo apt clean -y && sudo apt autoclean -y
+apt-get update -y && apt-get -qq -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade -y && apt autoremove -y && apt clean -y && apt autoclean -y
 snap refresh
 
 #all you need
