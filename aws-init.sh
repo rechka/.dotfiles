@@ -4,7 +4,7 @@
 timedatectl set-timezone America/Toronto
 
 #update repos & upgrade
-sudo apt update -y && sudo apt full-upgrade -y && sudo apt autoremove -y && sudo apt clean -y && sudo apt autoclean -y
+apt-get update -y && sudo apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade -y && sudo apt autoremove -y && sudo apt clean -y && sudo apt autoclean -y
 snap refresh
 
 #all you need
@@ -22,20 +22,19 @@ snap disable docker
 snap enable docker
 
 #user
-adduser --gecos "" --disabled-password --ingroup ubuntu --shell /usr/bin/zsh --debug --add_extra_groups rechka
+adduser --gecos "" --disabled-password --ingroup adm --shell /usr/bin/zsh --debug --add_extra_groups rechka
 passwd -d rechka
 usermod -aG sudo rechka
-usermod -aG adm rechka
 usermod -aG docker rechka
 
 ssh-keyscan github.com >> /tmp/githubKey
 ssh-keygen -lf /tmp/githubKey
-cat /tmp/githubKey >> /home/ubuntu/.ssh/known_hosts
+cat /tmp/githubKey >> ~/.ssh/known_hosts
 rm /tmp/githubKey
 
-cp -r /home/ubuntu/.ssh /home/rechka/
+cp -r ~/.ssh /home/rechka/
 
-chown rechka.ubuntu -R /home/rechka/.ssh
+chown rechka.adm -R /home/rechka/.ssh
 chmod 700 /home/rechka/.ssh
 chmod 600 /home/rechka/.ssh/authorized_keys
 
