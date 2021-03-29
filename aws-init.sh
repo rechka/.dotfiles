@@ -80,7 +80,7 @@ su -c 'cd ~/.local/share/fonts && curl -fLo "Fira Code Retina Nerd Font Complete
 echo 'alias cv="cat /var/log/cloud-init-output.log"' >> /home/rechka/.zshrc
 
 #gpg install
-echo 'alias gpginstall="gpg --import rechka.asc && cd ~/.dotfiles && git secret reveal -f && cd ~ && rcup -v && sudo chmod 600 /home/rechka/.ssh/id_rsa && ssh -vT git@github.com' >> /home/rechka/.zshrc"
+echo 'alias gpginstall="gpg --import rechka.asc && cd ~/.dotfiles && git secret reveal -f && cd ~ && rcup -v && sudo chmod 600 /home/rechka/.ssh/id_rsa && ssh -vT git@github.com"' >> /home/rechka/.zshrc
 
 #remove myself
 rm -rf /var/lib/cloud/instances/i-*/scripts/
