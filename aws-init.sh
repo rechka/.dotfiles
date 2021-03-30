@@ -76,7 +76,7 @@ su -c 'mkdir -p ~/.local/share/fonts' rechka
 su -c 'cd ~/.local/share/fonts && curl -fLo "Fira Code Retina Nerd Font Complete Mono.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Retina/complete/Fira%20Code%20Retina%20Nerd%20Font%20Complete%20Mono.ttf' rechka
 
 # cat /var/log/cloud-init-output.log
-echo 'alias cv="cat /var/log/cloud-init-output.log"' >> /home/rechka/.zshrc
+echo 'alias cv="less /var/log/cloud-init-output.log"' >> /home/rechka/.zshrc
 
 #gpg install
 echo 'alias gpginstall="gpg --import rechka.asc && cd ~/.dotfiles && git secret reveal -f && cd ~ && rcup -v && sudo chmod 600 /home/rechka/.ssh/id_rsa && ssh -vT git@github.com"' >> /home/rechka/.zshrc
