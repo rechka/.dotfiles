@@ -5,9 +5,7 @@ timedatectl set-timezone America/Toronto
 
 #update repos & upgrade
 apt-get -qq update -y && TERM=linux DEBIAN_FRONTEND=noninteractive apt-get -yq -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade && apt -yqq autoremove && apt -yqq clean && apt -yqq autoclean
-snap refresh
 
-#all you need
 apt-get -yqq --no-install-recommends install awscli zsh tintin++ ranger python3-venv fluxbox tightvncserver xdg-utils python3-pip \
 nodejs gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 glances libdbus-1-3 fonts-powerline jq \
 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 \
@@ -15,12 +13,10 @@ libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxc
 libxcursor1 rcm git-secret icdiff libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 \
 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release libgbm1 xclip xsel fzf ripgrep \
 dunst suckless-tools rclone compton hsetroot xsettingsd lxappearance xclip byobu xfonts-base xfonts-100dpi xfonts-75dpi
+
+#snaps
+snap refresh && snap install docker glances && addgroup --system docker && snap disable docker && snap enable docker
 snap install micro --classic
-snap install glances
-snap install docker
-addgroup --system docker
-snap disable docker
-snap enable docker
 
 #user
 adduser --gecos "" --disabled-password --ingroup adm --shell /usr/bin/zsh --debug --add_extra_groups rechka
