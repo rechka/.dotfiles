@@ -3,6 +3,7 @@ alias myip="curl ip.smartproxy.com"
 alias ka="k -A"
 alias kk="k -A"
 alias cv="less /var/log/cloud-init-output.log"
+alias kite-login="~/.local/share/kite/login-user"
 export DISPLAY=:0
 HISTFILE=~/.histfile
 HISTSIZE=15000
