@@ -56,6 +56,9 @@ su -c 'code-server --install-extension ms-python.python --force && \
     code-server --install-extension almenon.arepl --force && \
     code-server --install-extension kiteco.kite --force && \
     code-server --install-extension golang.go --force && \
+    code-server --install-extension Shan.code-settings-sync --force && \
+    code-server --install-extension humao.rest-client --force && \
+    code-server --install-extension ryu1kn.partial-diff --force && \
     code-server --install-extension ms-azuretools.vscode-docker --force' rechka
 su -c 'cd ~ && curl -fsSL https://linux.kite.com/dls/linux/current | bash -s -- --install' rechka
 
