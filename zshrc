@@ -10,6 +10,7 @@ alias kite-login="~/.local/share/kite/login-user"
 alias gitsshclone='f() { git clone git@github.com:$1.git };f'
 
 export DISPLAY=:0
+export PATH=~/.local/bin:${PATH}
 HISTFILE=~/.histfile
 HISTSIZE=15000
 SPACESHIP_EXIT_CODE_SHOW=true
