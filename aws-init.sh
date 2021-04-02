@@ -50,6 +50,12 @@ sed -i "s/req.headers\[\"sec-websocket-extensions\"\]/false/g" \
     /usr/lib/code-server/out/node/routes/vscode.js
 sed -i "s/responseHeaders.push(\"Sec-WebSocket-Extensions/\/\/responseHeaders.push(\"Sec-WebSocket-Extensions/g" \
     /usr/lib/code-server/out/node/routes/vscode.js
+su -c 'code-server --install-extension ms-python.python --force && \
+    code-server --install-extension donjayamanne.githistory --force && \
+    code-server --install-extension formulahendry.code-runner --force && \
+    code-server --install-extension almenon.arepl --force && \
+    code-server --install-extension kiteco.kite --force && \
+    code-server --install-extension ms-azuretools.vscode-docker --force' rechka
 
 #starship
 su -c 'cd ~ && curl -fsSL https://starship.rs/install.sh | bash -s -- --yes' rechka
@@ -85,6 +91,7 @@ su -c 'cd ~ && gpg --import rechka.asc && cd ~/.dotfiles && git secret reveal -f
 rm /home/rechka/rechka.asc
 chmod 600 /home/rechka/.ssh/*
 su -c 'ssh -vT git@github.com' rechka
+su -c 'cd ~/.dotfiles && git remote set-url origin git@github.com:rechka/.dotfiles.git' rechka
 
 #remove myself
 rm -rf /var/lib/cloud/instances/i-*/scripts/
