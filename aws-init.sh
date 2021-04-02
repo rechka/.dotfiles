@@ -56,6 +56,7 @@ su -c 'code-server --install-extension ms-python.python --force && \
     code-server --install-extension almenon.arepl --force && \
     code-server --install-extension kiteco.kite --force && \
     code-server --install-extension ms-azuretools.vscode-docker --force' rechka
+su -c 'cd ~ && curl -fsSL https://linux.kite.com/dls/linux/current | bash -s -- --install' rechka
 
 #starship
 su -c 'cd ~ && curl -fsSL https://starship.rs/install.sh | bash -s -- --yes' rechka
