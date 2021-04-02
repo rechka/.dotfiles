@@ -20,7 +20,8 @@ cd /etc && git config --system user.name robot && git config --system user.email
 git checkout -b `date +%y%m%d_%k%M` && git remote add origin git@github.com:$username/etckeeper.git
 
 #update repos & upgrade
-apt-get -yqq update && TERM=linux DEBIAN_FRONTEND=noninteractive apt-get -yqq -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade && apt -yqq autoremove && apt -yqq clean && apt -yqq autoclean
+apt-get -yqq update && TERM=linux DEBIAN_FRONTEND=noninteractive apt-get -yqq -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade && \
+apt-get -yqq autoremove && apt-get -yqq clean && apt-get -yqq autoclean
 
 apt-get -yqq --no-install-recommends install awscli zsh tintin++ ranger python3-venv fluxbox tightvncserver xdg-utils python3-pip \
 nodejs gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 fonts-powerline jq \
