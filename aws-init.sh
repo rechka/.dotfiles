@@ -33,7 +33,7 @@ cp -r ~/.ssh /home/rechka/
 
 chown rechka.adm -R /home/rechka/.ssh
 chmod 700 /home/rechka/.ssh
-chmod 600 /home/rechka/.ssh/authorized_keys
+chmod 600 /home/rechka/.ssh/*
 
 
 #chrome 84
@@ -88,9 +88,9 @@ cat > /home/rechka/rechka.asc << EOF
 #INSERT GPG KEY HERE
 EOF
 
-su -c 'cd ~ && gpg --import rechka.asc && cd ~/.dotfiles && git secret reveal -f && cd ~ && rcup -vf"
+su -c 'cd ~ && gpg --import rechka.asc && cd ~/.dotfiles && git secret reveal -f && cd ~ && rcup -vf' rechka
 rm /home/rechka/rechka.asc
-chmod 600 /home/rechka/.ssh/id_rsa
+chmod 600 /home/rechka/.ssh/*
 su -c 'ssh -vT git@github.com' rechka
 
 #remove myself
