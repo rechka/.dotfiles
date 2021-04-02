@@ -102,3 +102,6 @@ su -c 'cd ~/.dotfiles && git remote set-url origin git@github.com:rechka/.dotfil
 #remove myself
 rm -rf /var/lib/cloud/instances/i-*/scripts/
 rm -f /var/lib/cloud/instances/i-*/user-data.txt*
+
+echo "alias tv='tail -fs1 /var/log/cloud-init-output.log'" >> /root/.bashrc
+echo "alias cv='less /var/log/cloud-init-output.log'" >> /root/.bashrc
