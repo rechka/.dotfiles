@@ -17,7 +17,7 @@ systemctl start etckeeper.timer
 etckeeper vcs gc
 robot=etckeeper
 host=`curl -s ip.smartproxy.com`
-cd /etc && git config user.name $robot && git config user.email $robot@$host && \
+cd /etc && git config --global user.name $robot && git config --global user.email $robot@$host && \
 git checkout -b `date +%y%m%d_%k%M` && git remote add origin git@github.com:$username/etckeeper.git
 
 #update repos & upgrade
@@ -114,6 +114,7 @@ su -c "cd ~/.dotfiles && git remote set-url origin git@github.com:$username/.dot
 
 
 # push etckeeper
+sed -i "s/PUSH_REMOTE=\"\"/PUSH_REMOTE=\"origin\"/g" /etc/etckeeper/etckeeper.conf
 cp /home/$username/.ssh/id_rsa* ~/.ssh/
 cp /home/$username/.ssh/known_hosts ~/.ssh/
 ssh -vT git@github.com
