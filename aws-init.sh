@@ -9,7 +9,7 @@ username=rechka
 #timezone
 timedatectl set-timezone America/Toronto
 
-apt-get remove -y --purge man-db
+apt-get remove -y --purge man-db docker docker-engine docker.io containerd runc
 
 #initialize etckeeper
 apt-get -yqq install etckeeper
@@ -21,7 +21,6 @@ cd /etc && git config user.name $robot && git config user.email $robot@$host && 
 git checkout -b `date +%y%m%d_%k%M` && git remote add origin git@github.com:$username/etckeeper.git
 
 #update repos & upgrade
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 apt-get -yqq update && TERM=linux DEBIAN_FRONTEND=noninteractive apt-get -yqq -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade && apt -yqq autoremove && apt -yqq clean && apt -yqq autoclean
 
 apt-get -yqq --no-install-recommends install awscli zsh tintin++ ranger python3-venv fluxbox tightvncserver xdg-utils python3-pip \
@@ -30,10 +29,19 @@ libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 li
 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 git-secret \
 libxcursor1 rcm git-secret icdiff libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 \
 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release libgbm1 xclip xsel fzf ripgrep \
-dunst suckless-tools rclone compton hsetroot xsettingsd lxappearance xclip byobu xfonts-base xfonts-100dpi xfonts-75dpi
+dunst suckless-tools rclone compton hsetroot xsettingsd lxappearance xclip byobu xfonts-base xfonts-100dpi xfonts-75dpi \
+apt-transport-https ca-certificates curl gnupg lsb-release
+
+#docker
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo \
+  "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+apt-get -yqq update && apt-get -yqq --no-install-recommends install docker-ce docker-ce-cli containerd.io
 
 #snaps
-snap refresh && snap install docker glances && addgroup --system docker && snap disable docker && snap enable docker
+snap refresh
+snap install glances
 snap install micro --classic
 snap install go --classic
 
@@ -41,7 +49,9 @@ snap install go --classic
 adduser --gecos "" --disabled-password --ingroup adm --shell /usr/bin/zsh --debug --add_extra_groups $username
 passwd -d $username
 usermod -aG sudo $username
+addgroup --system docker
 usermod -aG docker $username
+service docker restart
 
 cp -r ~/.ssh /home/$username/
 chown $username.adm -R /home/$username/.ssh
