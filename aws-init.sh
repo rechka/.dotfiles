@@ -9,6 +9,8 @@ username=rechka
 #timezone
 timedatectl set-timezone America/Toronto
 
+apt-get remove -y --purge man-db
+
 #initialize etckeeper
 apt-get -yqq install etckeeper
 systemctl start etckeeper.timer
