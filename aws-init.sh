@@ -7,7 +7,7 @@ username=rechka
 timedatectl set-timezone America/Toronto
 
 #update repos & upgrade
-apt-get -qq update -y && TERM=linux DEBIAN_FRONTEND=noninteractive apt-get -yqq -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade && apt -yqq autoremove && apt -yqq clean && apt -yqq autoclean
+apt-get -yqq update && TERM=linux DEBIAN_FRONTEND=noninteractive apt-get -yqq -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade && apt -yqq autoremove && apt -yqq clean && apt -yqq autoclean
 
 apt-get -yqq --no-install-recommends install awscli zsh tintin++ ranger python3-venv fluxbox tightvncserver xdg-utils python3-pip \
 nodejs gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 fonts-powerline jq \
@@ -27,11 +27,6 @@ adduser --gecos "" --disabled-password --ingroup adm --shell /usr/bin/zsh --debu
 passwd -d $username
 usermod -aG sudo $username
 usermod -aG docker $username
-
-ssh-keyscan github.com >> /tmp/githubKey
-ssh-keygen -lf /tmp/githubKey
-cat /tmp/githubKey >> ~/.ssh/known_hosts
-rm /tmp/githubKey
 
 cp -r ~/.ssh /home/$username/
 chown $username.adm -R /home/$username/.ssh
@@ -71,8 +66,8 @@ su - -c 'curl -fsSL https://starship.rs/install.sh | bash -s -- --yes' $username
 #zulu 
 su - -c 'curl -L https://zulu.molovo.co/install | zsh' $username
 
-#dotfiles
-su - -c 'git clone https://github.com/rechka/.dotfiles.git && rcup -f rcrc && rcup -f' $username
+#dotfiles, watch out for variable in repo url
+su - -c "git clone https://github.com/$username/.dotfiles.git && rcup -f rcrc && rcup -f" $username
 su - -c 'pip3 install -r ~/.dotfiles/requirements.txt' $username
 
 su - -c 'source ~/.zulu/core/zulu && zulu init && \
@@ -81,7 +76,7 @@ zui you-should-use spaceship k enhancd autosuggestions sudo \
 completions dwim history-substring-search command-not-found' $username
 
 #git 
-su -c 'cd ~/.dotfiles && git config user.name rechka && git config user.email chto@zachem.ru' $username
+su -c "cd ~/.dotfiles && git config user.name $username && git config user.email $username@what.if' $username
 
 apt-get -y install etckeeper
 systemctl start etckeeper.timer
@@ -96,7 +91,7 @@ ls -la /home/$username/.ssh/* > /home/$username/chmod.log
 chmod 600 /home/$username/.ssh/*
 ls -la /home/$username/.ssh/* >> /home/$username/chmod.log
 su -c 'ssh -vT git@github.com' $username
-su -c 'cd ~/.dotfiles && git remote set-url origin git@github.com:rechka/.dotfiles.git' $username
+su -c "cd ~/.dotfiles && git remote set-url origin git@github.com:$username/.dotfiles.git" $username
 
 #remove myself
 rm -rf /var/lib/cloud/instances/i-*/scripts/
