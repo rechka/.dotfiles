@@ -79,7 +79,7 @@ zui you-should-use spaceship k enhancd autosuggestions sudo \
 completions dwim history-substring-search command-not-found' $username
 
 #git 
-su -c "cd ~/.dotfiles && git config user.name $username && git config user.email $username@what.if' $username
+su -c "cd ~/.dotfiles && git config user.name $username && git config user.email $username@what.if" $username
 
 apt-get -y install etckeeper
 systemctl start etckeeper.timer
