@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# username
+username=rechka
+
 #timezone
 timedatectl set-timezone America/Toronto
 
@@ -20,19 +23,19 @@ snap install micro --classic
 snap install go --classic
 
 #user
-adduser --gecos "" --disabled-password --ingroup adm --shell /usr/bin/zsh --debug --add_extra_groups rechka
-passwd -d rechka
-usermod -aG sudo rechka
-usermod -aG docker rechka
+adduser --gecos "" --disabled-password --ingroup adm --shell /usr/bin/zsh --debug --add_extra_groups $username
+passwd -d $username
+usermod -aG sudo $username
+usermod -aG docker $username
 
 ssh-keyscan github.com >> /tmp/githubKey
 ssh-keygen -lf /tmp/githubKey
 cat /tmp/githubKey >> ~/.ssh/known_hosts
 rm /tmp/githubKey
 
-cp -r ~/.ssh /home/rechka/
-chown rechka.adm -R /home/rechka/.ssh
-chmod 700 /home/rechka/.ssh
+cp -r ~/.ssh /home/$username/
+chown $username.adm -R /home/$username/.ssh
+chmod 700 /home/$username/.ssh
 
 #chrome 84
 cd /tmp
@@ -45,7 +48,7 @@ rm chromium-*.deb
 cd /root
 
 #code-server
-su -c 'cd ~ && curl -fsSL https://code-server.dev/install.sh | sh' rechka
+su - -c 'curl -fsSL https://code-server.dev/install.sh | sh' $username
 #fix from https://github.com/cdr/code-server/issues/2975
 sed -i "s/req.headers\[\"sec-websocket-extensions\"\]/false/g" \
     /usr/lib/code-server/out/node/routes/vscode.js
@@ -60,45 +63,45 @@ su -c 'code-server --install-extension ms-python.python --force && \
     code-server --install-extension Shan.code-settings-sync --force && \
     code-server --install-extension humao.rest-client --force && \
     code-server --install-extension ryu1kn.partial-diff --force && \
-    code-server --install-extension ms-azuretools.vscode-docker --force' rechka
-su -c 'cd ~ && curl -fsSL https://linux.kite.com/dls/linux/current | bash -s -- --install silent' rechka
+    code-server --install-extension ms-azuretools.vscode-docker --force' $username
+su - -c 'curl -fsSL https://linux.kite.com/dls/linux/current | bash -s -- --install silent' $username
 
 #starship
-su -c 'cd ~ && curl -fsSL https://starship.rs/install.sh | bash -s -- --yes' rechka
+su - -c 'curl -fsSL https://starship.rs/install.sh | bash -s -- --yes' $username
 #zulu 
-su -c 'cd ~ && curl -L https://zulu.molovo.co/install | zsh' rechka
+su - -c 'curl -L https://zulu.molovo.co/install | zsh' $username
 
 #dotfiles
-su -c 'cd ~ && git clone https://github.com/rechka/.dotfiles.git && rcup -f rcrc && rcup -f' rechka
-su -c 'cd ~ && pip3 install -r ~/.dotfiles/requirements.txt' rechka
+su - -c 'git clone https://github.com/rechka/.dotfiles.git && rcup -f rcrc && rcup -f' $username
+su - -c 'pip3 install -r ~/.dotfiles/requirements.txt' $username
 
-su -c 'cd ~ && source ~/.zulu/core/zulu && zulu init && \
+su - -c 'source ~/.zulu/core/zulu && zulu init && \
 zulu install async fast-syntax-highlighting solarized-man z \
 zui you-should-use spaceship k enhancd autosuggestions sudo \
-completions dwim history-substring-search command-not-found' rechka
+completions dwim history-substring-search command-not-found' $username
 
 #git 
-su -c 'cd ~/.dotfiles && git config user.name rechka && git config user.email chto@zachem.ru' rechka
+su -c 'cd ~/.dotfiles && git config user.name rechka && git config user.email chto@zachem.ru' $username
 
 apt-get -y install etckeeper
 systemctl start etckeeper.timer
 etckeeper vcs gc
 
 #nerdfont
-su -c 'mkdir -p ~/.local/share/fonts' rechka
-su -c 'cd ~/.local/share/fonts && curl -fLo "Fira Code Retina Nerd Font Complete Mono.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Retina/complete/Fira%20Code%20Retina%20Nerd%20Font%20Complete%20Mono.ttf' rechka
+su -c 'mkdir -p ~/.local/share/fonts' $username
+su -c 'cd ~/.local/share/fonts && curl -fLo "Fira Code Retina Nerd Font Complete Mono.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Retina/complete/Fira%20Code%20Retina%20Nerd%20Font%20Complete%20Mono.ttf' $username
 
 #gpg install
-su -c 'touch ~/rechka.asc' rechka
-cat > /home/rechka/rechka.asc << EOF
+su -c 'touch ~/rechka.asc' $username
+cat > /home/$username/rechka.asc << EOF
 #INSERT GPG KEY HERE
 EOF
 
-su -c 'cd ~ && gpg --import rechka.asc && cd ~/.dotfiles && git secret reveal -f && cd ~ && rcup -vf' rechka
-rm /home/rechka/rechka.asc
-chmod 600 /home/rechka/.ssh/*
-su -c 'ssh -vT git@github.com' rechka
-su -c 'cd ~/.dotfiles && git remote set-url origin git@github.com:rechka/.dotfiles.git' rechka
+su - -c 'echo -e $GPG_KEY | gpg --import && cd ~/.dotfiles && git secret reveal -f && cd ~ && rcup -vf' $username
+rm /home/$username/rechka.asc
+chmod 600 /home/$username/.ssh/*
+su -c 'ssh -vT git@github.com' $username
+su -c 'cd ~/.dotfiles && git remote set-url origin git@github.com:rechka/.dotfiles.git' $username
 
 #remove myself
 rm -rf /var/lib/cloud/instances/i-*/scripts/
