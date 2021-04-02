@@ -2,6 +2,7 @@ alias python=python3
 alias myip="curl ip.smartproxy.com"
 alias ka="k -A"
 alias kk="k -A"
+alias cv="less /var/log/cloud-init-output.log"
 export DISPLAY=:0
 HISTFILE=~/.histfile
 HISTSIZE=15000
