@@ -30,11 +30,8 @@ cat /tmp/githubKey >> ~/.ssh/known_hosts
 rm /tmp/githubKey
 
 cp -r ~/.ssh /home/rechka/
-
 chown rechka.adm -R /home/rechka/.ssh
 chmod 700 /home/rechka/.ssh
-chmod 600 /home/rechka/.ssh/*
-
 
 #chrome 84
 cd /tmp
@@ -77,10 +74,6 @@ etckeeper vcs gc
 #nerdfont
 su -c 'mkdir -p ~/.local/share/fonts' rechka
 su -c 'cd ~/.local/share/fonts && curl -fLo "Fira Code Retina Nerd Font Complete Mono.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Retina/complete/Fira%20Code%20Retina%20Nerd%20Font%20Complete%20Mono.ttf' rechka
-
-# cat /var/log/cloud-init-output.log
-echo 'alias cv="less /var/log/cloud-init-output.log"' >> /home/rechka/.zshrc
-
 
 #gpg install
 su -c 'touch ~/rechka.asc' rechka
