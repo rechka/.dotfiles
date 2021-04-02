@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set
+
 echo "alias tv='tail -fs1 /var/log/cloud-init-output.log'" >> /root/.bashrc
 echo "alias cv='less /var/log/cloud-init-output.log'" >> /root/.bashrc
 
