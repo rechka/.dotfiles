@@ -1,0 +1,7 @@
+pandas
+selenium
+undetected-chromedriver
+flake8
+pandas-profiling
+discord-webhook
+icecream
