@@ -1,8 +1,4 @@
 #!/bin/bash
-echo "loaded!"
-echo -e "$GPG_KEY2"
-
-exit 1
 
 echo "alias tv='tail -fs1 /var/log/cloud-init-output.log'" >> /root/.bashrc
 echo "alias cv='less /var/log/cloud-init-output.log'" >> /root/.bashrc
