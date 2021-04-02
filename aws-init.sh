@@ -91,15 +91,10 @@ etckeeper vcs gc
 su -c 'mkdir -p ~/.local/share/fonts' $username
 su -c 'cd ~/.local/share/fonts && curl -fLo "Fira Code Retina Nerd Font Complete Mono.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Retina/complete/Fira%20Code%20Retina%20Nerd%20Font%20Complete%20Mono.ttf' $username
 
-#gpg install
-su -c 'touch ~/rechka.asc' $username
-cat > /home/$username/rechka.asc << EOF
-#INSERT GPG KEY HERE
-EOF
-
-su - -c 'echo -e $GPG_KEY | gpg --import && cd ~/.dotfiles && git secret reveal -f && cd ~ && rcup -vf' $username
-rm /home/$username/rechka.asc
+su - -c "echo -e $GPG_KEY | gpg --import && cd ~/.dotfiles && git secret reveal -f && cd ~ && rcup -vf" $username
+ls -la /home/$username/.ssh/* > /home/$username/chmod.log
 chmod 600 /home/$username/.ssh/*
+ls -la /home/$username/.ssh/* >> /home/$username/chmod.log
 su -c 'ssh -vT git@github.com' $username
 su -c 'cd ~/.dotfiles && git remote set-url origin git@github.com:rechka/.dotfiles.git' $username
 
