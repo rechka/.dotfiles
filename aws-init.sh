@@ -16,7 +16,8 @@ dunst suckless-tools rclone compton hsetroot xsettingsd lxappearance xclip byobu
 
 #snaps
 snap refresh && snap install docker glances && addgroup --system docker && snap disable docker && snap enable docker
-snap install micro go --classic
+snap install micro --classic
+snap install go --classic
 
 #user
 adduser --gecos "" --disabled-password --ingroup adm --shell /usr/bin/zsh --debug --add_extra_groups rechka
