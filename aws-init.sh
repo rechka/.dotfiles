@@ -9,6 +9,15 @@ username=rechka
 #timezone
 timedatectl set-timezone America/Toronto
 
+#initialize etckeeper
+apt-get -yqq install etckeeper
+systemctl start etckeeper.timer
+etckeeper vcs gc
+robot=etckeeper
+host=`curl -s ip.smartproxy.com`
+cd /etc && git config user.name $robot && git config user.email $robot@$host && \
+git checkout -b `date +%y%m%d_%k%M` && git remote add origin git@github.com:$username/etckeeper.git
+
 #update repos & upgrade
 apt-get -yqq update && TERM=linux DEBIAN_FRONTEND=noninteractive apt-get -yqq -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade && apt -yqq autoremove && apt -yqq clean && apt -yqq autoclean
 
@@ -81,15 +90,6 @@ completions dwim history-substring-search command-not-found' $username
 #git 
 su -c "cd ~/.dotfiles && git config user.name $username && git config user.email $username@what.if" $username
 
-apt-get -y install etckeeper
-systemctl start etckeeper.timer
-etckeeper vcs gc
-robot=etckeeper
-host=`curl -s ip.smartproxy.com`
-cd /etc && git config user.name $robot && git config user.email $robot@$host && \
-git checkout -b `date +%y%m%d_%k%M` && git remote add origin git@github.com:$username/etckeeper.git && \
-git push -u origin `git branch --show-current`
-
 #nerdfont
 su -c 'mkdir -p ~/.local/share/fonts' $username
 su -c 'cd ~/.local/share/fonts && curl -fLo "Fira Code Retina Nerd Font Complete Mono.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Retina/complete/Fira%20Code%20Retina%20Nerd%20Font%20Complete%20Mono.ttf' $username
@@ -98,6 +98,12 @@ su - -c "echo -e \"$GPG_KEY\" | gpg --import && cd ~/.dotfiles && git secret rev
 chmod 600 /home/$username/.ssh/*
 su -c 'ssh -vT git@github.com' $username
 su -c "cd ~/.dotfiles && git remote set-url origin git@github.com:$username/.dotfiles.git" $username
+
+
+# push etckeeper
+cp /home/$username/.ssh/id_rsa* ~/.ssh/
+ssh -vT git@github.com
+cd /etc && git push -u origin `git branch --show-current`
 
 #remove myself
 rm -rf /var/lib/cloud/instances/i-*/scripts/
