@@ -51,6 +51,12 @@ cd /root
 
 #code-server
 su -c 'cd ~ && curl -fsSL https://code-server.dev/install.sh | sh' rechka
+#fix from https://github.com/cdr/code-server/issues/2975
+sed -i "s/req.headers\[\"sec-websocket-extensions\"\]/false/g" \
+    /usr/lib/code-server/out/node/routes/vscode.js
+sed -i "s/responseHeaders.push(\"Sec-WebSocket-Extensions/\/\/responseHeaders.push(\"Sec-WebSocket-Extensions/g" \
+    /usr/lib/code-server/out/node/routes/vscode.js
+
 #starship
 su -c 'cd ~ && curl -fsSL https://starship.rs/install.sh | bash -s -- --yes' rechka
 #zulu 
