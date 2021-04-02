@@ -7,7 +7,7 @@ username=rechka
 timedatectl set-timezone America/Toronto
 
 #update repos & upgrade
-apt-get -qq update -y && TERM=linux DEBIAN_FRONTEND=noninteractive apt-get -yq -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade && apt -yqq autoremove && apt -yqq clean && apt -yqq autoclean
+apt-get -qq update -y && TERM=linux DEBIAN_FRONTEND=noninteractive apt-get -yqq -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade && apt -yqq autoremove && apt -yqq clean && apt -yqq autoclean
 
 apt-get -yqq --no-install-recommends install awscli zsh tintin++ ranger python3-venv fluxbox tightvncserver xdg-utils python3-pip \
 nodejs gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 glances libdbus-1-3 fonts-powerline jq \
@@ -64,7 +64,7 @@ su -c 'code-server --install-extension ms-python.python --force && \
     code-server --install-extension humao.rest-client --force && \
     code-server --install-extension ryu1kn.partial-diff --force && \
     code-server --install-extension ms-azuretools.vscode-docker --force' $username
-su - -c 'curl -fsSL https://linux.kite.com/dls/linux/current | bash -s -- --install silent' $username
+#su - -c 'curl -fsSL https://linux.kite.com/dls/linux/current | bash -s -- --install silent' $username
 
 #starship
 su - -c 'curl -fsSL https://starship.rs/install.sh | bash -s -- --yes' $username
