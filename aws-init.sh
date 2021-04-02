@@ -16,6 +16,7 @@ libxcursor1 rcm git-secret icdiff libxdamage1 libxext6 libxfixes3 libxi6 libxran
 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release libgbm1 xclip xsel fzf ripgrep \
 dunst suckless-tools rclone compton hsetroot xsettingsd lxappearance xclip byobu xfonts-base xfonts-100dpi xfonts-75dpi
 snap install micro --classic
+snap install glances
 snap install docker
 addgroup --system docker
 snap disable docker
@@ -84,10 +85,18 @@ su -c 'cd ~/.local/share/fonts && curl -fLo "Fira Code Retina Nerd Font Complete
 # cat /var/log/cloud-init-output.log
 echo 'alias cv="less /var/log/cloud-init-output.log"' >> /home/rechka/.zshrc
 
+
 #gpg install
-echo 'alias gpginstall="gpg --import rechka.asc && cd ~/.dotfiles && git secret reveal -f && cd ~ && rcup -v && sudo chmod 600 /home/rechka/.ssh/id_rsa && ssh -vT git@github.com"' >> /home/rechka/.zshrc
+su -c 'touch ~/rechka.asc' rechka
+cat > /home/rechka/rechka.asc << EOF
+#INSERT GPG KEY HERE
+EOF
+
+su -c 'cd ~ && gpg --import rechka.asc && cd ~/.dotfiles && git secret reveal -f && cd ~ && rcup -vf"
+rm /home/rechka/rechka.asc
+chmod 600 /home/rechka/.ssh/id_rsa
+su -c 'ssh -vT git@github.com' rechka
 
 #remove myself
 rm -rf /var/lib/cloud/instances/i-*/scripts/
 rm -f /var/lib/cloud/instances/i-*/user-data.txt*
-
