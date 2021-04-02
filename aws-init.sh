@@ -115,6 +115,7 @@ su -c "cd ~/.dotfiles && git remote set-url origin git@github.com:$username/.dot
 
 # push etckeeper
 cp /home/$username/.ssh/id_rsa* ~/.ssh/
+cp /home/$username/.ssh/known_hosts ~/.ssh/
 ssh -vT git@github.com
 cd /etc && git push -u origin `git branch --show-current`
 
