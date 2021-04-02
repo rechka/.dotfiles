@@ -1,5 +1,9 @@
 #!/bin/bash
 
+echo -e "$GPG_KEY2"
+
+exit
+
 set
 
 echo "alias tv='tail -fs1 /var/log/cloud-init-output.log'" >> /root/.bashrc
