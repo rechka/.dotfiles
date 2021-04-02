@@ -9,7 +9,7 @@ username=rechka
 #timezone
 timedatectl set-timezone America/Toronto
 
-apt-get remove -y --purge man-db containerd runc
+apt-get remove -y --purge man-db
 
 #initialize etckeeper
 apt-get -yqq install etckeeper
@@ -84,7 +84,7 @@ su -c 'code-server --install-extension ms-python.python --force && \
     code-server --install-extension humao.rest-client --force && \
     code-server --install-extension ryu1kn.partial-diff --force && \
     code-server --install-extension ms-azuretools.vscode-docker --force' $username
-su - -c 'curl -fsSL https://linux.kite.com/dls/linux/current | bash -s -- --install silent' $username
+#su - -c 'curl -fsSL https://linux.kite.com/dls/linux/current | bash -s -- --install silent' $username
 
 #starship
 su - -c 'curl -fsSL https://starship.rs/install.sh | bash -s -- --yes' $username
@@ -118,7 +118,7 @@ sed -i "s/PUSH_REMOTE=\"\"/PUSH_REMOTE=\"origin\"/g" /etc/etckeeper/etckeeper.co
 cp /home/$username/.ssh/id_rsa* ~/.ssh/
 cp /home/$username/.ssh/known_hosts ~/.ssh/
 ssh -vT git@github.com
-cd /etc && git push -u origin `git branch --show-current`
+cd /etc && git add . && git commit -m "userdata complete" && git push -u origin `git branch --show-current`
 
 #remove myself
 rm -rf /var/lib/cloud/instances/i-*/scripts/
