@@ -9,12 +9,13 @@ username=rechka
 #timezone
 timedatectl set-timezone America/Toronto
 
-apt-get remove -y --purge man-db docker docker-engine docker.io containerd runc
+apt-get remove -y --purge man-db docker-engine containerd runc
 
 #initialize etckeeper
 apt-get -yqq install etckeeper
 systemctl start etckeeper.timer
 etckeeper vcs gc
+HOME=/root
 robot=etckeeper
 host=`curl -s ip.smartproxy.com`
 cd /etc && git config --global user.name $robot && git config --global user.email $robot@$host && \
