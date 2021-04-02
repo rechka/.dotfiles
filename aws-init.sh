@@ -13,10 +13,9 @@ apt-get remove -y --purge man-db
 
 #initialize etckeeper
 host=`curl -s ip.smartproxy.com`
-git config --system user.name robot && git config --system user.email robot@$host
-git config --system user.name
 apt-get -yqq install etckeeper
-cd /etc && git config --system user.name robotxz && git config --system user.email robotzx@$host
+cd /etc && git config --system user.name robot && git config --system user.email robot@$host
+cd /etc && git config user.name robot && git config user.email robot@$host
 systemctl start etckeeper.timer
 etckeeper vcs gc
 cd /etc && git checkout -b `date +%y%m%d_%k%M` && git remote add origin git@github.com:$username/etc.git
@@ -86,7 +85,7 @@ su -c 'code-server --install-extension ms-python.python --force && \
     code-server --install-extension humao.rest-client --force && \
     code-server --install-extension ryu1kn.partial-diff --force && \
     code-server --install-extension ms-azuretools.vscode-docker --force' $username
-#su - -c 'curl -fsSL https://linux.kite.com/dls/linux/current | bash -s -- --install silent' $username
+su - -c 'curl -fsSL https://linux.kite.com/dls/linux/current | bash -s -- --install silent' $username
 
 #starship
 su - -c 'curl -fsSL https://starship.rs/install.sh | bash -s -- --yes' $username
