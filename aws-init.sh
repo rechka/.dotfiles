@@ -39,7 +39,7 @@ chmod 700 /home/$username/.ssh
 cd /tmp
 wget -q https://launchpad.net/~canonical-chromium-builds/+archive/ubuntu/stage/+build/19746659/+files/chromium-browser_84.0.4147.105-0ubuntu0.16.04.1_amd64.deb
 wget -q https://launchpad.net/~canonical-chromium-builds/+archive/ubuntu/stage/+build/19746659/+files/chromium-codecs-ffmpeg_84.0.4147.105-0ubuntu0.16.04.1_amd64.deb
-dpkg -i chromium-*.deb
+dpkg -i -E chromium-*.deb
 apt-mark hold chromium-browser
 apt-mark hold chromium-codecs-ffmpeg
 rm chromium-*.deb
@@ -71,7 +71,7 @@ su - -c 'curl -L https://zulu.molovo.co/install | zsh' $username
 
 #dotfiles, watch out for variable in repo url
 su - -c "git clone https://github.com/$username/.dotfiles.git && rcup -f rcrc && rcup -f" $username
-su - -c 'pip3 install -r ~/.dotfiles/requirements.txt' $username
+su - -c 'pip3 -q install -r ~/.dotfiles/requirements.txt' $username
 
 su - -c 'source ~/.zulu/core/zulu && zulu init && \
 zulu install async fast-syntax-highlighting solarized-man z \
