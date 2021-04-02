@@ -9,7 +9,7 @@ username=rechka
 #timezone
 timedatectl set-timezone America/Toronto
 
-apt-get remove -y --purge man-db docker-engine containerd runc
+apt-get remove -y --purge man-db containerd runc
 
 #initialize etckeeper
 apt-get -yqq install etckeeper
