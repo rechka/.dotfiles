@@ -70,7 +70,7 @@ su -c 'cd ~ && curl -L https://zulu.molovo.co/install | zsh' rechka
 
 #dotfiles
 su -c 'cd ~ && git clone https://github.com/rechka/.dotfiles.git && rcup -f rcrc && rcup -f' rechka
-su -c 'cd ~ && pip3 -m install -r ~/.dotfiles/requirements.txt' rechka
+su -c 'cd ~ && pip3 install -r ~/.dotfiles/requirements.txt' rechka
 
 su -c 'cd ~ && source ~/.zulu/core/zulu && zulu init && \
 zulu install async fast-syntax-highlighting solarized-man z \
