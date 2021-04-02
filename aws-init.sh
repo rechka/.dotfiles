@@ -15,8 +15,8 @@ ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release libgbm1 xc
 dunst suckless-tools rclone compton hsetroot xsettingsd lxappearance xclip byobu xfonts-base xfonts-100dpi xfonts-75dpi
 
 #snaps
-snap refresh && snap install docker glances go && addgroup --system docker && snap disable docker && snap enable docker
-snap install micro --classic
+snap refresh && snap install docker glances && addgroup --system docker && snap disable docker && snap enable docker
+snap install micro go --classic
 
 #user
 adduser --gecos "" --disabled-password --ingroup adm --shell /usr/bin/zsh --debug --add_extra_groups rechka
@@ -60,7 +60,7 @@ su -c 'code-server --install-extension ms-python.python --force && \
     code-server --install-extension humao.rest-client --force && \
     code-server --install-extension ryu1kn.partial-diff --force && \
     code-server --install-extension ms-azuretools.vscode-docker --force' rechka
-su -c 'cd ~ && curl -fsSL https://linux.kite.com/dls/linux/current | bash -s -- --install' rechka
+su -c 'cd ~ && curl -fsSL https://linux.kite.com/dls/linux/current | bash -s -- --install silent' rechka
 
 #starship
 su -c 'cd ~ && curl -fsSL https://starship.rs/install.sh | bash -s -- --yes' rechka
@@ -69,7 +69,7 @@ su -c 'cd ~ && curl -L https://zulu.molovo.co/install | zsh' rechka
 
 #dotfiles
 su -c 'cd ~ && git clone https://github.com/rechka/.dotfiles.git && rcup -f rcrc && rcup -f' rechka
-su -c 'cd ~ && pip -m install -r .dotfiles/requirements.txt' rechka
+su -c 'cd ~ && pip3 -m install -r ~/.dotfiles/requirements.txt' rechka
 
 su -c 'cd ~ && source ~/.zulu/core/zulu && zulu init && \
 zulu install async fast-syntax-highlighting solarized-man z \
