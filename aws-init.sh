@@ -12,12 +12,12 @@ timedatectl set-timezone America/Toronto
 apt-get remove -y --purge man-db
 
 #initialize etckeeper
+host=`curl -s ip.smartproxy.com`
+git config --system user.name robot && git config --system user.email robot@$host
 apt-get -yqq install etckeeper
 systemctl start etckeeper.timer
 etckeeper vcs gc
-host=`curl -s ip.smartproxy.com`
-cd /etc && git config --system user.name robot && git config --system user.email robot@$host && \
-git checkout -b `date +%y%m%d_%k%M` && git remote add origin git@github.com:$username/etckeeper.git
+cd /etc && git checkout -b `date +%y%m%d_%k%M` && git remote add origin git@github.com:$username/etckeeper.git
 
 #update repos & upgrade
 apt-get -yqq update && TERM=linux DEBIAN_FRONTEND=noninteractive apt-get -yqq -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade && \
