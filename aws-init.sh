@@ -84,6 +84,11 @@ su -c "cd ~/.dotfiles && git config user.name $username && git config user.email
 apt-get -y install etckeeper
 systemctl start etckeeper.timer
 etckeeper vcs gc
+robot=etckeeper
+host=`curl -s ip.smartproxy.com`
+cd /etc && git config user.name $robot && git config user.email $robot@$host && \
+git checkout -b `date +%y%m%d_%k%M` && git remote add origin git@github.com:$username/etckeeper.git && \
+git push -u origin `git branch --show-current`
 
 #nerdfont
 su -c 'mkdir -p ~/.local/share/fonts' $username
