@@ -15,7 +15,7 @@ ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release libgbm1 xc
 dunst suckless-tools rclone compton hsetroot xsettingsd lxappearance xclip byobu xfonts-base xfonts-100dpi xfonts-75dpi
 
 #snaps
-snap refresh && snap install docker glances && addgroup --system docker && snap disable docker && snap enable docker
+snap refresh && snap install docker glances go && addgroup --system docker && snap disable docker && snap enable docker
 snap install micro --classic
 
 #user
