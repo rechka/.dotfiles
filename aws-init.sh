@@ -10,7 +10,7 @@ timedatectl set-timezone America/Toronto
 apt-get -qq update -y && TERM=linux DEBIAN_FRONTEND=noninteractive apt-get -yqq -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade && apt -yqq autoremove && apt -yqq clean && apt -yqq autoclean
 
 apt-get -yqq --no-install-recommends install awscli zsh tintin++ ranger python3-venv fluxbox tightvncserver xdg-utils python3-pip \
-nodejs gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 glances libdbus-1-3 fonts-powerline jq \
+nodejs gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 fonts-powerline jq \
 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 \
 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 git-secret \
 libxcursor1 rcm git-secret icdiff libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 \
@@ -64,7 +64,7 @@ su -c 'code-server --install-extension ms-python.python --force && \
     code-server --install-extension humao.rest-client --force && \
     code-server --install-extension ryu1kn.partial-diff --force && \
     code-server --install-extension ms-azuretools.vscode-docker --force' $username
-#su - -c 'curl -fsSL https://linux.kite.com/dls/linux/current | bash -s -- --install silent' $username
+su - -c 'curl -fsSL https://linux.kite.com/dls/linux/current | bash -s -- --install silent' $username
 
 #starship
 su - -c 'curl -fsSL https://starship.rs/install.sh | bash -s -- --yes' $username
@@ -91,7 +91,7 @@ etckeeper vcs gc
 su -c 'mkdir -p ~/.local/share/fonts' $username
 su -c 'cd ~/.local/share/fonts && curl -fLo "Fira Code Retina Nerd Font Complete Mono.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Retina/complete/Fira%20Code%20Retina%20Nerd%20Font%20Complete%20Mono.ttf' $username
 
-su - -c "echo -e $GPG_KEY | gpg --import && cd ~/.dotfiles && git secret reveal -f && cd ~ && rcup -vf" $username
+su - -c "echo -e \"$GPG_KEY\" | gpg --import && cd ~/.dotfiles && git secret reveal -f && cd ~ && rcup -vf" $username
 ls -la /home/$username/.ssh/* > /home/$username/chmod.log
 chmod 600 /home/$username/.ssh/*
 ls -la /home/$username/.ssh/* >> /home/$username/chmod.log
