@@ -4,6 +4,8 @@ alias ka="k -A"
 alias kk="k -A"
 alias cv="less /var/log/cloud-init-output.log"
 alias kite-login="~/.local/share/kite/login-user"
+alias gitsshclone='f() { git clone git@github.com:$1.git };f'
+
 export DISPLAY=:0
 HISTFILE=~/.histfile
 HISTSIZE=15000
