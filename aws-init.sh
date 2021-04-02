@@ -15,9 +15,8 @@ apt-get remove -y --purge man-db containerd runc
 apt-get -yqq install etckeeper
 systemctl start etckeeper.timer
 etckeeper vcs gc
-robot=etckeeper
 host=`curl -s ip.smartproxy.com`
-cd /etc && git config --system user.name $robot && git config --system user.email $robot@$host && \
+cd /etc && git config --system user.name robot && git config --system user.email robot@$host && \
 git checkout -b `date +%y%m%d_%k%M` && git remote add origin git@github.com:$username/etckeeper.git
 
 #update repos & upgrade
