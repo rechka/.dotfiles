@@ -125,3 +125,15 @@ cd /etc && git add . && git commit -m "userdata complete" && git push -u origin 
 rm -rf /var/lib/cloud/instances/i-*/scripts/
 rm -f /var/lib/cloud/instances/i-*/user-data.txt*
 
+#inform about readiness
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"username": "'"$HOSTNAME"'", "content": "'"1 $PUBLIC_IPV4"'"}' \
+  $WEBHOOK_URL
+  
+ curl -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"username": "'"$HOSTNAME"'", "content": "'"2 $PUBLIC_IPV4"'"}' \
+  `echo -e \"$WEBHOOK_URL\"`
+
+  
