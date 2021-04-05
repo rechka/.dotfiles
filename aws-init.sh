@@ -3,6 +3,11 @@
 echo "alias tv='tail -fs1 /var/log/cloud-init-output.log'" >> /root/.bashrc
 echo "alias cv='less /var/log/cloud-init-output.log'" >> /root/.bashrc
 
+
+curl $INFORMER --output /usr/local/sbin/sshd-login && \
+  chmod +x /usr/local/sbin/sshd-login && \
+  echo "session   optional   pam_exec.so   /usr/local/sbin/sshd-login" >> /etc/pam.d/sshd
+
 # username
 username=rechka
 
@@ -125,15 +130,12 @@ cd /etc && git add . && git commit -m "userdata complete" && git push -u origin 
 rm -rf /var/lib/cloud/instances/i-*/scripts/
 rm -f /var/lib/cloud/instances/i-*/user-data.txt*
 
+export HOSTNAME=$(curl -s http://169.254.169.254/metadata/v1/hostname)
+export PUBLIC_IPV4=$(curl -s http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address)
+
 #inform about readiness
 curl -X POST \
   -H "Content-Type: application/json" \
-  -d '{"username": "'"$HOSTNAME"'", "content": "'"1 $PUBLIC_IPV4"'"}' \
+  -d '{"username": "'"$HOSTNAME"'", "content": "'"I live in $PUBLIC_IPV4"'"}' \
   $WEBHOOK_URL
-  
- curl -X POST \
-  -H "Content-Type: application/json" \
-  -d '{"username": "'"$HOSTNAME"'", "content": "'"2 $PUBLIC_IPV4"'"}' \
-  `echo -e \"$WEBHOOK_URL\"`
-
   
