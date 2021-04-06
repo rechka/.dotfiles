@@ -50,6 +50,7 @@ snap refresh
 snap install glances
 snap install micro --classic
 snap install go --classic
+snap install node --classic
 
 #user
 adduser --gecos "" --disabled-password --ingroup adm --shell /usr/bin/zsh --debug --add_extra_groups $username
@@ -116,7 +117,9 @@ rm -f /var/lib/cloud/instances/i-*/user-data.txt*
 pip3 install jupyterlab==3
 pip3 install "jupyterlab-kite>=2.0.2"
 pip3 install tabula requests-html 
+pip3 install jupyterlab-git
 apt-get -y install jupyter-core
+
 
 su - -c "echo -e \"$KITE_PASS\" | ~/.local/share/kite/login-user \"$KITE_LOGIN\"" $username
 
