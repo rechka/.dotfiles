@@ -113,11 +113,14 @@ cd /etc && git add . && git commit -m "userdata complete" && git push -u origin 
 rm -rf /var/lib/cloud/instances/i-*/scripts/
 rm -f /var/lib/cloud/instances/i-*/user-data.txt*
 
+curl -fsSL https://deb.nodesource.com/setup_14.x | bash -
+apt-get install -y nodejs
+
 pip3 install jupyterlab==3
 pip3 install "jupyterlab-kite>=2.0.2"
 pip3 install tabula requests-html 
 pip3 install jupyterlab-git
-apt-get -y install nodejs npm jupyter-core
+apt-get -y install npm jupyter-core
 jupyter labextension install @jupyterlab/git @jupyter-widgets/jupyterlab-manager
 pip3 install lckr-jupyterlab-variableinspector ipywidgets
 
