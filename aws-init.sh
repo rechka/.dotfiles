@@ -73,25 +73,6 @@ apt-mark hold chromium-codecs-ffmpeg
 rm chromium-*.deb
 cd /root
 
-#code-server
-su - -c 'curl -fsSL https://code-server.dev/install.sh | sh' $username
-#fix from https://github.com/cdr/code-server/issues/2975
-sed -i "s/req.headers\[\"sec-websocket-extensions\"\]/false/g" \
-    /usr/lib/code-server/out/node/routes/vscode.js
-sed -i "s/responseHeaders.push(\"Sec-WebSocket-Extensions/\/\/responseHeaders.push(\"Sec-WebSocket-Extensions/g" \
-    /usr/lib/code-server/out/node/routes/vscode.js
-su -c 'code-server --install-extension ms-python.python --force && \
-    code-server --install-extension donjayamanne.githistory --force && \
-    code-server --install-extension formulahendry.code-runner --force && \
-    code-server --install-extension almenon.arepl --force && \
-    code-server --install-extension kiteco.kite --force && \
-    code-server --install-extension golang.go --force && \
-    code-server --install-extension Shan.code-settings-sync --force && \
-    code-server --install-extension humao.rest-client --force && \
-    code-server --install-extension xabikos.javascriptsnippets --force && \
-    code-server --install-extension t7yang.hyper-javascript-snippets --force && \
-    code-server --install-extension ryu1kn.partial-diff --force && \
-    code-server --install-extension ms-azuretools.vscode-docker --force' $username
 su - -c 'curl -fsSL https://linux.kite.com/dls/linux/current | bash -s -- --install silent' $username
 
 #starship
