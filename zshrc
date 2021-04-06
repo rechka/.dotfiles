@@ -5,7 +5,7 @@ alias kk="k -A"
 alias vncup1="vncserver :0 -depth 24H -geometry 2732x2048"
 alias vncup2="vncserver :0 -depth 24H -geometry 1366x1024"
 alias vncdown="vncserver -kill :0"
-alias cv="less /var/log/cloud-init-output.log"
+alias cv="cat /var/log/cloud-init-output.log"
 alias kite-login="~/.local/share/kite/login-user"
 alias gitsshclone='f() { git clone git@github.com:$1.git };f'
 
