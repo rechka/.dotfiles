@@ -118,6 +118,8 @@ pip3 install "jupyterlab-kite>=2.0.2"
 pip3 install tabula requests-html 
 pip3 install jupyterlab-git
 apt-get -y install nodejs npm jupyter-core
+jupyter labextension install @jupyterlab/git @jupyter-widgets/jupyterlab-manager
+pip3 install lckr-jupyterlab-variableinspector ipywidgets
 
 su - -c "echo -e \"$KITE_PASS\" | ~/.local/share/kite/login-user \"$KITE_LOGIN\"" $username
 
