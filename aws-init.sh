@@ -135,8 +135,8 @@ pip3 install jupyterlab_theme_solarized_dark
 
 apt-get -y install npm jupyter-core
 jupyter labextension install @jupyter-widgets/jupyterlab-manager
-jupyter labextension install @jupyterlab/google-drive
-jupyter labextension install jupyterlab-flake8
+#jupyter labextension install @jupyterlab/google-drive
+#jupyter labextension install jupyterlab-flake8
 pip3 install lckr-jupyterlab-variableinspector ipywidgets
 
 su - -c "echo -e \"$KITE_PASS\" | ~/.local/share/kite/login-user \"$KITE_LOGIN\"" $username
