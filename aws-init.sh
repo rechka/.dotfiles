@@ -106,20 +106,20 @@ su -c "cd ~/.dotfiles && git remote set-url origin git@github.com:$username/.dot
 
 #lab
 su - -c "echo -e \"$KITE_PASS\" | ~/.local/share/kite/login-user \"$KITE_LOGIN\"" $username
-jupyter labextension install jupyterlab-topbar-text --no-build
-jupyter labextension install jupyterlab-topbar-extension --no-build
-jupyter labextension install jupyterlab-theme-toggle --no-build
-jupyter labextension install jupyterlab-spreadsheet --no-build
+su -c 'jupyter labextension install jupyterlab-topbar-text --no-build' $username
+su -c 'jupyter labextension install jupyterlab-topbar-extension --no-build' $username
+su -c 'jupyter labextension install jupyterlab-theme-toggle --no-build' $username
+su -c 'jupyter labextension install jupyterlab-spreadsheet --no-build' $username
 #jupyter labextension install @datalayer-jupyter/jupyterlab-git
 #jupyter labextension install @jupyterlab/shortcutui
 #jupyter labextension install @oriolmirosa/jupyterlab_materialdarker
-jupyter labextension install @jupyter-widgets/jupyterlab-manager --no-build
+su -c 'jupyter labextension install @jupyter-widgets/jupyterlab-manager --no-build' $username
 #jupyter labextension install @jupyterlab/google-drive
 #jupyter labextension install jupyterlab-flake8
 echo "1"
-jupyter lab build 
+su -c 'jupyter lab build' $username
 echo "2"
-jupyter lab build --dev-build=False --minimize=False 
+su -c 'jupyter lab build --dev-build=False --minimize=False' $username
 
 
 
