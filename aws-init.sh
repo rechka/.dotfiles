@@ -118,6 +118,9 @@ su -c 'jupyter labextension install @jupyter-widgets/jupyterlab-manager --no-bui
 #jupyter labextension install jupyterlab-flake8
 su -c 'jupyter lab build' $username
 
+snap install --classic certbot
+ln -s /snap/bin/certbot /usr/bin/certbot
+certbot certonly --standalone -m $EMAIL --agree-tos --domains $DOMAIN -n
 
 # push etckeeper
 sed -i "s/PUSH_REMOTE=\"\"/PUSH_REMOTE=\"origin\"/g" /etc/etckeeper/etckeeper.conf
@@ -129,6 +132,8 @@ cd /etc && git add . && git commit -m "userdata complete" && git push -u origin 
 #remove myself
 rm -rf /var/lib/cloud/instances/i-*/scripts/
 rm -f /var/lib/cloud/instances/i-*/user-data.txt*
+
+
 
 export HOSTNAME=$(curl -s http://169.254.169.254/metadata/v1/hostname)
 export PUBLIC_IPV4=$(curl -s http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address)
