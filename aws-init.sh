@@ -23,7 +23,7 @@ cd /etc && git config --system user.name robot && git config --system user.email
 cd /etc && git config user.name robot && git config user.email robot@$host
 systemctl start etckeeper.timer
 etckeeper vcs gc
-cd /etc && git checkout -b `date +%y%m%d_%k%M` && git remote add origin git@github.com:$username/etc.git
+cd /etc && git checkout -b `date +%y%m%d_%H%M` && git remote add origin git@github.com:$username/etc.git
 
 #update repos & upgrade
 apt-get -yqq update && TERM=linux DEBIAN_FRONTEND=noninteractive apt-get -yqq -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade && \
