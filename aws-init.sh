@@ -85,7 +85,7 @@ su - -c 'curl -L https://zulu.molovo.co/install | zsh' $username
 #dotfiles, watch out for variable in repo url
 su - -c "git clone https://github.com/$username/.dotfiles.git && rcup -f rcrc && rcup -f" $username
 # add to PATH /home/$username/.local/bin
-su - -c 'pip3 -q install -r ~/.dotfiles/requirements.txt --no-warn-script-location' $username
+su - -c 'pip3 -q install --no-warn-script-location -r ~/.dotfiles/requirements.txt' $username
 
 su - -c 'source ~/.zulu/core/zulu && zulu init && \
 zulu install async fast-syntax-highlighting solarized-man z \
