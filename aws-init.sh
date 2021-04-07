@@ -43,7 +43,7 @@ libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxc
 libxcursor1 rcm git-secret icdiff libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 \
 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release libgbm1 xclip xsel fzf ripgrep \
 dunst suckless-tools rclone compton hsetroot xsettingsd lxappearance xclip byobu xfonts-base xfonts-100dpi xfonts-75dpi \
-apt-transport-https ca-certificates curl gnupg glances lsb-release
+apt-transport-https ca-certificates curl gnupg glances lsb-release acl
 apt-get -yqq install nodejs jupyter-core
 
 #docker
@@ -121,6 +121,8 @@ su -c 'PATH=~/.local/bin:$PATH jupyter lab build' $username
 snap install --classic certbot
 ln -s /snap/bin/certbot /usr/bin/certbot
 certbot certonly --standalone -m $EMAIL --agree-tos --domains $DOMAIN -n
+setfacl -R -m u:$username:rX /etc/letsencrypt/{live,archive}/$DOMAIN
+setfacl -m u:$username:rX /etc/letsencrypt/{live,archive}
 
 # push etckeeper
 sed -i "s/PUSH_REMOTE=\"\"/PUSH_REMOTE=\"origin\"/g" /etc/etckeeper/etckeeper.conf
