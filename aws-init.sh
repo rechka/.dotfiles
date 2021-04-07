@@ -116,11 +116,7 @@ su -c 'jupyter labextension install jupyterlab-spreadsheet --no-build' $username
 su -c 'jupyter labextension install @jupyter-widgets/jupyterlab-manager --no-build' $username
 #jupyter labextension install @jupyterlab/google-drive
 #jupyter labextension install jupyterlab-flake8
-echo "1"
 su -c 'jupyter lab build' $username
-echo "2"
-su -c 'jupyter lab build --dev-build=False --minimize=False' $username
-
 
 
 # push etckeeper
