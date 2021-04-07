@@ -106,17 +106,17 @@ su -c "cd ~/.dotfiles && git remote set-url origin git@github.com:$username/.dot
 
 #lab
 su - -c "echo -e \"$KITE_PASS\" | ~/.local/share/kite/login-user \"$KITE_LOGIN\"" $username
-su -c 'jupyter labextension install jupyterlab-topbar-text --no-build' $username
-su -c 'jupyter labextension install jupyterlab-topbar-extension --no-build' $username
-su -c 'jupyter labextension install jupyterlab-theme-toggle --no-build' $username
-su -c 'jupyter labextension install jupyterlab-spreadsheet --no-build' $username
+su -c 'PATH=~/.local/bin:$PATH jupyter labextension install jupyterlab-topbar-text --no-build' $username
+su -c 'PATH=~/.local/bin:$PATH jupyter labextension install jupyterlab-topbar-extension --no-build' $username
+su -c 'PATH=~/.local/bin:$PATH jupyter labextension install jupyterlab-theme-toggle --no-build' $username
+su -c 'PATH=~/.local/bin:$PATH jupyter labextension install jupyterlab-spreadsheet --no-build' $username
 #jupyter labextension install @datalayer-jupyter/jupyterlab-git
 #jupyter labextension install @jupyterlab/shortcutui
 #jupyter labextension install @oriolmirosa/jupyterlab_materialdarker
-su -c 'jupyter labextension install @jupyter-widgets/jupyterlab-manager --no-build' $username
+su -c 'PATH=~/.local/bin:$PATH jupyter labextension install @jupyter-widgets/jupyterlab-manager --no-build' $username
 #jupyter labextension install @jupyterlab/google-drive
 #jupyter labextension install jupyterlab-flake8
-su -c 'jupyter lab build' $username
+su -c 'PATH=~/.local/bin:$PATH jupyter lab build' $username
 
 snap install --classic certbot
 ln -s /snap/bin/certbot /usr/bin/certbot
