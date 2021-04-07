@@ -1,4 +1,4 @@
 COPY_ALWAYS="ssh/* aws/credentials"
 EXCLUDES="*.secret"
-UNDOTTED="aws-init.* requirements.txt"
+UNDOTTED="aws-init.*"
 
