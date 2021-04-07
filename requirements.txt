@@ -7,7 +7,7 @@ discord-webhook
 icecream
 requests-html
 jupyterlab==3
-jupyterlab-kite>=2.0.2
+"jupyterlab-kite>=2.0.2"
 tabula
 jupyterlab-system-monitor
 jupyter-resource-usage
