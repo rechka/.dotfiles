@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "alias tv='tail -fs1 /var/log/cloud-init-output.log'" >> /root/.bashrc
-echo "alias cv='less /var/log/cloud-init-output.log'" >> /root/.bashrc
+echo "alias cv='cat /var/log/cloud-init-output.log'" >> /root/.bashrc
 
 
 curl $INFORMER --output /usr/local/sbin/sshd-login && \
@@ -32,10 +32,9 @@ apt-get -yqq autoremove && apt-get -yqq clean && apt-get -yqq autoclean
 #snaps used to be here
 curl https://getmic.ro | bash && mv micro /usr/bin
 curl -fsSL https://deb.nodesource.com/setup_14.x | bash -
-#curl -fLo /tmp/go1.16.3.linux-amd64.tar.gz https://golang.org/dl/go1.16.3.linux-amd64.tar.gz
-#rm -rf /usr/local/go && tar -C /usr/local -xzf /tmp/go1.16.3.linux-amd64.tar.gz
-#rm /tmp/go1.16.3.linux-amd64.tar.gz
-# /usr/local/go/bin to PATH
+curl -fLo /tmp/go1.16.3.linux-amd64.tar.gz https://golang.org/dl/go1.16.3.linux-amd64.tar.gz
+rm -rf /usr/local/go && tar -C /usr/local -xzf /tmp/go1.16.3.linux-amd64.tar.gz
+rm /tmp/go1.16.3.linux-amd64.tar.gz
 
 apt-get -yqq --no-install-recommends install awscli zsh tintin++ ranger python3-venv fluxbox tightvncserver xdg-utils python3-pip \
 nodejs gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 fonts-powerline jq \
@@ -58,23 +57,23 @@ apt-get -yqq install nodejs jupyter-core
 adduser --gecos "" --disabled-password --ingroup adm --shell /usr/bin/zsh --debug --add_extra_groups $username
 passwd -d $username
 usermod -aG sudo $username
-addgroup --system docker
-usermod -aG docker $username
-service docker restart
+#addgroup --system docker
+#usermod -aG docker $username
+#service docker restart
 
 cp -r ~/.ssh /home/$username/
 chown $username.adm -R /home/$username/.ssh
 chmod 700 /home/$username/.ssh
 
-#chrome 84
-#cd /tmp
-#wget -q https://launchpad.net/~canonical-chromium-builds/+archive/ubuntu/stage/+build/19746659/+files/chromium-browser_84.0.4147.105-0ubuntu0.16.04.1_amd64.deb
-#wget -q https://launchpad.net/~canonical-chromium-builds/+archive/ubuntu/stage/+build/19746659/+files/chromium-codecs-ffmpeg_84.0.4147.105-0ubuntu0.16.04.1_amd64.deb
-#dpkg -i -E chromium-*.deb
-#apt-mark hold chromium-browser
-#apt-mark hold chromium-codecs-ffmpeg
-#rm chromium-*.deb
-#cd /root
+chrome 84
+cd /tmp
+wget -q https://launchpad.net/~canonical-chromium-builds/+archive/ubuntu/stage/+build/19746659/+files/chromium-browser_84.0.4147.105-0ubuntu0.16.04.1_amd64.deb
+wget -q https://launchpad.net/~canonical-chromium-builds/+archive/ubuntu/stage/+build/19746659/+files/chromium-codecs-ffmpeg_84.0.4147.105-0ubuntu0.16.04.1_amd64.deb
+dpkg -i -E chromium-*.deb
+apt-mark hold chromium-browser
+apt-mark hold chromium-codecs-ffmpeg
+rm chromium-*.deb
+cd /root
 
 su - -c 'curl -fsSL https://linux.kite.com/dls/linux/current | bash -s -- --install silent' $username
 
@@ -85,7 +84,6 @@ su - -c 'curl -L https://zulu.molovo.co/install | zsh' $username
 
 #dotfiles, watch out for variable in repo url
 su - -c "git clone https://github.com/$username/.dotfiles.git && rcup -f rcrc && rcup -f" $username
-# add to PATH /home/$username/.local/bin
 su - -c 'pip3 -q install --no-warn-script-location -r ~/.dotfiles/requirements.txt' $username
 
 su - -c 'source ~/.zulu/core/zulu && zulu init && \
