@@ -36,20 +36,21 @@ libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxc
 libxcursor1 rcm git-secret icdiff libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 \
 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release libgbm1 xclip xsel fzf ripgrep \
 dunst suckless-tools rclone compton hsetroot xsettingsd lxappearance xclip byobu xfonts-base xfonts-100dpi xfonts-75dpi \
-apt-transport-https ca-certificates curl gnupg glances lsb-release
+apt-transport-https ca-certificates curl gnupg glances lsb-release npm jupyter-core
 
 #docker
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-echo \
-  "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-apt-get -yqq update && apt-get -yqq --no-install-recommends install docker-ce docker-ce-cli containerd.io
+#curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+#echo \
+#  "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+#  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+#apt-get -yqq update && apt-get -yqq --no-install-recommends install docker-ce docker-ce-cli containerd.io
 
 #snaps used to be here
 curl https://getmic.ro | bash && mv micro /usr/bin
-curl -fLo /tmp/go1.16.3.linux-amd64.tar.gz https://golang.org/dl/go1.16.3.linux-amd64.tar.gz
-rm -rf /usr/local/go && tar -C /usr/local -xzf /tmp/go1.16.3.linux-amd64.tar.gz
-rm /tmp/go1.16.3.linux-amd64.tar.gz
+curl -fsSL https://deb.nodesource.com/setup_14.x | bash -
+#curl -fLo /tmp/go1.16.3.linux-amd64.tar.gz https://golang.org/dl/go1.16.3.linux-amd64.tar.gz
+#rm -rf /usr/local/go && tar -C /usr/local -xzf /tmp/go1.16.3.linux-amd64.tar.gz
+#rm /tmp/go1.16.3.linux-amd64.tar.gz
 # /usr/local/go/bin to PATH
 
 #user
@@ -65,14 +66,14 @@ chown $username.adm -R /home/$username/.ssh
 chmod 700 /home/$username/.ssh
 
 #chrome 84
-cd /tmp
-wget -q https://launchpad.net/~canonical-chromium-builds/+archive/ubuntu/stage/+build/19746659/+files/chromium-browser_84.0.4147.105-0ubuntu0.16.04.1_amd64.deb
-wget -q https://launchpad.net/~canonical-chromium-builds/+archive/ubuntu/stage/+build/19746659/+files/chromium-codecs-ffmpeg_84.0.4147.105-0ubuntu0.16.04.1_amd64.deb
-dpkg -i -E chromium-*.deb
-apt-mark hold chromium-browser
-apt-mark hold chromium-codecs-ffmpeg
-rm chromium-*.deb
-cd /root
+#cd /tmp
+#wget -q https://launchpad.net/~canonical-chromium-builds/+archive/ubuntu/stage/+build/19746659/+files/chromium-browser_84.0.4147.105-0ubuntu0.16.04.1_amd64.deb
+#wget -q https://launchpad.net/~canonical-chromium-builds/+archive/ubuntu/stage/+build/19746659/+files/chromium-codecs-ffmpeg_84.0.4147.105-0ubuntu0.16.04.1_amd64.deb
+#dpkg -i -E chromium-*.deb
+#apt-mark hold chromium-browser
+#apt-mark hold chromium-codecs-ffmpeg
+#rm chromium-*.deb
+#cd /root
 
 su - -c 'curl -fsSL https://linux.kite.com/dls/linux/current | bash -s -- --install silent' $username
 
@@ -95,13 +96,32 @@ completions dwim history-substring-search command-not-found' $username
 su -c "cd ~/.dotfiles && git config user.name $username && git config user.email $username@what.if" $username
 
 #nerdfont
-su -c 'mkdir -p ~/.local/share/fonts' $username
-su -c 'cd ~/.local/share/fonts && curl -fLo "Fira Code Retina Nerd Font Complete Mono.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Retina/complete/Fira%20Code%20Retina%20Nerd%20Font%20Complete%20Mono.ttf' $username
+#su -c 'mkdir -p ~/.local/share/fonts' $username
+#su -c 'cd ~/.local/share/fonts && curl -fLo "Fira Code Retina Nerd Font Complete Mono.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Retina/complete/Fira%20Code%20Retina%20Nerd%20Font%20Complete%20Mono.ttf' $username
 
 su - -c "echo -e \"$GPG_KEY\" | gpg --import && cd ~/.dotfiles && git secret reveal -f && cd ~ && rcup -vf" $username
 chmod 600 /home/$username/.ssh/*
 su -c 'ssh -vT git@github.com' $username
 su -c "cd ~/.dotfiles && git remote set-url origin git@github.com:$username/.dotfiles.git" $username
+
+
+#lab
+su - -c "echo -e \"$KITE_PASS\" | ~/.local/share/kite/login-user \"$KITE_LOGIN\"" $username
+jupyter labextension install jupyterlab-topbar-text --no-build
+jupyter labextension install jupyterlab-topbar-extension --no-build
+jupyter labextension install jupyterlab-theme-toggle --no-build
+jupyter labextension install jupyterlab-spreadsheet --no-build
+#jupyter labextension install @datalayer-jupyter/jupyterlab-git
+#jupyter labextension install @jupyterlab/shortcutui
+#jupyter labextension install @oriolmirosa/jupyterlab_materialdarker
+jupyter labextension install @jupyter-widgets/jupyterlab-manager --no-build
+#jupyter labextension install @jupyterlab/google-drive
+#jupyter labextension install jupyterlab-flake8
+echo "1"
+jupyter lab build 
+echo "2"
+jupyter lab build --dev-build=False --minimize=False 
+
 
 
 # push etckeeper
@@ -114,37 +134,6 @@ cd /etc && git add . && git commit -m "userdata complete" && git push -u origin 
 #remove myself
 rm -rf /var/lib/cloud/instances/i-*/scripts/
 rm -f /var/lib/cloud/instances/i-*/user-data.txt*
-
-curl -fsSL https://deb.nodesource.com/setup_14.x | bash -
-apt-get install -y nodejs
-
-#still need git in lab
-pip3 install jupyterlab==3
-pip3 install "jupyterlab-kite>=2.0.2"
-pip3 install tabula requests-html 
-pip3 install jupyterlab-system-monitor
-pip3 install jupyter-resource-usage
-pip3 install jupyterlab-topbar
-jupyter labextension install jupyterlab-topbar-text
-jupyter labextension install @yunabe/lgo_extension
-jupyter labextension install jupyterlab-topbar-extension jupyterlab-theme-toggle
-jupyter labextension install jupyterlab-spreadsheet
-pip3 install jupyterlab_execute_time
-pip3 install sidecar
-#pip3 install --upgrade jupyterlab jupyterlab-git
-#jupyter labextension install @datalayer-jupyter/jupyterlab-git
-#jupyter labextension install @jupyterlab/shortcutui
-pip3 install jupyterlab-quickopen
-#jupyter labextension install @oriolmirosa/jupyterlab_materialdarker
-pip3 install jupyterlab_theme_solarized_dark
-
-apt-get -y install npm jupyter-core
-jupyter labextension install @jupyter-widgets/jupyterlab-manager
-#jupyter labextension install @jupyterlab/google-drive
-#jupyter labextension install jupyterlab-flake8
-pip3 install lckr-jupyterlab-variableinspector ipywidgets
-
-su - -c "echo -e \"$KITE_PASS\" | ~/.local/share/kite/login-user \"$KITE_LOGIN\"" $username
 
 export HOSTNAME=$(curl -s http://169.254.169.254/metadata/v1/hostname)
 export PUBLIC_IPV4=$(curl -s http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address)
