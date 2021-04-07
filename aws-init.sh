@@ -130,6 +130,8 @@ jupyter labextension install jupyterlab-topbar-extension jupyterlab-theme-toggle
 jupyter labextension install jupyterlab-spreadsheet
 pip3 install jupyterlab_execute_time
 pip3 install sidecar
+pip3 install --upgrade jupyterlab jupyterlab-git
+jupyter labextension install @datalayer-jupyter/jupyterlab-git
 #jupyter labextension install @jupyterlab/shortcutui
 pip3 install jupyterlab-quickopen
 #jupyter labextension install @oriolmirosa/jupyterlab_materialdarker
