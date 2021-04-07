@@ -126,12 +126,13 @@ pip3 install jupyterlab-system-monitor
 pip3 install jupyter-resource-usage
 pip3 install jupyterlab-topbar
 jupyter labextension install jupyterlab-topbar-text
+jupyter labextension install @yunabe/lgo_extension
 jupyter labextension install jupyterlab-topbar-extension jupyterlab-theme-toggle
 jupyter labextension install jupyterlab-spreadsheet
 pip3 install jupyterlab_execute_time
 pip3 install sidecar
-pip3 install --upgrade jupyterlab jupyterlab-git
-jupyter labextension install @datalayer-jupyter/jupyterlab-git
+#pip3 install --upgrade jupyterlab jupyterlab-git
+#jupyter labextension install @datalayer-jupyter/jupyterlab-git
 #jupyter labextension install @jupyterlab/shortcutui
 pip3 install jupyterlab-quickopen
 #jupyter labextension install @oriolmirosa/jupyterlab_materialdarker
