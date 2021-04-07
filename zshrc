@@ -28,5 +28,5 @@ zulu init
 eval "$(starship init zsh)"
 
 path+=('/usr/local/go/bin')
-path+=('~/.local/bin')
+path+=($PWD/.local/bin)
 export PATH
