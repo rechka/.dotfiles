@@ -7,7 +7,7 @@ alias vncup2="vncserver :0 -depth 24H -geometry 1366x1024"
 alias jlabup="jupyter lab --ip=`echo $(curl -s http://169.254.169.254/metadata/v1/interfaces/public/0/anchor_ipv4/address)`"
 alias vncdown="vncserver -kill :0"
 alias cv="cat /var/log/cloud-init-output.log"
-alias cvg="cat /var/log/cloud-init-output.log | rg -S -A3 -B3 error && cat /var/log/cloud-init-output.log | rg -S -A3 -B3 warning && cat /var/log/cloud-init-output.log | rg -S -A3 -B3 outdated"
+alias cvg="cat /var/log/cloud-init-output.log | rg -S -A3 -B3 fail && cat /var/log/cloud-init-output.log | rg -S -A3 -B3 error && cat /var/log/cloud-init-output.log | rg -S -A3 -B3 warning && cat /var/log/cloud-init-output.log | rg -S -A3 -B3 outdated"
 alias kite-login="~/.local/share/kite/login-user"
 alias gitsshclone='f() { git clone git@github.com:$1.git };f'
 
