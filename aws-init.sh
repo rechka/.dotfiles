@@ -75,8 +75,6 @@ apt-mark hold chromium-codecs-ffmpeg
 rm chromium-*.deb
 cd /root
 
-#su - -c 'curl -fsSL https://linux.kite.com/dls/linux/current | bash -s -- --install silent' $username
-
 #starship
 su - -c 'curl -fsSL https://starship.rs/install.sh | bash -s -- --yes' $username
 #zulu 
@@ -105,7 +103,6 @@ su - -c "cd ~/.dotfiles && git remote set-url origin git@github.com:$username/.d
 
 
 #lab
-su - -c "echo -e \"$KITE_PASS\" | ~/.local/share/kite/login-user \"$KITE_LOGIN\"" $username
 su - -c 'PATH=~/.local/bin:$PATH jupyter labextension install jupyterlab-topbar-text --no-build' $username
 su - -c 'PATH=~/.local/bin:$PATH jupyter labextension install jupyterlab-topbar-extension --no-build' $username
 su - -c 'PATH=~/.local/bin:$PATH jupyter labextension install jupyterlab-theme-toggle --no-build' $username
