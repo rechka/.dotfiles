@@ -65,7 +65,7 @@ cp -r ~/.ssh /home/$username/
 chown $username.adm -R /home/$username/.ssh
 chmod 700 /home/$username/.ssh
 
-chrome 84
+#chrome 84
 cd /tmp
 wget -q https://launchpad.net/~canonical-chromium-builds/+archive/ubuntu/stage/+build/19746659/+files/chromium-browser_84.0.4147.105-0ubuntu0.16.04.1_amd64.deb
 wget -q https://launchpad.net/~canonical-chromium-builds/+archive/ubuntu/stage/+build/19746659/+files/chromium-codecs-ffmpeg_84.0.4147.105-0ubuntu0.16.04.1_amd64.deb
