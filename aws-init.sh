@@ -106,7 +106,7 @@ su -c "cd ~/.dotfiles && git remote set-url origin git@github.com:$username/.dot
 
 #lab
 su - -c "echo -e \"$KITE_PASS\" | ~/.local/share/kite/login-user \"$KITE_LOGIN\"" $username
-su -c '~/.local/bin/jupyter labextension install jupyterlab-topbar-text --no-build' $username
+su -c 'jupyter labextension install jupyterlab-topbar-text --no-build' $username
 su -c 'jupyter labextension install jupyterlab-topbar-extension --no-build' $username
 su -c 'jupyter labextension install jupyterlab-theme-toggle --no-build' $username
 su -c 'jupyter labextension install jupyterlab-spreadsheet --no-build' $username
