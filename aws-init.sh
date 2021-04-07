@@ -36,7 +36,7 @@ libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxc
 libxcursor1 rcm git-secret icdiff libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 \
 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release libgbm1 xclip xsel fzf ripgrep \
 dunst suckless-tools rclone compton hsetroot xsettingsd lxappearance xclip byobu xfonts-base xfonts-100dpi xfonts-75dpi \
-apt-transport-https ca-certificates curl gnupg lsb-release
+apt-transport-https ca-certificates curl gnupg glances lsb-release
 
 #docker
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
@@ -45,11 +45,10 @@ echo \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 apt-get -yqq update && apt-get -yqq --no-install-recommends install docker-ce docker-ce-cli containerd.io
 
-#snaps
-snap refresh
-snap install glances
-snap install micro --classic
-snap install go --classic
+#snaps used to be here
+curl https://getmic.ro | bash && mv micro /usr/bin
+rm -rf /usr/local/go && tar -C /usr/local -xzf go1.16.3.linux-amd64.tar.gz
+# /usr/local/go/bin to PATH
 
 #user
 adduser --gecos "" --disabled-password --ingroup adm --shell /usr/bin/zsh --debug --add_extra_groups $username
@@ -82,6 +81,7 @@ su - -c 'curl -L https://zulu.molovo.co/install | zsh' $username
 
 #dotfiles, watch out for variable in repo url
 su - -c "git clone https://github.com/$username/.dotfiles.git && rcup -f rcrc && rcup -f" $username
+# add to PATH /home/$username/.local/bin
 su - -c 'pip3 -q install -r ~/.dotfiles/requirements.txt' $username
 
 su - -c 'source ~/.zulu/core/zulu && zulu init && \
@@ -116,16 +116,30 @@ rm -f /var/lib/cloud/instances/i-*/user-data.txt*
 curl -fsSL https://deb.nodesource.com/setup_14.x | bash -
 apt-get install -y nodejs
 
+#still need git in lab
 pip3 install jupyterlab==3
 pip3 install "jupyterlab-kite>=2.0.2"
 pip3 install tabula requests-html 
-pip3 install jupyterlab-git
+pip3 install jupyterlab-system-monitor
+pip3 install jupyter-resource-usage
+pip3 install jupyterlab-topbar
+jupyter labextension install jupyterlab-topbar-text
+jupyter labextension install jupyterlab-topbar-extension jupyterlab-theme-toggle
+jupyter labextension install jupyterlab-spreadsheet
+pip3 install jupyterlab_execute_time
+pip3 install sidecar
+jupyter labextension install @jupyterlab/shortcutui
+pip3 install jupyterlab-quickopen
+jupyter labextension install @oriolmirosa/jupyterlab_materialdarker
+pip3 install jupyterlab_theme_solarized_dark
+
 apt-get -y install npm jupyter-core
-jupyter labextension install @jupyterlab/git @jupyter-widgets/jupyterlab-manager
+jupyter labextension install @jupyter-widgets/jupyterlab-manager
+jupyter labextension install @jupyterlab/google-drive
+jupyter labextension install jupyterlab-flake8
 pip3 install lckr-jupyterlab-variableinspector ipywidgets
 
 su - -c "echo -e \"$KITE_PASS\" | ~/.local/share/kite/login-user \"$KITE_LOGIN\"" $username
-
 
 export HOSTNAME=$(curl -s http://169.254.169.254/metadata/v1/hostname)
 export PUBLIC_IPV4=$(curl -s http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address)
