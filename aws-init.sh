@@ -75,7 +75,7 @@ apt-mark hold chromium-codecs-ffmpeg
 rm chromium-*.deb
 cd /root
 
-su - -c 'curl -fsSL https://linux.kite.com/dls/linux/current | bash -s -- --install silent' $username
+#su - -c 'curl -fsSL https://linux.kite.com/dls/linux/current | bash -s -- --install silent' $username
 
 #starship
 su - -c 'curl -fsSL https://starship.rs/install.sh | bash -s -- --yes' $username
@@ -84,7 +84,7 @@ su - -c 'curl -L https://zulu.molovo.co/install | zsh' $username
 
 #dotfiles, watch out for variable in repo url
 su - -c "git clone https://github.com/$username/.dotfiles.git && rcup -f rcrc && rcup -f" $username
-su - -c 'pip3 install --no-warn-script-location -r ~/.dotfiles/requirements.txt' $username
+su - -c 'pip3 install -U --no-warn-script-location -r ~/.dotfiles/requirements.txt' $username
 
 su - -c 'source ~/.zulu/core/zulu && zulu init && \
 zulu install async fast-syntax-highlighting solarized-man z \
@@ -100,30 +100,30 @@ su -c "cd ~/.dotfiles && git config user.name $username && git config user.email
 
 su - -c "echo -e \"$GPG_KEY\" | gpg --import && cd ~/.dotfiles && git secret reveal -f && cd ~ && rcup -vf" $username
 chmod 600 /home/$username/.ssh/*
-su -c 'ssh -vT git@github.com' $username
-su -c "cd ~/.dotfiles && git remote set-url origin git@github.com:$username/.dotfiles.git" $username
+su - -c 'ssh -vT git@github.com' $username
+su - -c "cd ~/.dotfiles && git remote set-url origin git@github.com:$username/.dotfiles.git" $username
 
 
 #lab
 su - -c "echo -e \"$KITE_PASS\" | ~/.local/share/kite/login-user \"$KITE_LOGIN\"" $username
-su -c 'PATH=~/.local/bin:$PATH jupyter labextension install jupyterlab-topbar-text --no-build' $username
-su -c 'PATH=~/.local/bin:$PATH jupyter labextension install jupyterlab-topbar-extension --no-build' $username
-su -c 'PATH=~/.local/bin:$PATH jupyter labextension install jupyterlab-theme-toggle --no-build' $username
-su -c 'PATH=~/.local/bin:$PATH jupyter labextension install jupyterlab-spreadsheet --no-build' $username
+su - -c 'PATH=~/.local/bin:$PATH jupyter labextension install jupyterlab-topbar-text --no-build' $username
+su - -c 'PATH=~/.local/bin:$PATH jupyter labextension install jupyterlab-topbar-extension --no-build' $username
+su - -c 'PATH=~/.local/bin:$PATH jupyter labextension install jupyterlab-theme-toggle --no-build' $username
+su - -c 'PATH=~/.local/bin:$PATH jupyter labextension install jupyterlab-spreadsheet --no-build' $username
 #jupyter labextension install @datalayer-jupyter/jupyterlab-git
 #jupyter labextension install @jupyterlab/shortcutui
 #jupyter labextension install @oriolmirosa/jupyterlab_materialdarker
-su -c 'PATH=~/.local/bin:$PATH jupyter labextension install @jupyter-widgets/jupyterlab-manager --no-build' $username
+su - -c 'PATH=~/.local/bin:$PATH jupyter labextension install @jupyter-widgets/jupyterlab-manager --no-build' $username
 #jupyter labextension install @jupyterlab/google-drive
 #jupyter labextension install jupyterlab-flake8
-su -c 'PATH=~/.local/bin:$PATH jupyter lab build' $username
+su - -c 'PATH=~/.local/bin:$PATH jupyter lab build' $username
 
 snap install --classic certbot
 ln -s /snap/bin/certbot /usr/bin/certbot
 certbot certonly --standalone -m $EMAIL --agree-tos --domains $DOMAIN -n
 setfacl -R -m u:$username:rX /etc/letsencrypt/{live,archive}/$DOMAIN
 setfacl -m u:$username:rX /etc/letsencrypt/{live,archive}
-su -c 'ln -s /etc/letsencrypt/live/'"'$DOMAIN'"'/fullchain.pem /home/'"'$username'"'/.jupyter/.cert' $username
+su - -c 'ln -s /etc/letsencrypt/live/'"'$DOMAIN'"'/fullchain.pem /home/'"'$username'"'/.jupyter/.cert' $username
 
 # push etckeeper
 sed -i "s/PUSH_REMOTE=\"\"/PUSH_REMOTE=\"origin\"/g" /etc/etckeeper/etckeeper.conf
