@@ -47,7 +47,9 @@ apt-get -yqq update && apt-get -yqq --no-install-recommends install docker-ce do
 
 #snaps used to be here
 curl https://getmic.ro | bash && mv micro /usr/bin
-rm -rf /usr/local/go && tar -C /usr/local -xzf go1.16.3.linux-amd64.tar.gz
+curl -fLo /tmp/go1.16.3.linux-amd64.tar.gz https://golang.org/dl/go1.16.3.linux-amd64.tar.gz
+rm -rf /usr/local/go && tar -C /usr/local -xzf /tmp/go1.16.3.linux-amd64.tar.gz
+rm /tmp/go1.16.3.linux-amd64.tar.gz
 # /usr/local/go/bin to PATH
 
 #user
@@ -82,7 +84,7 @@ su - -c 'curl -L https://zulu.molovo.co/install | zsh' $username
 #dotfiles, watch out for variable in repo url
 su - -c "git clone https://github.com/$username/.dotfiles.git && rcup -f rcrc && rcup -f" $username
 # add to PATH /home/$username/.local/bin
-su - -c 'pip3 -q install -r ~/.dotfiles/requirements.txt' $username
+su - -c 'pip3 -q --no-warn-script-location install -r ~/.dotfiles/requirements.txt' $username
 
 su - -c 'source ~/.zulu/core/zulu && zulu init && \
 zulu install async fast-syntax-highlighting solarized-man z \
@@ -128,15 +130,15 @@ jupyter labextension install jupyterlab-topbar-extension jupyterlab-theme-toggle
 jupyter labextension install jupyterlab-spreadsheet
 pip3 install jupyterlab_execute_time
 pip3 install sidecar
-jupyter labextension install @jupyterlab/shortcutui
+#jupyter labextension install @jupyterlab/shortcutui
 pip3 install jupyterlab-quickopen
-jupyter labextension install @oriolmirosa/jupyterlab_materialdarker
+#jupyter labextension install @oriolmirosa/jupyterlab_materialdarker
 pip3 install jupyterlab_theme_solarized_dark
 
 apt-get -y install npm jupyter-core
 jupyter labextension install @jupyter-widgets/jupyterlab-manager
-jupyter labextension install @jupyterlab/google-drive
-jupyter labextension install jupyterlab-flake8
+#jupyter labextension install @jupyterlab/google-drive
+#jupyter labextension install jupyterlab-flake8
 pip3 install lckr-jupyterlab-variableinspector ipywidgets
 
 su - -c "echo -e \"$KITE_PASS\" | ~/.local/share/kite/login-user \"$KITE_LOGIN\"" $username
