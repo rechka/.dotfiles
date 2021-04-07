@@ -13,7 +13,7 @@ username=rechka
 
 #timezone
 timedatectl set-timezone America/Toronto
-
+openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
 apt-get remove -y --purge man-db
 
 #initialize etckeeper
