@@ -115,3 +115,4 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+[ -r /home/rechka/.byobu/prompt ] && . /home/rechka/.byobu/prompt   #byobu-prompt#
