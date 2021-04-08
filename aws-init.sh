@@ -19,6 +19,7 @@ apt-get remove -y --purge man-db
 #initialize etckeeper
 host=`curl -s ip.smartproxy.com`
 apt-get -yqq install etckeeper
+echo letsencrypt >> /etc/.gitignore
 cd /etc && git config --system user.name robot && git config --system user.email robot@$host
 cd /etc && git config user.name robot && git config user.email robot@$host
 systemctl start etckeeper.timer
@@ -98,10 +99,10 @@ su -c "cd ~/.dotfiles && git config user.name $username && git config user.email
 
 su - -c "echo -e \"$GPG_KEY\" | gpg --import && cd ~/.dotfiles && git secret reveal -f && cd ~ && rcup -vf" $username
 chmod 600 /home/$username/.ssh/*
-su - -c 'ssh -vT git@github.com' $username
+#su - -c 'ssh -vT git@github.com' $username
 cp /home/$username/.ssh/id_rsa* ~/.ssh/
 cp /home/$username/.ssh/known_hosts ~/.ssh/
-ssh -vT git@github.com
+#ssh -vT git@github.com
 su - -c "cd ~/.dotfiles && git remote set-url origin git@github.com:$username/.dotfiles.git" $username
 
 
