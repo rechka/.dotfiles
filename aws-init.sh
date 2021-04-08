@@ -43,7 +43,7 @@ libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxc
 libxcursor1 rcm git-secret icdiff libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 \
 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release libgbm1 xclip xsel fzf ripgrep \
 dunst suckless-tools rclone compton hsetroot xsettingsd lxappearance xclip byobu xfonts-base xfonts-100dpi xfonts-75dpi \
-apt-transport-https ca-certificates curl gnupg glances lsb-release acl
+apt-transport-https ca-certificates curl gnupg glances lsb-release acl openjdk-14-jre-headless
 apt-get -yqq install nodejs jupyter-core
 
 #docker
@@ -107,6 +107,7 @@ su - -c 'PATH=~/.local/bin:$PATH jupyter labextension install jupyterlab-topbar-
 su - -c 'PATH=~/.local/bin:$PATH jupyter labextension install jupyterlab-topbar-extension --no-build' $username
 su - -c 'PATH=~/.local/bin:$PATH jupyter labextension install jupyterlab-theme-toggle --no-build' $username
 su - -c 'PATH=~/.local/bin:$PATH jupyter labextension install jupyterlab-spreadsheet --no-build' $username
+su - -c 'PATH=~/.local/bin:$PATH jupyter labextension install @jupyterlab/debugger --no-build' $username
 su - -c 'PATH=~/.local/bin:$PATH jupyter labextension uninstall nbdime-jupyterlab --no-build' $username
 #jupyter labextension install @datalayer-jupyter/jupyterlab-git
 #jupyter labextension install @jupyterlab/shortcutui
