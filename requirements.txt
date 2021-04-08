@@ -22,3 +22,4 @@ lckr-jupyterlab-variableinspector
 ipywidgets
 jupyterlab_theme_solarized_dark
 jupyterlab-quickopen
+html5lib
