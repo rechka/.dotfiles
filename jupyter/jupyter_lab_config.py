@@ -481,7 +481,7 @@
 
 ## The full path to an SSL/TLS certificate file.
 #  Default: ''
-# c.ServerApp.certfile = ''
+c.ServerApp.certfile = '~/.jupyter/.cert'
 
 ## The full path to a certificate authority certificate for SSL/TLS client
 #  authentication.
@@ -630,7 +630,7 @@
 
 ## The full path to a private key file for usage with SSL/TLS.
 #  Default: ''
-# c.ServerApp.keyfile = ''
+c.ServerApp.keyfile = '~/.jupyter/.key'
 
 ## Hostnames to allow as local when allow_remote_access is False.
 #  
@@ -710,7 +710,7 @@
 
 ## The port the Jupyter server will listen on.
 #  Default: 8888
-c.ServerApp.port = 8080
+c.ServerApp.port = 8443
 
 ## The number of additional ports to try if the specified port is not available.
 #  Default: 50
