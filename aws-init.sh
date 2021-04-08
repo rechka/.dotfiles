@@ -124,6 +124,17 @@ setfacl -m u:$username:rX /etc/letsencrypt/{live,archive}
 su - -c 'ln -s /etc/letsencrypt/live/'"'$DOMAIN'"'/fullchain.pem /home/'"'$username'"'/.jupyter/.fullchain' $username
 su - -c 'ln -s /etc/letsencrypt/live/'"'$DOMAIN'"'/privkey.pem /home/'"'$username'"'/.jupyter/.key' $username
 
+#source https://gist.github.com/danibram/d00ed812f2ca6a68758e
+iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080
+iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 8443
+iptables -t nat -A OUTPUT -o lo -p tcp --dport 443 -j REDIRECT --to-port 8443
+sh -c "iptables-save > /etc/iptables.rules"
+
+#source https://gist.github.com/alonisser/a2c19f5362c2091ac1e7
+echo iptables-persistent iptables-persistent/autosave_v4 boolean true | debconf-set-selections
+echo iptables-persistent iptables-persistent/autosave_v6 boolean true | debconf-set-selections
+apt-get -y install iptables-persistent
+
 # push etckeeper
 sed -i "s/PUSH_REMOTE=\"\"/PUSH_REMOTE=\"origin\"/g" /etc/etckeeper/etckeeper.conf
 cp /home/$username/.ssh/id_rsa* ~/.ssh/
