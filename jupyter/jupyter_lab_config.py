@@ -481,7 +481,7 @@
 
 ## The full path to an SSL/TLS certificate file.
 #  Default: ''
-c.ServerApp.certfile = '~/.jupyter/.cert'
+c.ServerApp.certfile = os.path.expanduser('~') + '/.jupyter/.cert'
 
 ## The full path to a certificate authority certificate for SSL/TLS client
 #  authentication.
@@ -630,7 +630,7 @@ c.ServerApp.certfile = '~/.jupyter/.cert'
 
 ## The full path to a private key file for usage with SSL/TLS.
 #  Default: ''
-c.ServerApp.keyfile = '~/.jupyter/.key'
+c.ServerApp.keyfile = os.path.expanduser('~') + '/.jupyter/.key'
 
 ## Hostnames to allow as local when allow_remote_access is False.
 #  
