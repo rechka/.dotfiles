@@ -18,5 +18,6 @@ ipywidgets
 jupyterlab_theme_solarized_dark
 jupyterlab-quickopen
 html5lib
+jupyter_contrib_nbextensions
 xeus-python
 ptvsd
