@@ -43,7 +43,7 @@ libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxc
 libxcursor1 rcm git-secret icdiff libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 \
 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release libgbm1 xclip xsel fzf ripgrep \
 dunst suckless-tools rclone compton hsetroot xsettingsd lxappearance xclip byobu xfonts-base xfonts-100dpi xfonts-75dpi \
-apt-transport-https ca-certificates curl gnupg glances lsb-release acl
+apt-transport-https ca-certificates curl gnupg glances lsb-release acl openjdk-14-jre-headless
 apt-get -yqq install nodejs jupyter-core
 
 #docker
@@ -99,14 +99,18 @@ su -c "cd ~/.dotfiles && git config user.name $username && git config user.email
 su - -c "echo -e \"$GPG_KEY\" | gpg --import && cd ~/.dotfiles && git secret reveal -f && cd ~ && rcup -vf" $username
 chmod 600 /home/$username/.ssh/*
 su - -c 'ssh -vT git@github.com' $username
+cp /home/$username/.ssh/id_rsa* ~/.ssh/
+cp /home/$username/.ssh/known_hosts ~/.ssh/
+ssh -vT git@github.com
 su - -c "cd ~/.dotfiles && git remote set-url origin git@github.com:$username/.dotfiles.git" $username
 
 
 #lab
-su - -c 'PATH=~/.local/bin:$PATH jupyter labextension install jupyterlab-topbar-text --no-build' $username
-su - -c 'PATH=~/.local/bin:$PATH jupyter labextension install jupyterlab-topbar-extension --no-build' $username
+#su - -c 'PATH=~/.local/bin:$PATH jupyter labextension install jupyterlab-topbar-text --no-build' $username
+#su - -c 'PATH=~/.local/bin:$PATH jupyter labextension install jupyterlab-topbar-extension --no-build' $username
 su - -c 'PATH=~/.local/bin:$PATH jupyter labextension install jupyterlab-theme-toggle --no-build' $username
 su - -c 'PATH=~/.local/bin:$PATH jupyter labextension install jupyterlab-spreadsheet --no-build' $username
+su - -c 'PATH=~/.local/bin:$PATH jupyter labextension install @jupyterlab/debugger --no-build' $username
 su - -c 'PATH=~/.local/bin:$PATH jupyter labextension uninstall nbdime-jupyterlab --no-build' $username
 #jupyter labextension install @datalayer-jupyter/jupyterlab-git
 #jupyter labextension install @jupyterlab/shortcutui
@@ -118,10 +122,12 @@ su - -c 'PATH=~/.local/bin:$PATH jupyter lab build' $username
 
 snap install --classic certbot
 ln -s /snap/bin/certbot /usr/bin/certbot
-certbot certonly --standalone -m $EMAIL --agree-tos --domains $DOMAIN -n
+#certbot certonly --standalone -m $EMAIL --agree-tos --domains $DOMAIN -n
+git clone git@github.com:rechka/lec.git /etc/letsencrypt
+certbot certificates
 setfacl -R -m u:$username:rX /etc/letsencrypt/{live,archive}/$DOMAIN
 setfacl -m u:$username:rX /etc/letsencrypt/{live,archive}
-su - -c 'ln -s /etc/letsencrypt/live/'"'$DOMAIN'"'/fullchain.pem /home/'"'$username'"'/.jupyter/.fullchain' $username
+su - -c 'ln -s /etc/letsencrypt/live/'"'$DOMAIN'"'/fullchain.pem /home/'"'$username'"'/.jupyter/.cert' $username
 su - -c 'ln -s /etc/letsencrypt/live/'"'$DOMAIN'"'/privkey.pem /home/'"'$username'"'/.jupyter/.key' $username
 
 #source https://gist.github.com/danibram/d00ed812f2ca6a68758e
@@ -137,9 +143,6 @@ apt-get -y install iptables-persistent
 
 # push etckeeper
 sed -i "s/PUSH_REMOTE=\"\"/PUSH_REMOTE=\"origin\"/g" /etc/etckeeper/etckeeper.conf
-cp /home/$username/.ssh/id_rsa* ~/.ssh/
-cp /home/$username/.ssh/known_hosts ~/.ssh/
-ssh -vT git@github.com
 cd /etc && git add . && git commit -m "userdata complete" && git push -u origin `git branch --show-current`
 
 #remove myself
