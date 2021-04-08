@@ -11,12 +11,7 @@ discord-webhook
 icecream
 requests-html
 jupyterlab>=3
-jedi-language-server
-jupyterlab-lsp==3.5.0
 tabula-py
-jupyterlab-system-monitor
-jupyter-resource-usage
-jupyterlab-topbar
 jupyterlab_execute_time
 lckr-jupyterlab-variableinspector 
 ipywidgets
@@ -25,4 +20,3 @@ jupyterlab-quickopen
 html5lib
 xeus-python
 ptvsd
-notebook
