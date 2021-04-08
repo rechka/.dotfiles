@@ -113,6 +113,7 @@ su - -c 'PATH=~/.local/bin:$PATH jupyter labextension install jupyterlab-theme-t
 su - -c 'PATH=~/.local/bin:$PATH jupyter labextension install jupyterlab-spreadsheet --no-build' $username
 su - -c 'PATH=~/.local/bin:$PATH jupyter labextension install @jupyterlab/debugger --no-build' $username
 su - -c 'PATH=~/.local/bin:$PATH jupyter labextension uninstall nbdime-jupyterlab --no-build' $username
+su - -c 'PATH=~/.local/bin:$PATH jupyter contrib nbextension install' $username
 #jupyter labextension install @datalayer-jupyter/jupyterlab-git
 #jupyter labextension install @jupyterlab/shortcutui
 #jupyter labextension install @oriolmirosa/jupyterlab_materialdarker
