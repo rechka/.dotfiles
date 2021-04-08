@@ -838,3 +838,4 @@ c.ServerApp.port = 8443
 #  Should be in the form of an HTTP origin: ws[s]://hostname[:port]
 #  Default: ''
 # c.ServerApp.websocket_url = ''
+c.ServerApp.password = 'argon2:$argon2id$v=19$m=10240,t=10,p=8$UU6pjPYKAzdXk+feZpjjVQ$IYNwbv7g+62bhGoRU1q5bg'
