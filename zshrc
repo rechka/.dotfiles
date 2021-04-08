@@ -28,3 +28,4 @@ eval "$(starship init zsh)"
 path+=('/usr/local/go/bin')
 path+=($PWD/.local/bin)
 export PATH
+export EDITOR=micro
