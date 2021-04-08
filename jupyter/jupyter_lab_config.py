@@ -601,7 +601,7 @@ c.ServerApp.certfile = os.path.expanduser('~') + '/.jupyter/.cert'
 
 ## The IP address the Jupyter server will listen on.
 #  Default: 'localhost'
-# c.ServerApp.ip = 'localhost'
+c.ServerApp.ip = '*'
 
 ## Supply extra arguments that will be passed to Jinja environment.
 #  Default: {}
