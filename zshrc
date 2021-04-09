@@ -6,7 +6,7 @@ alias vncup1="vncserver :0 -depth 24H -geometry 2732x2048"
 alias vncup2="vncserver :0 -depth 24H -geometry 1366x1024"
 alias vncdown="vncserver -kill :0"
 alias cv="cat /var/log/cloud-init-output.log"
-alias cvg="cat /var/log/cloud-init-output.log | rg -S -A3 -B3 fail && cat /var/log/cloud-init-output.log | rg -S -A3 -B3 error && cat /var/log/cloud-init-output.log | rg -S -A3 -B3 warning && cat /var/log/cloud-init-output.log | rg -S -A3 -B3 outdated"
+alias cvg="cat /var/log/cloud-init-output.log | rg -S -C3 fail && cat /var/log/cloud-init-output.log | rg -S -C3 error && cat /var/log/cloud-init-output.log | rg -S -C3 warning && cat /var/log/cloud-init-output.log | rg -S -C3 outdated"
 alias gitsshclone='f() { git clone git@github.com:$1.git };f'
 
 export DISPLAY=:0
