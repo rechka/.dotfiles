@@ -12,7 +12,7 @@ choco install notepadplusplus.install -y --no-progress
 
 Start-Process -Wait -FilePath "C:\HttpToolkit-installer-1.2.1.exe" -ArgumentList "/S" -PassThru
 
-(new-object net.webclient).DownloadFile('https://github.com/xrzes/scottbotv1-releases/releases/download/v2.6.27/scottbotv1-Setup-2.6.27.exe','c:\scottbotv1-Setup.exe')
+(new-object net.webclient).DownloadFile('https://github.com/xrzes/scottbotv1-releases/releases/download/v2.6.28/scottbotv1-Setup-2.6.28.exe','c:\scottbotv1-Setup.exe')
 Start-Process -Wait -FilePath "C:\scottbotv1-Setup.exe" -ArgumentList "/S" -PassThru
 
 function Disable-InternetExplorerESC {
