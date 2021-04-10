@@ -19,10 +19,11 @@ apt-get remove -y --purge man-db
 export HOSTNAME=$(curl -s http://169.254.169.254/metadata/v1/hostname)
 export PUBLIC_IPV4=$(curl -s http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address)
 
-apt-get -yqq install git
+apt-get -yqq update 
+apt-get -yqq install git zsh
 cd /etc && git init
 cd /etc && git config --system user.name robot && git config --system user.email robot@$HOSTNAME
-cd /etc && git config user.name robot && git config user.email robot@$hHOSTNAME
+cd /etc && git config user.name robot2 && git config user.email robot2@$HOSTNAME
 cd /etc && git checkout -b `date +%y%m%d_%H%M` && git remote add origin git@github.com:$username/etc.git
 
 #update repos & upgrade
