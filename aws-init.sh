@@ -88,7 +88,7 @@ su - -c 'pip3 install -U --no-warn-script-location -r ~/.dotfiles/requirements.t
 
 su - -c 'source ~/.zulu/core/zulu && zulu init && \
 zulu install async fast-syntax-highlighting z \
-zui you-should-use minimal k enhancd autosuggestions sudo \
+zui you-should-use pure minimal k enhancd autosuggestions sudo \
 completions dwim history-substring-search command-not-found' $username
 
 #git 
