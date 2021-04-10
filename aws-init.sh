@@ -87,8 +87,8 @@ su - -c "git clone https://github.com/$username/.dotfiles.git && rcup -f rcrc &&
 su - -c 'pip3 install -U --no-warn-script-location -r ~/.dotfiles/requirements.txt' $username
 
 su - -c 'source ~/.zulu/core/zulu && zulu init && \
-zulu install async fast-syntax-highlighting solarized-man z \
-zui you-should-use spaceship k enhancd autosuggestions sudo \
+zulu install async fast-syntax-highlighting z \
+zui you-should-use minimal k enhancd autosuggestions sudo \
 completions dwim history-substring-search command-not-found' $username
 
 #git 
