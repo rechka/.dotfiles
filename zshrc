@@ -23,8 +23,6 @@ bindkey -e
 source "${ZULU_DIR:-"${ZDOTDIR:-$HOME}/.zulu"}/core/zulu"
 zulu init
 
-eval "$(starship init zsh)"
-
 path+=('/usr/local/go/bin')
 path+=($PWD/.local/bin)
 export PATH

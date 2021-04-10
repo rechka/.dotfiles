@@ -76,8 +76,6 @@ apt-mark hold chromium-codecs-ffmpeg
 rm chromium-*.deb
 cd /root
 
-#starship
-su - -c 'curl -fsSL https://starship.rs/install.sh | bash -s -- --yes' $username
 #zulu 
 su - -c 'curl -L https://zulu.molovo.co/install | zsh' $username
 
