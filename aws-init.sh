@@ -16,12 +16,15 @@ timedatectl set-timezone America/Toronto
 openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
 apt-get remove -y --purge man-db
 
+export HOSTNAME=$(curl -s http://169.254.169.254/metadata/v1/hostname)
+export PUBLIC_IPV4=$(curl -s http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address)
+
 #initialize etckeeper
 host=`curl -s ip.smartproxy.com`
 apt-get -yqq install etckeeper
 echo letsencrypt >> /etc/.gitignore
-cd /etc && git config --system user.name robot && git config --system user.email robot@$host
-cd /etc && git config user.name robot && git config user.email robot@$host
+cd /etc && git config --system user.name robot && git config --system user.email robot@$HOSTNAME
+cd /etc && git config user.name robot && git config user.email robot@$hHOSTNAME
 systemctl start etckeeper.timer
 etckeeper vcs gc
 cd /etc && git checkout -b `date +%y%m%d_%H%M` && git remote add origin git@github.com:$username/etc.git
@@ -118,7 +121,7 @@ su - -c 'PATH=~/.local/bin:$PATH jupyter contrib nbextension install --user' $us
 su - -c 'PATH=~/.local/bin:$PATH jupyter labextension install @jupyter-widgets/jupyterlab-manager --no-build' $username
 #jupyter labextension install @jupyterlab/google-drive
 #jupyter labextension install jupyterlab-flake8
-su - -c 'PATH=~/.local/bin:$PATH jupyter lab build' $username
+#su - -c 'PATH=~/.local/bin:$PATH jupyter lab build' $username
 
 snap install --classic certbot
 ln -s /snap/bin/certbot /usr/bin/certbot
@@ -151,8 +154,6 @@ rm -f /var/lib/cloud/instances/i-*/user-data.txt*
 
 
 
-export HOSTNAME=$(curl -s http://169.254.169.254/metadata/v1/hostname)
-export PUBLIC_IPV4=$(curl -s http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address)
 
 #inform about readiness
 curl -X POST \
