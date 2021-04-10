@@ -1,4 +1,4 @@
-COPY_ALWAYS="ssh/* aws/credentials"
+COPY_ALWAYS="ssh/* aws/credentials byobu/.welcome-displayed"
 EXCLUDES="*.secret"
 UNDOTTED="aws-init.*"
 
