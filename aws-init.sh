@@ -34,6 +34,7 @@ apt-get -yqq update && TERM=linux DEBIAN_FRONTEND=noninteractive apt-get -yqq -o
 apt-get -yqq autoremove && apt-get -yqq clean && apt-get -yqq autoclean
 
 #snaps used to be here
+snap install glow
 curl https://getmic.ro | bash && mv micro /usr/bin
 curl -fsSL https://deb.nodesource.com/setup_14.x | bash -
 curl -fLo /tmp/go1.16.3.linux-amd64.tar.gz https://golang.org/dl/go1.16.3.linux-amd64.tar.gz
