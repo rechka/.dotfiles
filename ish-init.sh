@@ -1,26 +1,24 @@
-# username
-username=rechka
-
-#timezone
-apk add tzdata
-cp /usr/share/zoneinfo/America/Toronto /etc/localtime
-apk del tzdata
-echo "America/Toronto" >  /etc/timezone
-
 grep -v "file:///ish/apk/" /etc/apk/repositories | dd of=/etc/apk/repositories bs=4194304
 echo https://dl-cdn.alpinelinux.org/alpine/v3.12/main >> /etc/apk/repositories
 echo https://dl-cdn.alpinelinux.org/alpine/v3.12/community >> /etc/apk/repositories
 echo "@micro https://dl-cdn.alpinelinux.org/alpine/v3.13/community" >> /etc/apk/repositories
 echo "@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 apk upgrade --update-cache --available
-apk add git zsh gawk gpgme curl bash ripgrep nodejs npm openssh \
+apk add git zsh gawk tzdata curl bash ripgrep nodejs npm openssh \
  make ranger aws-cli jq rcm rclone fzf sudo nano git-secret@testing micro@micro
+
+cp /usr/share/zoneinfo/America/Toronto /etc/localtime
+apk del tzdata
+echo "America/Toronto" >  /etc/timezone
 
 #root
 apk add shadow
 passwd -d root
 chsh -s /bin/zsh
 apk del shadow
+
+# username
+username=rechka
 
 #user
 adduser -g "" -D -G wheel -s /bin/zsh $username
