@@ -12,6 +12,12 @@ apk upgrade --update-cache --available
 apk add git zsh gawk gpgme curl bash ripgrep nodejs npm openssh \
  make ranger aws-cli jq rcm rclone fzf sudo nano git-secret@testing micro
 
+#root
+apk add shadow
+passwd -d root
+chsh -s /bin/zsh
+apk del shadow
+
 #user
 adduser -g "" -D -G wheel -s /bin/zsh $username
 passwd -d $username
