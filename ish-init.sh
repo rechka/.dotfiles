@@ -10,7 +10,7 @@ apk del tzdata
 echo "@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 apk upgrade --update-cache --available
 apk add git zsh gawk gpgme curl bash ripgrep nodejs npm openssh \
- make ranger aws-cli jq rcm rclone fzf sudo nano git-secret
+ make ranger aws-cli jq rcm rclone fzf sudo nano git-secret@testing micro
 
 #user
 adduser -g "" -D -G wheel -s /bin/zsh $username
@@ -21,11 +21,7 @@ mount -t ios whatever /mnt
 gpg --import /mnt/$username.asc
 umount -t ios /mnt
 
-#snaps used to be here
-curl https://getmic.ro | bash && mv micro /bin
-#git clone --depth 1 https://github.com/sobolevn/git-secret.git
-#cd git-secret && make build && PREFIX="/usr/local" make install
-#cd ~
+#dotfiles
 git clone --depth 5 https://github.com/$username/.dotfiles.git && rcup -f rcrc
 cd .dotfiles && git secret reveal && rcup -f
 
@@ -34,12 +30,10 @@ cd .dotfiles && git secret reveal && rcup -f
 #rm -rf /usr/local/go && tar -C /usr/local -xzf /tmp/go1.16.3.linux-amd64.tar.gz
 #rm /tmp/go1.16.3.linux-amd64.tar.gz
 
-#suckless
-
+#suckless - need to figues out x11+vnc first, maybe novnc?
 
 #zulu 
 su - -c 'curl -L https://zulu.molovo.co/install | zsh' $username
-
 su - -c 'source ~/.zulu/core/zulu && zulu init && \
 zulu install async fast-syntax-highlighting z \
 zui you-should-use pure minimal k enhancd autosuggestions sudo \
@@ -47,19 +41,10 @@ completions dwim history-substring-search command-not-found && \
 zulu theme pure && zulu theme minimal' $username
 
 #git 
-su - -c "cd ~/.dotfiles && git config user.name $username && git config user.email $username@$HOSTNAME" $username
-
-#nerdfont
-#su -c 'mkdir -p ~/.local/share/fonts' $username
-#su -c 'cd ~/.local/share/fonts && curl -fLo "Fira Code Retina Nerd Font Complete Mono.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Retina/complete/Fira%20Code%20Retina%20Nerd%20Font%20Complete%20Mono.ttf' $username
-
-su - -c "echo -e \"$GPG_KEY\" | gpg --import && cd ~/.dotfiles && git secret reveal -f && cd ~ && rcup -vf" $username
+cd ~/.dotfiles && git config user.name $username && git config user.email $username@$HOSTNAME
+echo -e \"$GPG_KEY\" | gpg --import && cd ~/.dotfiles && git secret reveal -f && cd ~ && rcup -vf
 chmod 600 /home/$username/.ssh/*
-#su - -c 'ssh -vT git@github.com' $username
-cp /home/$username/.ssh/id_rsa* ~/.ssh/
-cp /home/$username/.ssh/known_hosts ~/.ssh/
-#ssh -vT git@github.com
-su - -c "cd ~/.dotfiles && git remote set-url origin git@github.com:$username/.dotfiles.git" $username
+cd ~/.dotfiles && git remote set-url origin git@github.com:$username/.dotfiles.git
 
 # push etckeeper
 #sed -i "s/PUSH_REMOTE=\"\"/PUSH_REMOTE=\"origin\"/g" /etc/etckeeper/etckeeper.conf
