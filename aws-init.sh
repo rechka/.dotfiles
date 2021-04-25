@@ -31,6 +31,7 @@ cd /etc && git checkout -b `date +%y%m%d_%H%M` && git remote add origin git@gith
 #apt-get -yqq autoremove && apt-get -yqq clean && apt-get -yqq autoclean
 
 #snaps used to be here
+snap install glow
 #curl https://getmic.ro | bash && mv micro /usr/bin
 #curl -fsSL https://deb.nodesource.com/setup_14.x | bash -
 #curl -fLo /tmp/go1.16.3.linux-amd64.tar.gz https://golang.org/dl/go1.16.3.linux-amd64.tar.gz
