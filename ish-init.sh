@@ -4,8 +4,12 @@ username=rechka
 #timezone
 apk add tzdata
 cp /usr/share/zoneinfo/America/Toronto /etc/localtime
-echo "America/Toronto" >  /etc/timezone
 apk del tzdata
+echo "America/Toronto" >  /etc/timezone
+
+grep -v "file:///ish/apk/" /etc/apk/repositories | dd of=/etc/apk/repositories bs=4194304
+echo https://dl-cdn.alpinelinux.org/alpine/v3.12/main >> /etc/apk/repositories
+echo https://dl-cdn.alpinelinux.org/alpine/v3.12/community >> /etc/apk/repositories
 
 echo "@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 apk upgrade --update-cache --available
