@@ -7,9 +7,15 @@ cp /usr/share/zoneinfo/America/Toronto /etc/localtime
 echo "America/Toronto" >  /etc/timezone
 apk del tzdata
 
-apk -U upgrade
+echo "@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+apk upgrade --update-cache --available
 apk add git zsh gawk gpgme curl bash ripgrep nodejs npm openssh \
- make ranger aws-cli jq rcm rclone fzf sudo
+ make ranger aws-cli jq rcm rclone fzf sudo nano git-secret
+
+#user
+adduser -g "" -D -G wheel -s /bin/zsh $username
+passwd -d $username
+sed -i "s/# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/g" /etc/sudoers
 
 mount -t ios whatever /mnt
 gpg --import /mnt/$username.asc
@@ -17,9 +23,9 @@ umount -t ios /mnt
 
 #snaps used to be here
 curl https://getmic.ro | bash && mv micro /bin
-git clone --depth 1 https://github.com/sobolevn/git-secret.git
-cd git-secret && make build && PREFIX="/usr/local" make install
-cd ~
+#git clone --depth 1 https://github.com/sobolevn/git-secret.git
+#cd git-secret && make build && PREFIX="/usr/local" make install
+#cd ~
 git clone --depth 5 https://github.com/$username/.dotfiles.git && rcup -f rcrc
 cd .dotfiles && git secret reveal && rcup -f
 
@@ -30,10 +36,6 @@ cd .dotfiles && git secret reveal && rcup -f
 
 #suckless
 
-#user
-adduser -g "" -D -G adm -s /bin/zsh $username
-passwd -d $username
-#?usermod -aG sudo $username
 
 #zulu 
 su - -c 'curl -L https://zulu.molovo.co/install | zsh' $username
