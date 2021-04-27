@@ -42,18 +42,18 @@ su -c "cd ~/.dotfiles && git secret reveal && rcup -f" $username
 #suckless - need to figues out x11+vnc first, maybe novnc?
 
 #zulu 
-su - -c 'curl -L https://zulu.molovo.co/install | zsh' $username
-su - -c 'source ~/.zulu/core/zulu && zulu init && \
-zulu install async fast-syntax-highlighting z \
-zui you-should-use pure minimal k enhancd autosuggestions sudo \
-completions dwim history-substring-search command-not-found && \
-zulu theme pure && zulu theme minimal' $username
+#su - -c 'curl -L https://zulu.molovo.co/install | zsh' $username
+#su - -c 'source ~/.zulu/core/zulu && zulu init && \
+#zulu install async fast-syntax-highlighting z \
+#zui you-should-use pure minimal k enhancd autosuggestions sudo \
+#completions dwim history-substring-search command-not-found && \
+#zulu theme pure && zulu theme minimal' $username
 
 #git 
-cd ~/.dotfiles && git config user.name $username && git config user.email $username@$HOSTNAME
-echo -e \"$GPG_KEY\" | gpg --import && cd ~/.dotfiles && git secret reveal -f && cd ~ && rcup -vf
+#cd ~/.dotfiles && git config user.name $username && git config user.email $username@$HOSTNAME
+#echo -e \"$GPG_KEY\" | gpg --import && cd ~/.dotfiles && git secret reveal -f && cd ~ && rcup -vf
 chmod 600 /home/$username/.ssh/*
-cd ~/.dotfiles && git remote set-url origin git@github.com:$username/.dotfiles.git
+#cd ~/.dotfiles && git remote set-url origin git@github.com:$username/.dotfiles.git
 
 # push etckeeper
 #sed -i "s/PUSH_REMOTE=\"\"/PUSH_REMOTE=\"origin\"/g" /etc/etckeeper/etckeeper.conf
