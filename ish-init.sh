@@ -50,10 +50,9 @@ su -c "cd ~/.dotfiles && git secret reveal && rcup -f" $username
 #zulu theme pure && zulu theme minimal' $username
 
 #git 
-#cd ~/.dotfiles && git config user.name $username && git config user.email $username@$HOSTNAME
-#echo -e \"$GPG_KEY\" | gpg --import && cd ~/.dotfiles && git secret reveal -f && cd ~ && rcup -vf
+su -c "cd ~/.dotfiles && git config user.name ${username} && git config user.email ${username}@neverho.od" $username
 chmod 600 /home/$username/.ssh/*
-#cd ~/.dotfiles && git remote set-url origin git@github.com:$username/.dotfiles.git
+su -c "cd ~/.dotfiles && git remote set-url origin git@github.com:${username}/.dotfiles.git" $username
 
 # push etckeeper
 #sed -i "s/PUSH_REMOTE=\"\"/PUSH_REMOTE=\"origin\"/g" /etc/etckeeper/etckeeper.conf
@@ -62,5 +61,5 @@ chmod 600 /home/$username/.ssh/*
 #inform about readiness
 curl -X POST \
   -H "Content-Type: application/json" \
-  -d '{"username": "'"$HOSTNAME"'", "content": "'"I live in $PUBLIC_IPV4"'"}' \
-  $WEBHOOK_URL 
+  -d '{"content": "reporting for duty 🪖"}' \
+  https://discord.com/api/webhooks/836440229077450753/sZfAjucdHe8dowGU3YHHVVxbS_oExgZOCYFI5TB3srGhmtZpfE0dXwkFq7J8_ZVzddOa
