@@ -24,14 +24,15 @@ username=rechka
 adduser -g "" -D -G wheel -s /bin/zsh $username
 passwd -d $username
 sed -i "s/# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/g" /etc/sudoers
+echo "login ${username}" >> .profile
 
 mount -t ios whatever /mnt
-gpg --import /mnt/$username.asc
+su -c "gpg --import /mnt/${username}.asc" $username
 umount -t ios /mnt
 
 #dotfiles
-git clone --depth 5 https://github.com/$username/.dotfiles.git && rcup -f rcrc
-cd .dotfiles && git secret reveal && rcup -f
+su -c "cd ~ && git clone --depth 5 https://github.com/${username}/.dotfiles.git && rcup -f rcrc" $username
+su -c "cd ~/.dotfiles && git secret reveal && rcup -f" $username
 
 # 1.13.15 + 2 errors
 #curl -fLo /tmp/go1.16.3.linux-amd64.tar.gz https://golang.org/dl/go1.16.3.linux-amd64.tar.gz
