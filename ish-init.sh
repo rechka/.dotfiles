@@ -24,7 +24,7 @@ username=rechka
 adduser -g "" -D -G wheel -s /bin/zsh $username
 passwd -d $username
 sed -i "s/# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/g" /etc/sudoers
-echo "login ${username}" > .profile
+echo "login ${username}" > .zshrc
 
 mount -t ios whatever /mnt
 su -c "gpg --import /mnt/${username}.asc" $username
@@ -33,6 +33,9 @@ umount -t ios /mnt
 #dotfiles
 su -c "cd ~ && git clone --depth 5 https://github.com/${username}/.dotfiles.git && rcup -f rcrc" $username
 su -c "cd ~/.dotfiles && git secret reveal && rcup -f" $username
+chmod 600 /home/$username/.ssh/*
+su -c "cd ~/.dotfiles && git config user.name ${username} && git config user.email ${username}@neverho.od" $username
+su -c "cd ~/.dotfiles && git remote set-url origin git@github.com:${username}/.dotfiles.git" $username
 
 # 1.13.15 + 2 errors
 #curl -fLo /tmp/go1.16.3.linux-amd64.tar.gz https://golang.org/dl/go1.16.3.linux-amd64.tar.gz
@@ -49,10 +52,6 @@ su -c "cd ~/.dotfiles && git secret reveal && rcup -f" $username
 #completions dwim history-substring-search command-not-found && \
 #zulu theme pure && zulu theme minimal' $username
 
-#git 
-su -c "cd ~/.dotfiles && git config user.name ${username} && git config user.email ${username}@neverho.od" $username
-chmod 600 /home/$username/.ssh/*
-su -c "cd ~/.dotfiles && git remote set-url origin git@github.com:${username}/.dotfiles.git" $username
 
 # push etckeeper
 #sed -i "s/PUSH_REMOTE=\"\"/PUSH_REMOTE=\"origin\"/g" /etc/etckeeper/etckeeper.conf
