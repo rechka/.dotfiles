@@ -5,7 +5,7 @@ echo "@micro https://dl-cdn.alpinelinux.org/alpine/v3.13/community" >> /etc/apk/
 echo "@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 apk upgrade --update-cache --available
 apk add git zsh tzdata curl openssh tmux screen byobu \
- ranger jq rcm sudo neovim git-secret@testing micro@micro
+ ranger jq rcm gawk sudo neovim git-secret@testing micro@micro
 
 cp /usr/share/zoneinfo/America/Toronto /etc/localtime
 apk del tzdata
