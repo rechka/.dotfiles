@@ -4,7 +4,7 @@ echo https://dl-cdn.alpinelinux.org/alpine/v3.12/community >> /etc/apk/repositor
 echo "@micro https://dl-cdn.alpinelinux.org/alpine/v3.13/community" >> /etc/apk/repositories
 echo "@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 apk upgrade --update-cache --available
-apk add git zsh tzdata curl openssh tmux screen byobu \
+apk add git zsh tzdata curl openssh ncurses tmux screen byobu \
  ranger jq rcm gawk sudo neovim git-secret@testing micro@micro
 
 cp /usr/share/zoneinfo/America/Toronto /etc/localtime
@@ -45,7 +45,7 @@ su -c "cd ~/.dotfiles && git remote set-url origin git@github.com:${username}/.d
 #suckless - need to figues out x11+vnc first, maybe novnc?
 
 #zulu 
-#su - -c 'curl -L https://zulu.molovo.co/install | zsh' $username
+su - -c 'curl -L https://zulu.molovo.co/install | zsh' $username
 #su - -c 'source ~/.zulu/core/zulu && zulu init && \
 #zulu install async fast-syntax-highlighting z \
 #zui you-should-use pure minimal k enhancd autosuggestions sudo \
