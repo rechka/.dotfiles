@@ -28,12 +28,12 @@ passwd -d $username
 sed -i "s/# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/g" /etc/sudoers
 echo "login ${username}" > .zshrc
 
-#zulu 
-su - -c 'curl -L https://zulu.molovo.co/install | zsh && zsh' $username
-
 mount -t ios whatever /mnt
 su -c "gpg --import /mnt/${username}.asc" $username
 umount -t ios /mnt
+
+#zulu 
+su - -c 'curl -L https://zulu.molovo.co/install | zsh && echo done' $username
 
 #dotfiles
 su -c "cd ~ && git clone --depth 5 https://github.com/${username}/.dotfiles.git && rcup -f rcrc" $username
