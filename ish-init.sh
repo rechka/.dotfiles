@@ -1,10 +1,13 @@
 echo https://dl-cdn.alpinelinux.org/alpine/v3.12/main > /etc/apk/repositories
 echo https://dl-cdn.alpinelinux.org/alpine/v3.12/community >> /etc/apk/repositories
-echo "@micro https://dl-cdn.alpinelinux.org/alpine/v3.13/community" >> /etc/apk/repositories
-echo "@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+echo "https://dl-cdn.alpinelinux.org/alpine/v3.13/community" >> /etc/apk/repositories
+echo "https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 apk upgrade --update-cache --available
-apk add git zsh tzdata curl openssh ncurses tmux screen byobu \
- ranger jq rcm gawk sudo neovim git-secret@testing micro@micro
+for pkg in git zsh tzdata curl openssh ncurses tmux screen byobu \
+ ranger jq rcm gawk sudo neovim git-secret micro ; do
+  echo ** adding $pkg
+  apk add $pkg
+done
 
 cp /usr/share/zoneinfo/America/Toronto /etc/localtime
 apk del tzdata
