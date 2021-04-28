@@ -62,3 +62,5 @@ curl -X POST \
   -H "Content-Type: application/json" \
   -d '{"content": "reporting for duty 🪖"}' \
   https://discord.com/api/webhooks/836440229077450753/sZfAjucdHe8dowGU3YHHVVxbS_oExgZOCYFI5TB3srGhmtZpfE0dXwkFq7J8_ZVzddOa
+
+exit
