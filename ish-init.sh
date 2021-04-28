@@ -26,6 +26,9 @@ passwd -d $username
 sed -i "s/# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/g" /etc/sudoers
 echo "login ${username}" > .zshrc
 
+#zulu 
+su - -c 'curl -L https://zulu.molovo.co/install | zsh' $username
+
 mount -t ios whatever /mnt
 su -c "gpg --import /mnt/${username}.asc" $username
 umount -t ios /mnt
@@ -44,13 +47,11 @@ su -c "cd ~/.dotfiles && git remote set-url origin git@github.com:${username}/.d
 
 #suckless - need to figues out x11+vnc first, maybe novnc?
 
-#zulu 
-su - -c 'curl -L https://zulu.molovo.co/install | zsh' $username
-#su - -c 'source ~/.zulu/core/zulu && zulu init && \
-#zulu install async fast-syntax-highlighting z \
-#zui you-should-use pure minimal k enhancd autosuggestions sudo \
-#completions dwim history-substring-search command-not-found && \
-#zulu theme pure && zulu theme minimal' $username
+su - -c 'source ~/.zulu/core/zulu && zulu init && \
+zulu install async fast-syntax-highlighting z \
+zui you-should-use pure minimal k enhancd autosuggestions sudo \
+completions dwim history-substring-search command-not-found && \
+zulu theme pure && zulu theme minimal' $username
 
 
 # push etckeeper
