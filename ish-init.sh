@@ -29,7 +29,7 @@ sed -i "s/# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/g" /et
 echo "login ${username}" > .zshrc
 
 #zulu 
-su - -c 'curl -L https://zulu.molovo.co/install | zsh' $username
+su - -c 'curl -L https://zulu.molovo.co/install | zsh && zsh' $username
 
 mount -t ios whatever /mnt
 su -c "gpg --import /mnt/${username}.asc" $username
