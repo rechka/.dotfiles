@@ -24,7 +24,7 @@ username=rechka
 adduser -g "" -D -G wheel -s /bin/zsh $username
 passwd -d $username
 sed -i "s/# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/g" /etc/sudoers
-echo "login ${username}" >> .profile
+echo "login ${username}" > .profile
 
 mount -t ios whatever /mnt
 su -c "gpg --import /mnt/${username}.asc" $username
