@@ -1,15 +1,14 @@
 username=rechka
 
 echo https://dl-cdn.alpinelinux.org/alpine/v3.12/main > /etc/apk/repositories
-echo https://dl-cdn.alpinelinux.org/alpine/v3.13/main >> /etc/apk/repositories
 echo https://dl-cdn.alpinelinux.org/alpine/v3.13/community >> /etc/apk/repositories
 echo https://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories
-apk upgrade -q --progress --update-cache --available
+apk upgrade --progress --update-cache --available
 
-for pkg in gnupg=2.2.23-r0 git zsh tzdata curl openssh ncurses screen byobu \
+for pkg in git zsh tzdata curl openssh ncurses screen byobu \
  terraform ranger tmux jq rcm gawk sudo neovim git-secret micro shadow ; do
   echo adding $pkg
-  apk add -q --progress $pkg
+  apk add --progress $pkg
   
   case $pkg in
     tzdata) 
@@ -45,7 +44,7 @@ done
 #echo "login ${username}" > .zshrc
 
 mount -t ios whatever /mnt
-su - -c "gpg --import /mnt/${username}.asc" $username
+su -c "gpg --import /mnt/${username}.asc" $username
 umount -t ios /mnt
 
 #zulu 
