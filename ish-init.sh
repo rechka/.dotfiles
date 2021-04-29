@@ -32,6 +32,7 @@ for pkg in git zsh tzdata curl openssh ncurses screen byobu terraform \
       apk del -q --progress $pkg
       ;;
     sudo)
+      echo adding wheel group to sudoers
       sed -i "s/# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/g" /etc/sudoers
       ;;
 
