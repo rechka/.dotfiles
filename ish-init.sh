@@ -3,7 +3,10 @@ echo https://dl-cdn.alpinelinux.org/alpine/v3.12/community >> /etc/apk/repositor
 echo "https://dl-cdn.alpinelinux.org/alpine/v3.13/community" >> /etc/apk/repositories
 echo "https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 apk upgrade --update-cache --available
-for pkg in git zsh tzdata curl openssh ncurses tmux screen \
+apk add tmux
+tmux new-session -s nuka \; send-keys 'watch ps aux' C-m \; \split-window -v \;
+
+for pkg in git zsh tzdata curl openssh ncurses screen \
  ranger jq rcm gawk sudo neovim git-secret micro ; do
   echo ** adding $pkg
   apk add $pkg
