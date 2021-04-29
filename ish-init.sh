@@ -4,7 +4,7 @@ echo "https://dl-cdn.alpinelinux.org/alpine/v3.13/community" >> /etc/apk/reposit
 echo "https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 apk upgrade --update-cache --available
 apk add tmux
-tmux new-session -s nuka \; send-keys 'watch ps aux' C-m \; \split-window -v \;
+tmux new-session -s nuka \; send-keys 'watch ps aux' C-m \; split-window -v \;
 
 for pkg in git zsh tzdata curl openssh ncurses screen \
  ranger jq rcm gawk sudo neovim git-secret micro ; do
