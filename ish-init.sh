@@ -3,12 +3,10 @@ echo https://dl-cdn.alpinelinux.org/alpine/v3.12/community >> /etc/apk/repositor
 echo "https://dl-cdn.alpinelinux.org/alpine/v3.13/community" >> /etc/apk/repositories
 echo "https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 apk upgrade --update-cache --available
-apk add tmux
-tmux new-session -s nuka \; send-keys 'watch ps aux' C-m \; split-window -v \;
 
-for pkg in git zsh tzdata curl openssh ncurses screen \
- ranger jq rcm gawk sudo neovim git-secret micro ; do
-  echo ** adding $pkg
+for pkg in git zsh tzdata curl openssh ncurses screen byobu \
+ ranger tmux jq rcm gawk sudo neovim git-secret micro ; do
+  echo adding $pkg
   apk add $pkg
 done
 
@@ -36,7 +34,7 @@ su -c "gpg --import /mnt/${username}.asc" $username
 umount -t ios /mnt
 
 #zulu 
-su - -c 'curl -L https://zulu.molovo.co/install | zsh && echo done' $username
+su - -c 'curl -L https://zulu.molovo.co/install | zsh && zsh' $username
 
 #dotfiles
 su -c "cd ~ && git clone --depth 5 https://github.com/${username}/.dotfiles.git && rcup -f rcrc" $username
