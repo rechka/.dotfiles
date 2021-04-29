@@ -52,16 +52,17 @@ su - -c 'cd ~ && curl -sL https://zulu.molovo.co/install | zsh && \
 echo installed zulu && source ~/.zulu/core/zulu && zulu init && \
 echo initialized zulu && exit' $username
 echo 1111
-su - -c 'cd ~ && zulu install filthy pure minimal k \
+su - -c 'cd ~ && source ~/.zulu/core/zulu && zulu init && zulu install filthy pure minimal k \
 async fast-syntax-highlighting z zui you-should-use k enhancd && exit' $username
 echo 2222
-su - -c 'cd ~ && zulu install autosuggestions completions dwim history-substring-search command-not-found && \
+su - -c 'cd ~ && source ~/.zulu/core/zulu && zulu init && zulu install autosuggestions completions \
+dwim history-substring-search command-not-found && \
 echo installed plugins && zulu theme filthy && echo graceful exit && exit' $username
 
 echo 3333
 
 #dotfiles
-su -c "cd ~ && git clone --depth 5 https://github.com/${username}/.dotfiles.git && rcup -f rcrc" $username
+su -c "cd ~ && git clone -q --depth 1 https://github.com/${username}/.dotfiles.git && rcup -f rcrc" $username
 su -c "cd ~/.dotfiles && git secret reveal && rcup -f" $username
 chmod 600 /home/$username/.ssh/*
 su -c "cd ~/.dotfiles && git config user.name ${username} && git config user.email ${username}@neverho.od" $username
