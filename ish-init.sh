@@ -47,8 +47,6 @@ mount -t ios whatever /mnt
 su -c "gpg -q --import /mnt/${username}.asc" $username
 umount -t ios /mnt
 
-screen -Rq
-
 #zulu 
 su - -c 'cd ~ && curl -sL https://zulu.molovo.co/install | zsh && \
 echo installed zulu && source ~/.zulu/core/zulu && zulu init && \
