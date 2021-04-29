@@ -40,6 +40,8 @@ for pkg in git zsh tzdata curl openssh ncurses screen byobu \
   
 done
 
+
+
 #user
 #echo "login ${username}" > .zshrc
 
@@ -48,9 +50,13 @@ su -c "gpg -q --import /mnt/${username}.asc" $username
 umount -t ios /mnt
 
 #zulu 
+git clone -q --depth 1 https://github.com/molovo/revolver revolver
+chmod u+x revolver/revolver
+mv revolver/revolver /bin
+
 su - -c 'cd ~ && curl -sL https://zulu.molovo.co/install | zsh && \
-echo installed zulu && source ~/.zulu/core/zulu && zulu init && \
-echo initialized zulu && exit' $username
+echo installed zulu && source ~/.zulu/core/zulu && zulu config set analytics false && \
+zulu init && echo initialized zulu && exit' $username
 su - -c 'cd ~ && source ~/.zulu/core/zulu && zulu init && zulu install filthy pure minimal k \
 async fast-syntax-highlighting z zui you-should-use enhancd && exit' $username
 su - -c 'cd ~ && source ~/.zulu/core/zulu && zulu init && zulu install autosuggestions completions \
