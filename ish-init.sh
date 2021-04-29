@@ -1,7 +1,7 @@
 echo https://dl-cdn.alpinelinux.org/alpine/v3.13/main > /etc/apk/repositories
 echo https://dl-cdn.alpinelinux.org/alpine/v3.13/community >> /etc/apk/repositories
 echo https://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories
-apk upgrade --update-cache --available
+apk upgrade -q --progress --update-cache --available
 
 for pkg in git zsh tzdata curl openssh ncurses screen byobu \
  ranger tmux jq rcm gawk sudo neovim git-secret micro shadow ; do
@@ -9,26 +9,31 @@ for pkg in git zsh tzdata curl openssh ncurses screen byobu \
   apk add -q --progress $pkg
 done
 
+#if pkg == tzdata
+pkg = tzdata
 cp /usr/share/zoneinfo/America/Toronto /etc/localtime
-apk del tzdata
+echo removing $pkg
+apk del -q --progress $pkg
 echo "America/Toronto" >  /etc/timezone
-
-#root
-passwd -d root
-chsh -s /bin/zsh
-apk del shadow
 
 # username
 username=rechka
 
 #user
 adduser -g "" -D -G wheel -s /bin/zsh $username
-passwd -d $username
+passwd -d -q $username
 sed -i "s/# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/g" /etc/sudoers
 echo "login ${username}" > .zshrc
 
+#root
+pkg = shadow
+passwd -d -q root
+chsh -s /bin/zsh
+echo removing $pkg
+apk del -q --progress $pkg
+
 mount -t ios whatever /mnt
-su -c "gpg --import /mnt/${username}.asc" $username
+su - -c "gpg --import /mnt/${username}.asc" $username
 umount -t ios /mnt
 
 #zulu 
