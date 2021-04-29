@@ -5,7 +5,7 @@ echo https://dl-cdn.alpinelinux.org/alpine/v3.13/community >> /etc/apk/repositor
 echo https://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories
 apk upgrade -q --progress --update-cache --available
 
-for pkg in git zsh tzdata curl openssh ncurses screen byobu \
+for pkg in git zsh tzdata curl openssh ncurses screen byobu terraform \
  ranger tmux jq rcm gawk sudo neovim git-secret micro shadow ; do
   echo adding $pkg
   apk add -q --progress $pkg
@@ -20,14 +20,16 @@ for pkg in git zsh tzdata curl openssh ncurses screen byobu \
 
     shadow)
       passwd -d -q root
+      passwd -d -q $username
       chsh -s /bin/zsh
       adduser -g "" -D -G wheel -s /bin/zsh $username
-      passwd -d $username
-      sed -i "s/# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/g" /etc/sudoers
-
       echo removing $pkg
       apk del -q --progress $pkg
       ;;
+    sudo)
+      sed -i "s/# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/g" /etc/sudoers
+      ;;
+
   esac
   
 done
