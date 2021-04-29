@@ -21,13 +21,13 @@ username=rechka
 
 #user
 adduser -g "" -D -G wheel -s /bin/zsh $username
-passwd -d -q $username
+passwd -d $username
 sed -i "s/# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/g" /etc/sudoers
 echo "login ${username}" > .zshrc
 
 #root
 pkg = shadow
-passwd -d -q root
+passwd -d root
 chsh -s /bin/zsh
 echo removing $pkg
 apk del -q --progress $pkg
