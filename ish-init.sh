@@ -7,8 +7,8 @@ apk upgrade -q --progress --update-cache --available
 
 for pkg in git zsh tzdata curl openssh ncurses screen byobu \
  terraform ranger tmux jq rcm gawk sudo neovim git-secret shadow ; do
-  echo adding $pkg
   apk add -q --progress $pkg
+  echo ✅ added $pkg
   
   case $pkg in
     tzdata) 
@@ -44,17 +44,23 @@ done
 #echo "login ${username}" > .zshrc
 
 mount -t ios whatever /mnt
-su -c "gpg --import /mnt/${username}.asc" $username
+su -c "gpg -q --import /mnt/${username}.asc" $username
 umount -t ios /mnt
+
+screen -Rq
 
 #zulu 
 su - -c 'cd ~ && curl -sL https://zulu.molovo.co/install | zsh && \
 echo ✅ installed zulu && source ~/.zulu/core/zulu && zulu init && \
-echo ✅ initialized zulu && zulu install filthy pure minimal k \
-async fast-syntax-highlighting z zui you-should-use k enhancd \
-autosuggestions completions dwim history-substring-search command-not-found && \
+echo ✅ initialized zulu && exit' $username
+echo 1111
+su - -c 'cd ~ && zulu install filthy pure minimal k \
+async fast-syntax-highlighting z zui you-should-use k enhancd && exit' $username
+echo 2222
+su - -c 'cd ~ && zulu install autosuggestions completions dwim history-substring-search command-not-found && \
 echo ✅ installed plugins && zulu theme filthy && echo ✅ graceful exit && exit' $username
 
+echo 3333
 
 #dotfiles
 su -c "cd ~ && git clone --depth 5 https://github.com/${username}/.dotfiles.git && rcup -f rcrc" $username
