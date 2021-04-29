@@ -33,11 +33,7 @@ for pkg in git zsh tzdata curl openssh ncurses screen byobu \
 done
 
 #user
-echo "login ${username}" > .zshrc
-
-#root
-pkg=shadow
-
+#echo "login ${username}" > .zshrc
 
 mount -t ios whatever /mnt
 su - -c "gpg --import /mnt/${username}.asc" $username
