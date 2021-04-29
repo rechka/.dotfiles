@@ -34,7 +34,12 @@ su -c "gpg --import /mnt/${username}.asc" $username
 umount -t ios /mnt
 
 #zulu 
-su - -c 'curl -L https://zulu.molovo.co/install | zsh && zsh' $username
+su - -c 'curl -L https://zulu.molovo.co/install | zsh && \
+source ~/.zulu/core/zulu && zulu init && \
+zulu install async fast-syntax-highlighting z \
+zui you-should-use filthy pure minimal k enhancd autosuggestions \
+completions dwim history-substring-search command-not-found && \
+zulu theme filthy' $username
 
 #dotfiles
 su -c "cd ~ && git clone --depth 5 https://github.com/${username}/.dotfiles.git && rcup -f rcrc" $username
@@ -47,15 +52,6 @@ su -c "cd ~/.dotfiles && git remote set-url origin git@github.com:${username}/.d
 #curl -fLo /tmp/go1.16.3.linux-amd64.tar.gz https://golang.org/dl/go1.16.3.linux-amd64.tar.gz
 #rm -rf /usr/local/go && tar -C /usr/local -xzf /tmp/go1.16.3.linux-amd64.tar.gz
 #rm /tmp/go1.16.3.linux-amd64.tar.gz
-
-#suckless - need to figues out x11+vnc first, maybe novnc?
-
-su - -c 'source ~/.zulu/core/zulu && zulu init && \
-zulu install async fast-syntax-highlighting z \
-zui you-should-use pure minimal k enhancd autosuggestions sudo \
-completions dwim history-substring-search command-not-found && \
-zulu theme pure && zulu theme minimal' $username
-
 
 # push etckeeper
 #sed -i "s/PUSH_REMOTE=\"\"/PUSH_REMOTE=\"origin\"/g" /etc/etckeeper/etckeeper.conf
