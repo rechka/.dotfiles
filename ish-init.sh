@@ -4,7 +4,7 @@ echo https://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories
 apk upgrade --update-cache --available
 
 for pkg in git zsh tzdata curl openssh ncurses screen byobu \
- ranger tmux jq rcm gawk sudo neovim git-secret micro ; do
+ ranger tmux jq rcm gawk sudo neovim git-secret micro shadow ; do
   echo adding $pkg
   apk add $pkg
 done
@@ -14,7 +14,6 @@ apk del tzdata
 echo "America/Toronto" >  /etc/timezone
 
 #root
-apk add shadow
 passwd -d root
 chsh -s /bin/zsh
 apk del shadow
