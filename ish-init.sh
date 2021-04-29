@@ -12,17 +12,22 @@ for pkg in git zsh tzdata curl openssh ncurses screen byobu terraform \
   
   case $pkg in
     tzdata) 
+      echo setting timezone
+      echo "America/Toronto" >  /etc/timezone
       cp /usr/share/zoneinfo/America/Toronto /etc/localtime
       echo removing $pkg
       apk del -q --progress $pkg
-      echo "America/Toronto" >  /etc/timezone
+
       ;;
 
     shadow)
-      passwd -d -q root
-      passwd -d -q $username
-      chsh -s /bin/zsh
+      echo creating user ${username}
       adduser -g "" -D -G wheel -s /bin/zsh $username
+      echo removing passwords
+      passwd -d -q $username
+      passwd -d -q root
+      echo changing shell
+      chsh -s /bin/zsh
       echo removing $pkg
       apk del -q --progress $pkg
       ;;
