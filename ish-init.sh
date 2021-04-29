@@ -8,7 +8,7 @@ apk upgrade -q --progress --update-cache --available
 for pkg in git zsh tzdata curl openssh ncurses screen byobu \
  terraform ranger tmux jq rcm gawk sudo neovim git-secret shadow ; do
   apk add -q --progress $pkg
-  echo ✅ added $pkg
+  echo added $pkg
   
   case $pkg in
     tzdata) 
@@ -51,14 +51,14 @@ screen -Rq
 
 #zulu 
 su - -c 'cd ~ && curl -sL https://zulu.molovo.co/install | zsh && \
-echo ✅ installed zulu && source ~/.zulu/core/zulu && zulu init && \
-echo ✅ initialized zulu && exit' $username
+echo installed zulu && source ~/.zulu/core/zulu && zulu init && \
+echo initialized zulu && exit' $username
 echo 1111
 su - -c 'cd ~ && zulu install filthy pure minimal k \
 async fast-syntax-highlighting z zui you-should-use k enhancd && exit' $username
 echo 2222
 su - -c 'cd ~ && zulu install autosuggestions completions dwim history-substring-search command-not-found && \
-echo ✅ installed plugins && zulu theme filthy && echo ✅ graceful exit && exit' $username
+echo installed plugins && zulu theme filthy && echo graceful exit && exit' $username
 
 echo 3333
 
