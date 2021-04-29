@@ -48,12 +48,10 @@ su -c "gpg --import /mnt/${username}.asc" $username
 umount -t ios /mnt
 
 #zulu 
-su - -c 'curl -L https://zulu.molovo.co/install | zsh && \
-source ~/.zulu/core/zulu && zulu init && \
-zulu install async fast-syntax-highlighting z \
-zui you-should-use filthy pure minimal k enhancd autosuggestions \
-completions dwim history-substring-search command-not-found && \
-zulu theme filthy' $username
+su - -c 'cd ~ && curl -sL https://zulu.molovo.co/install | zsh && \
+echo ✅ installed zulu && source ~/.zulu/core/zulu && zulu init && \
+echo ✅ initialized zulu && zulu install filthy pure minimal k && \
+echo ✅ installed plugins && zulu theme filthy && echo ✅ graceful exit && exit' $username
 
 #dotfiles
 su -c "cd ~ && git clone --depth 5 https://github.com/${username}/.dotfiles.git && rcup -f rcrc" $username
