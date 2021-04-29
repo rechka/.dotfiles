@@ -1,12 +1,12 @@
 username=rechka
 
 echo https://dl-cdn.alpinelinux.org/alpine/v3.12/main > /etc/apk/repositories
-echo https://dl-cdn.alpinelinux.org/alpine/v3.13/community >> /etc/apk/repositories
+echo https://dl-cdn.alpinelinux.org/alpine/v3.12/community >> /etc/apk/repositories
 echo https://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories
 apk upgrade --progress --update-cache --available
 
 for pkg in git zsh tzdata curl openssh ncurses screen byobu \
- terraform ranger tmux jq rcm gawk sudo neovim git-secret micro shadow ; do
+ terraform ranger tmux jq rcm gawk sudo neovim git-secret shadow ; do
   echo adding $pkg
   apk add --progress $pkg
   
