@@ -6,7 +6,7 @@ apk upgrade --update-cache --available
 for pkg in git zsh tzdata curl openssh ncurses screen byobu \
  ranger tmux jq rcm gawk sudo neovim git-secret micro shadow ; do
   echo adding $pkg
-  apk add $pkg
+  apk add -q --progress $pkg
 done
 
 cp /usr/share/zoneinfo/America/Toronto /etc/localtime
