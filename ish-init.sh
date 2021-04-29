@@ -3,12 +3,12 @@ username=rechka
 echo https://dl-cdn.alpinelinux.org/alpine/v3.12/main > /etc/apk/repositories
 echo https://dl-cdn.alpinelinux.org/alpine/v3.12/community >> /etc/apk/repositories
 echo https://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories
-apk upgrade --progress --update-cache --available
+apk upgrade -q --progress --update-cache --available
 
 for pkg in git zsh tzdata curl openssh ncurses screen byobu \
  terraform ranger tmux jq rcm gawk sudo neovim git-secret shadow ; do
   echo adding $pkg
-  apk add --progress $pkg
+  apk add -q --progress $pkg
   
   case $pkg in
     tzdata) 
@@ -50,8 +50,11 @@ umount -t ios /mnt
 #zulu 
 su - -c 'cd ~ && curl -sL https://zulu.molovo.co/install | zsh && \
 echo ✅ installed zulu && source ~/.zulu/core/zulu && zulu init && \
-echo ✅ initialized zulu && zulu install filthy pure minimal k && \
+echo ✅ initialized zulu && zulu install filthy pure minimal k \
+async fast-syntax-highlighting z zui you-should-use k enhancd \
+autosuggestions completions dwim history-substring-search command-not-found && \
 echo ✅ installed plugins && zulu theme filthy && echo ✅ graceful exit && exit' $username
+
 
 #dotfiles
 su -c "cd ~ && git clone --depth 5 https://github.com/${username}/.dotfiles.git && rcup -f rcrc" $username
