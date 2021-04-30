@@ -57,13 +57,9 @@ mv revolver/revolver /bin
 su - -c 'cd ~ && curl -sL https://zulu.molovo.co/install | zsh && \
 echo installed zulu && exit' $username
 su - -c 'cd ~ && source ~/.zulu/core/zulu && zulu init && zulu install filthy pure minimal k \
-fast-syntax-highlighting prepend-sudo you-should-use enhancd && exit' $username
-echo 2222
+fast-syntax-highlighting you-should-use enhancd && exit' $username
 su - -c 'cd ~ && source ~/.zulu/core/zulu && zulu init && zulu install autosuggestions completions \
-history-substring-search command-not-found && \
-echo installed plugins && zulu theme filthy && echo graceful exit && exit' $username
-
-echo 3333
+history-substring-search command-not-found && zulu theme filthy && echo installed plugins && exit' $username
 
 #dotfiles
 su -c "cd ~ && git clone -q --depth 1 https://github.com/${username}/.dotfiles.git && rcup -f rcrc" $username
