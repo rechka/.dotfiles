@@ -54,7 +54,7 @@ git clone -q --depth 1 https://github.com/molovo/revolver revolver
 chmod u+x revolver/revolver
 mv revolver/revolver /bin
 
-su - -c 'cd ~ && curl -sL https://zulu.molovo.co/install | zsh && \
+su - -c 'cd ~ && curl -sL https://raw.githubusercontent.com/rechka/install/master/install | zsh && \
 echo installed zulu && source ~/.zulu/core/zulu && zulu config set analytics false && \
 zulu init && echo initialized zulu && exit' $username
 su - -c 'cd ~ && source ~/.zulu/core/zulu && zulu init && zulu install filthy pure minimal k \
