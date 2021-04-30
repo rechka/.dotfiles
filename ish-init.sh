@@ -68,6 +68,7 @@ su -c "cd ~/.dotfiles && git secret reveal && rcup -f" $username
 chmod 600 /home/$username/.ssh/*
 su -c "cd ~/.dotfiles && git config user.name ${username} && git config user.email ${username}@neverho.od" $username
 su -c "cd ~/.dotfiles && git remote set-url origin git@github.com:${username}/.dotfiles.git" $username
+su - -c 'cd ~ && source ~/.zulu/core/zulu && zulu init && zulu install sudo && exit' $username
 
 # 1.13.15 + 2 errors
 #curl -fLo /tmp/go1.16.3.linux-amd64.tar.gz https://golang.org/dl/go1.16.3.linux-amd64.tar.gz
