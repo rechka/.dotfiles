@@ -54,13 +54,13 @@ git clone -q --depth 1 https://github.com/molovo/revolver revolver
 chmod u+x revolver/revolver
 mv revolver/revolver /bin
 
-su - -c 'cd ~ && curl -sL https://raw.githubusercontent.com/rechka/install/master/install | zsh && \
-echo installed zulu && source ~/.zulu/core/zulu && zulu config set analytics false && \
-zulu init && echo initialized zulu && exit' $username
+su - -c 'cd ~ && curl -sL https://zulu.molovo.co/install | zsh && \
+echo installed zulu && exit' $username
 su - -c 'cd ~ && source ~/.zulu/core/zulu && zulu init && zulu install filthy pure minimal k \
-async fast-syntax-highlighting z zui you-should-use enhancd && exit' $username
+fast-syntax-highlighting prepend-sudo you-should-use enhancd && exit' $username
+echo 2222
 su - -c 'cd ~ && source ~/.zulu/core/zulu && zulu init && zulu install autosuggestions completions \
-dwim history-substring-search command-not-found && \
+history-substring-search command-not-found && \
 echo installed plugins && zulu theme filthy && echo graceful exit && exit' $username
 
 echo 3333
