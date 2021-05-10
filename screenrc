@@ -1,2 +1,4 @@
 defscrollback 200000
 startup_message off
+source .screen_layout
+layout save def
