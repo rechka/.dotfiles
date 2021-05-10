@@ -25,5 +25,11 @@ zulu init
 
 path+=('/usr/local/go/bin')
 path+=($PWD/.local/bin)
+path+=($PWD/.pyenv/bin)
+export PATH="/home/rechka/.pyenv/bin:$PATH"
 export PATH
 export EDITOR=micro
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+export PATH="$HOME/.poetry/bin:$PATH"
