@@ -2,3 +2,22 @@ defscrollback 200000
 startup_message off
 source .screen_layout
 layout save def
+
+caption always "%= %-w%L>%{= BW}%n*%t%{-}%52<%+w %L="
+hardstatus alwayslastline
+hardstatus string '%{= kG}[%{G}%H%? %1`%?%{g}][%= %{= kw}%-w%{+b yk} %n*%t%?(%u)%? %{-}%+w %=%{g}][%{B}%m/%d %{W}%C%A%{g}]'
+
+
+# get rid of silly xoff stuff
+bind s split
+
+# navigating regions
+bind j focus down
+bind k focus up
+bind h focus left
+bind l focus right
+
+# resizing regions
+bind + resize +5
+bind - resize -5
+bind = resize =
