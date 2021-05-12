@@ -3,13 +3,13 @@ startup_message off
 source .screen_layout
 layout save def
 
-caption always "%= %-w%L>%{= BW}%n*%t%{-}%52<%+w %L="
-hardstatus alwayslastline
-hardstatus string '%{= kG}[%{G}%H%? %1`%?%{g}][%= %{= kw}%-w%{+b yk} %n*%t%?(%u)%? %{-}%+w %=%{g}][%{B}%m/%d %{W}%C%A%{g}]'
+# caption always "%= %-w%L>%{= BW}%n*%t%{-}%52<%+w %L="
+# hardstatus alwayslastline
+# hardstatus string '%{= kG}[%{G}%H%? %1`%?%{g}][%= %{= kw}%-w%{+b yk} %n*%t%?(%u)%? %{-}%+w %=%{g}][%{B}%m/%d %{W}%C%A%{g}]'
 
 
 # get rid of silly xoff stuff
-bind s split
+bind s split -v
 
 # navigating regions
 bind j focus down

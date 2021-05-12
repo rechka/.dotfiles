@@ -1,25 +1,14 @@
 
 # left pane
 layout new 0:layout:default
-split -v
+# split -v
 screen 0
 
 # center pane
-focus right
-split -v
-split
-screen 1
-focus down
-screen 2
-
-# right pane
-focus right
-split
-split
-screen 3
-focus down
-screen 4
-focus down
-screen 5
+# focus right
+# split
+# screen 1
+# focus down
+# screen 2
 
 focus top
