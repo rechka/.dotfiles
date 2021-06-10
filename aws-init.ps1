@@ -8,14 +8,15 @@ Set-TimeZone -Id "Eastern Standard Time" -PassThru
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
 cinst nodejs.install -y --no-progress
-
-choco install notepadplusplus.install -y --no-progress
+cinst notepadplusplus.install -y --no-progress
 cinst winrar -y --no-progress
 cinst gpu-z -y --no-progress
+cinst selenium-chrome-driver --pre -y --no-progress
+cinst selenium -y --no-progress
+cinst firefox -y --no-progress
 
-
-(new-object net.webclient).DownloadFile('https://github.com/httptoolkit/httptoolkit-desktop/releases/download/v1.2.1/HttpToolkit-installer-1.2.1.exe','c:\HttpToolkit-installer-1.2.1.exe')
-Start-Process -Wait -FilePath "C:\HttpToolkit-installer-1.2.1.exe" -ArgumentList "/S" -PassThru
+(new-object net.webclient).DownloadFile('https://github.com/httptoolkit/httptoolkit-desktop/releases/download/v1.4.1/HttpToolkit-installer-1.4.1.exe','c:\HttpToolkit.exe')
+Start-Process -Wait -FilePath "C:\HttpToolkit.exe" -ArgumentList "/S" -PassThru
 
 (new-object net.webclient).DownloadFile('https://us.download.nvidia.com/tesla/462.31/462.31-data-center-tesla-desktop-win10-64bit-dch-international.exe','c:\nvidia.exe')
 Start-Process -Wait -FilePath "C:\nvidia.exe" -ArgumentList "-s" -PassThru
@@ -44,15 +45,6 @@ Disable-UserAccessControl
 Disable-InternetExplorerESC
 
 
-function DoCV {
-	notepad++ C:\ProgramData\Amazon\EC2-Windows\Launch\Log\UserdataExecution.log
-}
-
-Set-Alias cv DoCV
-
-choco install selenium-chrome-driver --pre -y --no-progress
-choco install selenium -y --no-progress
-choco install firefox -y --no-progress
 
 
 $Shell = New-Object -ComObject("WScript.Shell")
