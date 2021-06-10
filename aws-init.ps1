@@ -11,6 +11,8 @@ cinst nodejs.install -y --no-progress
 
 choco install notepadplusplus.install -y --no-progress
 cinst winrar -y --no-progress
+cinst gpu-z -y --no-progress
+
 
 (new-object net.webclient).DownloadFile('https://github.com/httptoolkit/httptoolkit-desktop/releases/download/v1.2.1/HttpToolkit-installer-1.2.1.exe','c:\HttpToolkit-installer-1.2.1.exe')
 Start-Process -Wait -FilePath "C:\HttpToolkit-installer-1.2.1.exe" -ArgumentList "/S" -PassThru
@@ -50,6 +52,7 @@ Set-Alias cv DoCV
 
 choco install selenium-chrome-driver --pre -y --no-progress
 choco install selenium -y --no-progress
+choco install firefox -y --no-progress
 choco install ungoogled-chromium --version=84.0.4147.1351 -y --no-progress
 
 $Shell = New-Object-ComObject("WScript.Shell")
