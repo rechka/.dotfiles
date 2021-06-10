@@ -1,3 +1,6 @@
+<script>
+bcdedit.exe -set TESTSIGNING ON
+</script>
 <powershell>
 
 Set-TimeZone -Id "Eastern Standard Time" -PassThru
