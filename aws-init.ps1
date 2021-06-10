@@ -7,13 +7,13 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 cinst nodejs.install -y --no-progress
 
 choco install notepadplusplus.install -y --no-progress
+cinst winrar -y --no-progress
 
 (new-object net.webclient).DownloadFile('https://github.com/httptoolkit/httptoolkit-desktop/releases/download/v1.2.1/HttpToolkit-installer-1.2.1.exe','c:\HttpToolkit-installer-1.2.1.exe')
 
 Start-Process -Wait -FilePath "C:\HttpToolkit-installer-1.2.1.exe" -ArgumentList "/S" -PassThru
 
-(new-object net.webclient).DownloadFile('https://github.com/xrzes/scottbotv1-releases/releases/download/v2.6.30/scottbotv1-Setup-2.6.30.exe','c:\scottbotv1-Setup.exe')
-Start-Process -Wait -FilePath "C:\scottbotv1-Setup.exe" -ArgumentList "/S" -PassThru
+(new-object net.webclient).DownloadFile('https://us.download.nvidia.com/tesla/462.31/462.31-data-center-tesla-desktop-win10-64bit-dch-international.exe','c:\nvidia.exe')                                                                                   Start-Process -Wait -FilePath "C:\nvidia.exe" -ArgumentList "-s" -PassThru
 
 function Disable-InternetExplorerESC {
     $AdminKey = "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}"
@@ -45,10 +45,11 @@ function DoCV {
 
 Set-Alias cv DoCV
 
-cinst rclone -y --no-progress
-
 choco install selenium-chrome-driver --pre -y --no-progress
 choco install selenium -y --no-progress
 choco install ungoogled-chromium --version=84.0.4147.1351 -y --no-progress
 
+$Shell = New-Object -ComObject ("WScript.Shell")                                                                              $Favorite = $Shell.CreateShortcut($env:USERPROFILE + "\Desktop\Win ISO.url")                                                  $Favorite.TargetPath = "https://www.microsoft.com/en-ca/software-download/windows10ISO";                                      $Favorite.Save()
+
+Restart-Computer
 </powershell>
