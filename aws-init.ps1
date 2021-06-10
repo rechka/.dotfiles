@@ -54,8 +54,8 @@ $Favorite.Save()
 
 $disk = Get-Disk | where-object PartitionStyle -eq "RAW"  
 Initialize-Disk -Number $disk.Number -confirm:$false  
-New-Partition -DiskNumber $disk.Number -UseMaximumSize | Format-Volume -FileSystem NTFS -NewFileSystemLabel "SSD" -confirm:$False  
-Set-Partition -DiskNumber $disk.Number -PartitionNumber 1 -NewDriveLetter F
+New-Partition -DiskNumber $disk.Number -UseMaximumSize | Format-Volume -FileSystem NTFS -NewFileSystemLabel SSD -confirm:$False  
+Set-Partition -DiskNumber $disk.Number -PartitionNumber 2 -NewDriveLetter F
 
 Restart-Computer
 </powershell>
