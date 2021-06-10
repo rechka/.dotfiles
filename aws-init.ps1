@@ -53,9 +53,9 @@ Set-Alias cv DoCV
 choco install selenium-chrome-driver --pre -y --no-progress
 choco install selenium -y --no-progress
 choco install firefox -y --no-progress
-choco install ungoogled-chromium --version=84.0.4147.1351 -y --no-progress
 
-$Shell = New-Object-ComObject("WScript.Shell")
+
+$Shell = New-Object -ComObject("WScript.Shell")
 $Favorite = $Shell.CreateShortcut($env:USERPROFILE + "\Desktop\Win ISO.url")
 $Favorite.TargetPath = "https://www.microsoft.com/en-ca/software-download/windows10ISO";
 $Favorite.Save()
