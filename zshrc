@@ -50,9 +50,12 @@ autoload -Uz _zinit
 
 # Plugin history-search-multi-word loaded with investigating.
 zinit load zdharma/history-search-multi-word
+zinit load supercrabtree/k
 
 # Two regular plugins loaded without investigating.
 zinit light zsh-users/zsh-autosuggestions
+ZSH_AUTOSUGGEST_STRATEGY=(history completion match_prev_cmd)
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
 zinit light zdharma/fast-syntax-highlighting
 
 # Snippet
@@ -64,4 +67,3 @@ zinit ice as"command" from"gh-r" \
     atpull"%atclone" src"init.zsh" # pull behavior same as clone, source init.zsh
 zinit light starship/starship
 
-zinit load supercrabtree/k
