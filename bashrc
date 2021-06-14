@@ -116,3 +116,5 @@ if ! shopt -oq posix; then
   fi
 fi
 [ -r /home/rechka/.byobu/prompt ] && . /home/rechka/.byobu/prompt   #byobu-prompt#
+
+complete -C /usr/local/bin/terraform terraform

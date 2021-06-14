@@ -27,3 +27,9 @@ path+=('/usr/local/go/bin')
 path+=($PWD/.local/bin)
 export PATH
 export EDITOR=micro
+
+# Created by `pipx` on 2021-06-06 18:05:21
+export PATH="$PATH:/home/rechka/.local/bin"
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/terraform terraform
