@@ -5,3 +5,5 @@
 [user]
 	name = Rechka
 	email = kto@zachem.tut
+[init]
+	defaultBranch = main
