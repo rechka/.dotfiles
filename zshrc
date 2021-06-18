@@ -4,6 +4,7 @@ alias ka="k -A"
 alias kk="k -A"
 alias vncup1="vncserver :0 -depth 24H -geometry 2732x2048"
 alias vncup2="vncserver :0 -depth 24H -geometry 1366x1024"
+alias terraup="terraform destroy -auto-approve && terraform apply -auto-approve && terraform show -json | jq '.values.root_module.resources[].values.public_ip'
 alias vncdown="vncserver -kill :0"
 alias cv="cat /var/log/cloud-init-output.log"
 alias cvg="cat /var/log/cloud-init-output.log | rg -S -C3 fail && cat /var/log/cloud-init-output.log | rg -S -C3 error && cat /var/log/cloud-init-output.log | rg -S -C3 warning && cat /var/log/cloud-init-output.log | rg -S -C3 outdated"
