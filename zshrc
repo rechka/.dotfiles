@@ -50,21 +50,21 @@ autoload -Uz _zinit
 ### End of Zinit's installer chunk
 
 # Plugin history-search-multi-word loaded with investigating.
-zinit load zdharma/history-search-multi-word
-zinit load supercrabtree/k
+zinit ice depth=1; zinit load zdharma/history-search-multi-word
+zinit ice depth=1; zinit load supercrabtree/k
 
 # Two regular plugins loaded without investigating.
-zinit light zsh-users/zsh-autosuggestions
+zinit ice depth=1; zinit light zsh-users/zsh-autosuggestions
 ZSH_AUTOSUGGEST_STRATEGY=(history completion match_prev_cmd)
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
-zinit light zdharma/fast-syntax-highlighting
+zinit ice depth=1; zinit light zdharma/fast-syntax-highlighting
 
 # Snippet
-zinit snippet https://gist.githubusercontent.com/hightemp/5071909/raw/
+zinit ice depth=1; zinit snippet https://gist.githubusercontent.com/hightemp/5071909/raw/
 
 # Load starship theme
-zinit ice as"command" from"gh-r" \
+zinit ice depth'1' as"command" from"gh-r" \
     atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
     atpull"%atclone" src"init.zsh" # pull behavior same as clone, source init.zsh
-zinit light starship/starship
+zinit ice depth=1; zinit light starship/starship
 
