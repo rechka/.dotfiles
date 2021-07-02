@@ -33,7 +33,7 @@ export EDITOR=micro
 export PATH="$PATH:/home/rechka/.local/bin"
 
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/bin/terraform terraform
+#complete -o nospace -C /usr/local/bin/terraform terraform
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
