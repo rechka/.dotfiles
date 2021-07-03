@@ -94,3 +94,7 @@ zinit snippet hzsh-users/zsh-apple-touchbar
 
 zinit ice depth=1
 zinit load iam4x/zsh-iterm-touchbar
+
+
+zinit ice pick'init.zsh' compile'*.zsh' depth'1'
+zinit light laggardkernel/zsh-iterm2
