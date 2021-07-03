@@ -106,7 +106,10 @@ zinit ice depth'1'
 zinit load vasyharan/zsh-brew-services
 
 zinit ice depth'1'
-zinit load anatolykopyl/sshukh
+zinit snippet https://github.com/hcgraf/zsh-sudo/raw/master/sudo.plugin.zsh
+
+zinit ice depth'1'
+zinit snippet https://github.com/anatolykopyl/sshukh/raw/master/sshukh.plugin.zsh
 alias ssh="sshukh"
 
 zinit ice depth=1
