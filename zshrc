@@ -77,6 +77,11 @@ zinit snippet 'https://github.com/timothyrowan/betterbrew-zsh-plugin/raw/master/
 zinit ice depth=1
 zinit snippet 'https://github.com/Tarrasch/zsh-command-not-found/raw/master/command-not-found.plugin.zsh'
 
+zinit ice pick'init.zsh' blockf
+zinit light laggardkernel/git-ignore
+alias gi="git-ignore"
+
+#zgen load rapgenic/zsh-git-complete-urls
 #zplug "b4b4r07/enhancd", use:init.sh
 #zgen load "MichaelAquilina/zsh-autoswitch-virtualenv"
 #git clone https://github.com/zsh-users/zsh-apple-touchbar ~/.zsh/zsh-apple-touchbar/zsh-apple-touchbar.zsh
