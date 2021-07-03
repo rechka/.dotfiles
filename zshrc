@@ -102,6 +102,9 @@ zinit ice pick'init.zsh' blockf
 zinit light laggardkernel/git-ignore
 alias gi="git-ignore"
 
+zinit ice depth'1'
+zinit load anatolykopyl/sshukh
+
 zinit ice depth=1
 zinit load peterhurford/git-it-on.zsh
 zinit ice depth=1
