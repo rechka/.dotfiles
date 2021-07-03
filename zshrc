@@ -91,3 +91,6 @@ zinit load "MichaelAquilina/zsh-autoswitch-virtualenv"
 
 zinit ice depth=1
 zinit snippet hzsh-users/zsh-apple-touchbar
+
+zinit ice depth=1
+zinit load iam4x/zsh-iterm-touchbar
