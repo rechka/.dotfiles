@@ -72,6 +72,9 @@ zinit ice depth=1 as"completion"
 zinit snippet OMZ::plugins/ripgrep/_ripgrep
 
 zinit ice depth=1
+zinit load eventi/noreallyjustfuckingstopalready
+
+zinit ice depth=1
 zinit snippet 'https://github.com/timothyrowan/betterbrew-zsh-plugin/raw/master/betterbrew.plugin.zsh'
 
 zinit ice depth=1
