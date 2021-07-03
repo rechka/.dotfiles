@@ -74,6 +74,8 @@ zinit snippet OMZ::plugins/ripgrep/_ripgrep
 zinit ice depth=1
 zinit load eventi/noreallyjustfuckingstopalready
 
+zinit ice depth=1
+zinit load hadenlabs/zsh-core
 
 zinit ice depth=1 
 zinit load luismayta/zsh-notify
