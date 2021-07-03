@@ -103,7 +103,11 @@ zinit light laggardkernel/git-ignore
 alias gi="git-ignore"
 
 zinit ice depth'1'
+zinit load vasyharan/zsh-brew-services
+
+zinit ice depth'1'
 zinit load anatolykopyl/sshukh
+alias ssh="sshukh"
 
 zinit ice depth=1
 zinit load peterhurford/git-it-on.zsh
