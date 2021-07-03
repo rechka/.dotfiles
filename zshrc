@@ -81,7 +81,19 @@ zinit ice depth=1
 zinit snippet 'https://github.com/Tarrasch/zsh-command-not-found/raw/master/command-not-found.plugin.zsh'
 
 zinit ice depth=1
-zgen load lukechilds/zsh-better-npm-completion
+zinit load lukechilds/zsh-better-npm-completion
+
+zinit ice as"command" depth=1 src"revolver"
+zinit load "molovo/revolver"
+
+zinit ice depth=1
+zinit load "darvid/zsh-poetry"
+
+zinit ice depth=1
+zinit snippet https://github.com/wuotr/zsh-plugin-vscode/raw/master/vscode.plugin.zsh
+
+zinit ice depth=1 as"completion"
+zinit snippet https://github.com/thuandt/zsh-pipx/raw/master/zsh-pipx.plugin.zsh
 
 zinit ice pick'init.zsh' blockf
 zinit light laggardkernel/git-ignore
