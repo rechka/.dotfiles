@@ -83,7 +83,7 @@ zinit snippet 'https://github.com/Tarrasch/zsh-command-not-found/raw/master/comm
 zinit ice depth=1
 zinit load lukechilds/zsh-better-npm-completion
 
-zinit ice as"command" depth=1 src"revolver"
+zinit ice as"command" depth=1
 zinit load "molovo/revolver"
 
 zinit ice depth=1
