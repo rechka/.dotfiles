@@ -74,3 +74,9 @@ zinit snippet OMZ::plugins/ripgrep/_ripgrep
 zinit ice depth=1
 zinit snippet 'https://github.com/timothyrowan/betterbrew-zsh-plugin/raw/master/betterbrew.plugin.zsh'
 
+zinit ice depth=1
+zinit snippet 'https://github.com/Tarrasch/zsh-command-not-found/raw/master/command-not-found.plugin.zsh'
+
+#zplug "b4b4r07/enhancd", use:init.sh
+#zgen load "MichaelAquilina/zsh-autoswitch-virtualenv"
+#git clone https://github.com/zsh-users/zsh-apple-touchbar ~/.zsh/zsh-apple-touchbar/zsh-apple-touchbar.zsh
