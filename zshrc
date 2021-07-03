@@ -68,3 +68,9 @@ zinit ice depth'1' as"command" from"gh-r" \
     atpull"%atclone" src"init.zsh" # pull behavior same as clone, source init.zsh
 zinit ice depth=1; zinit light starship/starship
 
+zinit ice depth=1 as"completion"
+zinit snippet OMZ::plugins/ripgrep/_ripgrep
+
+zinit ice depth=1
+zinit snippet 'https://github.com/timothyrowan/betterbrew-zsh-plugin/raw/master/betterbrew.plugin.zsh'
+
