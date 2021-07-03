@@ -116,6 +116,9 @@ zinit load zsh-users/zsh-apple-touchbar
 zinit ice depth=1
 zinit load iam4x/zsh-iterm-touchbar
 
+zinit depth'1'
+zinit load gko/ssh-connect
+
 zinit ice depth'1'
 zinit load aubreypwd/zsh-plugin-reload
 zinit ice pick'init.zsh' compile'*.zsh' depth'1'
