@@ -95,6 +95,9 @@ zinit snippet https://github.com/wuotr/zsh-plugin-vscode/raw/master/vscode.plugi
 zinit ice depth=1 as"completion"
 zinit snippet https://github.com/thuandt/zsh-pipx/raw/master/zsh-pipx.plugin.zsh
 
+zinit ice depth"1"
+zinit load unixorn/tumult.plugin.zsh
+
 zinit ice pick'init.zsh' blockf
 zinit light laggardkernel/git-ignore
 alias gi="git-ignore"
@@ -113,6 +116,7 @@ zinit load zsh-users/zsh-apple-touchbar
 zinit ice depth=1
 zinit load iam4x/zsh-iterm-touchbar
 
-
+zinit ice depth'1'
+zinit load aubreypwd/zsh-plugin-reload
 zinit ice pick'init.zsh' compile'*.zsh' depth'1'
 zinit light laggardkernel/zsh-iterm2
