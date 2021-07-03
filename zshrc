@@ -81,7 +81,13 @@ zinit ice pick'init.zsh' blockf
 zinit light laggardkernel/git-ignore
 alias gi="git-ignore"
 
-#zgen load rapgenic/zsh-git-complete-urls
+zinit ice depth=1
+zinit load peterhurford/git-it-on.zsh
+zinit ice depth=1
+zinit load rapgenic/zsh-git-complete-urls
 #zplug "b4b4r07/enhancd", use:init.sh
-#zgen load "MichaelAquilina/zsh-autoswitch-virtualenv"
-#git clone https://github.com/zsh-users/zsh-apple-touchbar ~/.zsh/zsh-apple-touchbar/zsh-apple-touchbar.zsh
+zinit ice depth=1
+zinit load "MichaelAquilina/zsh-autoswitch-virtualenv"
+
+zinit ice depth=1
+zinit snippet hzsh-users/zsh-apple-touchbar
