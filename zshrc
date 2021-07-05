@@ -125,7 +125,7 @@ zinit load zsh-users/zsh-apple-touchbar
 zinit ice depth=1
 zinit load iam4x/zsh-iterm-touchbar
 
-zinit depth'1'
+zinit ice depth'1'
 zinit load gko/ssh-connect
 
 zinit ice depth'1'
