@@ -10,6 +10,17 @@ alias cv="cat /var/log/cloud-init-output.log"
 alias cvg="cat /var/log/cloud-init-output.log | rg -S -C3 fail && cat /var/log/cloud-init-output.log | rg -S -C3 error && cat /var/log/cloud-init-output.log | rg -S -C3 warning && cat /var/log/cloud-init-output.log | rg -S -C3 outdated"
 alias gitsshclone='f() { git clone git@github.com:$1.git };f'
 
+raspiprep() {
+    cd /Volumes/boot
+    git init
+    git remote add origin https://github.com/rechka/dietzerow.git
+    git fetch origin
+    git reset --hard FETCH_HEAD
+    sed -i -e "s/dietX/zerotest2/g" dietpi.txt
+}
+
+
+
 export DISPLAY=:0
 HISTFILE=~/.histfile
 HISTSIZE=15000
