@@ -85,8 +85,12 @@ zinit snippet OMZ::plugins/ripgrep/_ripgrep
 zinit ice depth=1
 zinit load eventi/noreallyjustfuckingstopalready
 
-zinit ice depth=1
-zinit load hadenlabs/zsh-core
+if [[ `uname` == "Darwin" ]]; then
+    zinit ice depth=1
+    zinit load hadenlabs/zsh-core
+    zinit ice depth"1"
+    zinit load unixorn/tumult.plugin.zsh
+fi
 
 zinit ice depth=1 
 zinit load luismayta/zsh-notify
@@ -111,8 +115,6 @@ zinit snippet https://github.com/hcgraf/zsh-sudo/raw/master/sudo.plugin.zsh
 zinit snippet https://github.com/anatolykopyl/sshukh/raw/master/sshukh.plugin.zsh
 alias ssh="sshukh"
 
-zinit ice depth"1"
-zinit load unixorn/tumult.plugin.zsh
 
 zinit ice pick'init.zsh' blockf
 zinit light laggardkernel/git-ignore
