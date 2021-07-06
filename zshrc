@@ -99,10 +99,11 @@ if [[ `uname` == "Darwin" ]]; then
     zinit snippet 'https://github.com/timothyrowan/betterbrew-zsh-plugin/raw/master/betterbrew.plugin.zsh'
     zinit ice depth'1'
     zinit load vasyharan/zsh-brew-services
+	zinit ice depth=1 
+	zinit load luismayta/zsh-notify
+
 fi
 
-zinit ice depth=1 
-zinit load luismayta/zsh-notify
 
 
 zinit ice depth=1
@@ -148,3 +149,4 @@ zinit load gko/ssh-connect
 zinit ice depth'1'
 zinit load aubreypwd/zsh-plugin-reload
 
+eval "$(starship init zsh)"
