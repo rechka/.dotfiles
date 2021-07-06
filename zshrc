@@ -36,6 +36,7 @@ bindkey -e
 #zulu init
 
 path+=('/usr/local/go/bin')
+path+=('/usr/local/bin')
 path+=($PWD/.local/bin)
 export PATH
 export EDITOR=micro
