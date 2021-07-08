@@ -75,10 +75,10 @@ zinit ice depth=1; zinit light zdharma/fast-syntax-highlighting
 zinit ice depth=1; zinit snippet https://gist.githubusercontent.com/hightemp/5071909/raw/
 
 # Load starship theme
-zinit ice depth'1' as"command" from"gh-r" \
-    atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
-    atpull"%atclone" src"init.zsh" # pull behavior same as clone, source init.zsh
-zinit ice depth=1; zinit light starship/starship
+#zinit ice depth'1' as"command" from"gh-r" \
+#    atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+#    atpull"%atclone" src"init.zsh" # pull behavior same as clone, source init.zsh
+#zinit ice depth=1; zinit light starship/starship
 
 zinit ice depth=1 as"completion"
 zinit snippet OMZ::plugins/ripgrep/_ripgrep
@@ -150,4 +150,4 @@ zinit load gko/ssh-connect
 zinit ice depth'1'
 zinit load aubreypwd/zsh-plugin-reload
 
-eval "$(starship init zsh)"
+zinit ice depth=1; zinit light spaceship-prompt/spaceship-prompt
