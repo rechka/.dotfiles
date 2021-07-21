@@ -1,3 +1,9 @@
+zstyle ':completion:*' '' matcher-list 'm:{a-z}={A-Z}'
+
+flushdns() {
+    sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
+}
+
 alias python=python3
 alias myip="curl ip.smartproxy.com"
 alias ka="k -A"
@@ -10,13 +16,21 @@ alias cv="cat /var/log/cloud-init-output.log"
 alias cvg="cat /var/log/cloud-init-output.log | rg -S -C3 fail && cat /var/log/cloud-init-output.log | rg -S -C3 error && cat /var/log/cloud-init-output.log | rg -S -C3 warning && cat /var/log/cloud-init-output.log | rg -S -C3 outdated"
 alias gitsshclone='f() { git clone git@github.com:$1.git };f'
 
-raspiprep() {
+zeroprep() {
     cd /Volumes/boot
     git init
     git remote add origin https://github.com/rechka/dietzerow.git
     git fetch origin
     git reset --hard FETCH_HEAD
-    sed -i -e "s/dietX/zerotest2/g" dietpi.txt
+    sed -i -e "s/zerotest1/top/g" dietpi.txt
+}
+pi4prep() {
+    cd /Volumes/boot
+    git init
+    git remote add origin https://github.com/rechka/diet4b.git
+    git fetch origin
+    git reset --hard FETCH_HEAD
+    sed -i -e "s/dietX/raspi4/g" dietpi.txt
 }
 
 
