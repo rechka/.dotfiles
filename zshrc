@@ -50,6 +50,7 @@ bindkey -e
 #zulu init
 
 path+=('/usr/local/go/bin')
+path+=('/usr/local/bin')
 path+=($PWD/.local/bin)
 export PATH
 export EDITOR=micro
@@ -88,10 +89,10 @@ zinit ice depth=1; zinit light zdharma/fast-syntax-highlighting
 zinit ice depth=1; zinit snippet https://gist.githubusercontent.com/hightemp/5071909/raw/
 
 # Load starship theme
-zinit ice depth'1' as"command" from"gh-r" \
-    atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
-    atpull"%atclone" src"init.zsh" # pull behavior same as clone, source init.zsh
-zinit ice depth=1; zinit light starship/starship
+#zinit ice depth'1' as"command" from"gh-r" \
+#    atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+#    atpull"%atclone" src"init.zsh" # pull behavior same as clone, source init.zsh
+#zinit ice depth=1; zinit light starship/starship
 
 zinit ice depth=1 as"completion"
 zinit snippet OMZ::plugins/ripgrep/_ripgrep
@@ -99,11 +100,25 @@ zinit snippet OMZ::plugins/ripgrep/_ripgrep
 zinit ice depth=1
 zinit load eventi/noreallyjustfuckingstopalready
 
-zinit ice depth=1
-zinit load hadenlabs/zsh-core
+if [[ `uname` == "Darwin" ]]; then
+    zinit ice depth=1
+    zinit load hadenlabs/zsh-core
+    zinit ice depth"1"
+    zinit load unixorn/tumult.plugin.zsh
+    zinit ice pick'init.zsh' compile'*.zsh' depth'1'
+    zinit light laggardkernel/zsh-iterm2
+    zinit ice depth=1
+    zinit load zsh-users/zsh-apple-touchbar
+    zinit ice depth=1
+    zinit load iam4x/zsh-iterm-touchbar
+    zinit snippet 'https://github.com/timothyrowan/betterbrew-zsh-plugin/raw/master/betterbrew.plugin.zsh'
+    zinit ice depth'1'
+    zinit load vasyharan/zsh-brew-services
+	zinit ice depth=1 
+	zinit load luismayta/zsh-notify
 
-zinit ice depth=1 
-zinit load luismayta/zsh-notify
+fi
+
 
 
 zinit ice depth=1
@@ -118,22 +133,19 @@ zinit load "darvid/zsh-poetry"
 
 zinit ice as"completion"
 zinit snippet https://github.com/thuandt/zsh-pipx/raw/master/zsh-pipx.plugin.zsh
-zinit snippet 'https://github.com/timothyrowan/betterbrew-zsh-plugin/raw/master/betterbrew.plugin.zsh'
+
 zinit snippet 'https://github.com/Tarrasch/zsh-command-not-found/raw/master/command-not-found.plugin.zsh'
 zinit snippet https://github.com/wuotr/zsh-plugin-vscode/raw/master/vscode.plugin.zsh
 zinit snippet https://github.com/hcgraf/zsh-sudo/raw/master/sudo.plugin.zsh
 zinit snippet https://github.com/anatolykopyl/sshukh/raw/master/sshukh.plugin.zsh
 alias ssh="sshukh"
 
-zinit ice depth"1"
-zinit load unixorn/tumult.plugin.zsh
 
 zinit ice pick'init.zsh' blockf
 zinit light laggardkernel/git-ignore
 alias gi="git-ignore"
 
-zinit ice depth'1'
-zinit load vasyharan/zsh-brew-services
+
 
 
 zinit ice depth=1
@@ -144,16 +156,12 @@ zinit load rapgenic/zsh-git-complete-urls
 zinit ice depth=1
 zinit load "MichaelAquilina/zsh-autoswitch-virtualenv"
 
-zinit ice depth=1
-zinit load zsh-users/zsh-apple-touchbar
 
-zinit ice depth=1
-zinit load iam4x/zsh-iterm-touchbar
 
 zinit ice depth'1'
 zinit load gko/ssh-connect
 
 zinit ice depth'1'
 zinit load aubreypwd/zsh-plugin-reload
-zinit ice pick'init.zsh' compile'*.zsh' depth'1'
-zinit light laggardkernel/zsh-iterm2
+
+zinit ice depth=1; zinit light spaceship-prompt/spaceship-prompt
