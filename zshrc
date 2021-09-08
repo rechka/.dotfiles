@@ -1,7 +1,8 @@
 zstyle ':completion:*' '' matcher-list 'm:{a-z}={A-Z}'
 
-flushdns() {
-    sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
+flush() {
+    sudo dscacheutil -flushcache
+    sudo killall -HUP mDNSResponder
 }
 
 alias python=python3
@@ -15,6 +16,14 @@ alias vncdown="vncserver -kill :0"
 alias cv="cat /var/log/cloud-init-output.log"
 alias cvg="cat /var/log/cloud-init-output.log | rg -S -C3 fail && cat /var/log/cloud-init-output.log | rg -S -C3 error && cat /var/log/cloud-init-output.log | rg -S -C3 warning && cat /var/log/cloud-init-output.log | rg -S -C3 outdated"
 alias gitsshclone='f() { git clone git@github.com:$1.git };f'
+alias adbreboot='f() { adb -s $1 shell reboot };f'
+alias pomigat='f() { adbpower $1 & adbpower $1 & adbpower $1 & adbpower $1  };f'
+alias adbpower='f() { adb -s $1 shell input keyevent 26 };f'
+
+
+mssh2() {
+    pssh -h ~/Documents/hosts.txt -t 0 -l rechka -i \("$@"\)
+}
 
 zeroprep() {
     cd /Volumes/boot
