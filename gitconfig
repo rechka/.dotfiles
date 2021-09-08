@@ -7,3 +7,9 @@
 	email = kto@zachem.tut
 [init]
 	defaultBranch = main
+[alias]
+	sync = !/usr/local/bin/legit sync
+	publish = !/usr/local/bin/legit publish
+	unpublish = !/usr/local/bin/legit unpublish
+	undo = !/usr/local/bin/legit undo
+	branches = !/usr/local/bin/legit branches
