@@ -20,6 +20,8 @@ alias adbreboot='f() { adb -s $1 shell reboot };f'
 alias pomigat='f() { adbpower $1 & adbpower $1 & adbpower $1 & adbpower $1  };f'
 alias adbpower='f() { adb -s $1 shell input keyevent 26 };f'
 
+alias control='f() { scrcpy --window-borderless --forward-all-clicks -Sw -s $1 -b 2M --max-fps 10 -m 1000 --window-title $1 -t -p 27180:27200 };f'
+
 
 mssh2() {
     pssh -h ~/Documents/hosts.txt -t 0 -l rechka -i \("$@"\)
