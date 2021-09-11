@@ -176,3 +176,6 @@ zinit ice depth'1'
 zinit load aubreypwd/zsh-plugin-reload
 
 zinit ice depth=1; zinit light spaceship-prompt/spaceship-prompt
+
+
+eval "$(pyenv init --path)"
