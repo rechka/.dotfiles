@@ -36,6 +36,10 @@ adbnames() {
     sort -t\n output.txt
 }
 
+get_phones() {
+    phones=("${(@f)$(adb devices | awk 'NR>1 {print $1;}')}")
+}
+
 
 zeroprep() {
     cd /Volumes/boot
