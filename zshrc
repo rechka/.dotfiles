@@ -29,8 +29,8 @@ mssh2() {
 
 adbnames() {
     print `hostname`:
-    curl -s "https://api.airtable.com/v0/app7HRNW1Jc15WDxR/phones" \
-      -H "Authorization: Bearer keyI0x6VNlXVpTHDq" | jq -c -r  '.records[].fields | {serial, location, sticker}' | tr -d '{}"' | sed 's/serial://g' | sed 's/,location:/ /g' | sed 's/,sticker://g' | awk '{print $1" "$2}' > mapping.txt
+    curl -s "https://api.airtable.com/v0/<APP>/phones" \
+      -H "Authorization: Bearer <TOKEN>" | jq -c -r  '.records[].fields | {serial, location, sticker}' | tr -d '{}"' | sed 's/serial://g' | sed 's/,location:/ /g' | sed 's/,sticker://g' | awk '{print $1" "$2}' > mapping.txt
     adb devices | awk 'NR>1 && NF' > data.txt
     awk 'NR == FNR{a[$1]=$2;next} {$1=a[$1]" ("$1")"}1' mapping.txt data.txt > output.txt
     sort -t\n output.txt
