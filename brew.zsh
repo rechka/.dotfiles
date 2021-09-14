@@ -1,5 +1,5 @@
 brew tap mvp/uhubctl https://github.com/mvp/uhubctl
-brew install uhubctl 
+brew install libusb uhubctl 
 
 brew install bat bat-extras cmake coreutils flake8 \
 	fzf gawk git git-secret gitignore gnirehtet howdoi htop icdiff jq legit \
