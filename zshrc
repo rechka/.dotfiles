@@ -191,5 +191,7 @@ zinit load aubreypwd/zsh-plugin-reload
 
 zinit ice depth=1; zinit light spaceship-prompt/spaceship-prompt
 
-
+export PATH="$PATH:$HOME/.local/bin"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
