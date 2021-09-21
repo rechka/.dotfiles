@@ -5,6 +5,14 @@ flush() {
     sudo killall -HUP mDNSResponder
 }
 
+dumpapk() {
+    apks=("${(@f)$(adb -s $1 shell pm path $2 | sed s/package://g)}")
+    mkdir $2
+    for apk in $apks; do
+        adb -s $1 pull $apk $2
+    done;
+}
+
 alias python=python3
 alias myip="curl ip.smartproxy.com"
 alias ka="k -A"
