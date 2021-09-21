@@ -20,7 +20,6 @@ Host toronto1-adb
 
 Host miami1-scrcpy
 	HostName miami1
-	User rechka
 	IdentityFile ~/.ssh/id_rsa
 	LocalForward 5037 127.0.0.1:5037
 	RemoteForward 27180 127.0.0.1:27180
@@ -65,7 +64,6 @@ Host miami1-scrcpy
 
 Host miami2-scrcpy
 	HostName miami2
-	User rechka
 	IdentityFile ~/.ssh/id_rsa
 	LocalForward 5037 127.0.0.1:5037
 	RemoteForward 27180 127.0.0.1:27180
@@ -110,7 +108,6 @@ Host miami2-scrcpy
 
 Host miami3-scrcpy
 	HostName miami3
-	User rechka
 	IdentityFile ~/.ssh/id_rsa
 	LocalForward 5037 127.0.0.1:5037
 	RemoteForward 27180 127.0.0.1:27180
@@ -155,7 +152,6 @@ Host miami3-scrcpy
 
 Host nj1-scrcpy
 	HostName nj1
-	User gleb
 	IdentityFile ~/.ssh/id_rsa
 	LocalForward 5037 127.0.0.1:5037
 	RemoteForward 27180 127.0.0.1:27180
