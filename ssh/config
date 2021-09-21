@@ -1,0 +1,205 @@
+Host miami1-adb
+	HostName miami1
+	LocalForward 5037 127.0.0.1:5037
+
+Host miami2-adb
+	HostName miami2
+	LocalForward 5037 127.0.0.1:5037
+
+Host miami3-adb
+	HostName miami3
+	LocalForward 5037 127.0.0.1:5037
+
+Host nj1-adb
+	HostName nj1
+	LocalForward 5037 127.0.0.1:5037
+
+Host toronto1-adb
+	HostName raspi4
+	LocalForward 5037 127.0.0.1:5037
+
+Host miami1-scrcpy
+	HostName miami1
+	User rechka
+	IdentityFile ~/.ssh/id_rsa
+	LocalForward 5037 127.0.0.1:5037
+	RemoteForward 27180 127.0.0.1:27180
+	RemoteForward 27181 127.0.0.1:27181
+	RemoteForward 27182 127.0.0.1:27182
+	RemoteForward 27183 127.0.0.1:27183
+	RemoteForward 27184 127.0.0.1:27184
+	RemoteForward 27185 127.0.0.1:27185
+	RemoteForward 27186 127.0.0.1:27186
+	RemoteForward 27187 127.0.0.1:27187
+	RemoteForward 27188 127.0.0.1:27188
+	RemoteForward 27189 127.0.0.1:27189
+	RemoteForward 27190 127.0.0.1:27190
+	RemoteForward 27191 127.0.0.1:27191
+	RemoteForward 27192 127.0.0.1:27192
+	RemoteForward 27193 127.0.0.1:27193
+	RemoteForward 27194 127.0.0.1:27194
+	RemoteForward 27195 127.0.0.1:27195
+	RemoteForward 27196 127.0.0.1:27196
+	RemoteForward 27197 127.0.0.1:27197
+	RemoteForward 27198 127.0.0.1:27198
+	RemoteForward 27199 127.0.0.1:27199
+	RemoteForward 27200 127.0.0.1:27200
+	LocalForward 50095 127.0.0.1:50095
+	LocalForward 50096 127.0.0.1:50096
+	LocalForward 50097 127.0.0.1:50097
+	LocalForward 50098 127.0.0.1:50098
+	LocalForward 50099 127.0.0.1:50099
+	LocalForward 50100 127.0.0.1:50100
+	LocalForward 50101 127.0.0.1:50101
+ 	LocalForward 50102 127.0.0.1:50102
+	LocalForward 50103 127.0.0.1:50103
+	LocalForward 50104 127.0.0.1:50104
+	LocalForward 50105 127.0.0.1:50105
+	LocalForward 50106 127.0.0.1:50106
+	LocalForward 50107 127.0.0.1:50107
+	LocalForward 50108 127.0.0.1:50108
+	LocalForward 50109 127.0.0.1:50109
+	LocalForward 50110 127.0.0.1:50110
+	RequestTTY force
+    RemoteCommand screen -RqUd
+
+Host miami2-scrcpy
+	HostName miami2
+	User rechka
+	IdentityFile ~/.ssh/id_rsa
+	LocalForward 5037 127.0.0.1:5037
+	RemoteForward 27180 127.0.0.1:27180
+	RemoteForward 27181 127.0.0.1:27181
+	RemoteForward 27182 127.0.0.1:27182
+	RemoteForward 27183 127.0.0.1:27183
+	RemoteForward 27184 127.0.0.1:27184
+	RemoteForward 27185 127.0.0.1:27185
+	RemoteForward 27186 127.0.0.1:27186
+	RemoteForward 27187 127.0.0.1:27187
+	RemoteForward 27188 127.0.0.1:27188
+	RemoteForward 27189 127.0.0.1:27189
+	RemoteForward 27190 127.0.0.1:27190
+	RemoteForward 27191 127.0.0.1:27191
+	RemoteForward 27192 127.0.0.1:27192
+	RemoteForward 27193 127.0.0.1:27193
+	RemoteForward 27194 127.0.0.1:27194
+	RemoteForward 27195 127.0.0.1:27195
+	RemoteForward 27196 127.0.0.1:27196
+	RemoteForward 27197 127.0.0.1:27197
+	RemoteForward 27198 127.0.0.1:27198
+	RemoteForward 27199 127.0.0.1:27199
+	RemoteForward 27200 127.0.0.1:27200
+	LocalForward 50095 127.0.0.1:50095
+	LocalForward 50096 127.0.0.1:50096
+	LocalForward 50097 127.0.0.1:50097
+	LocalForward 50098 127.0.0.1:50098
+	LocalForward 50099 127.0.0.1:50099
+	LocalForward 50100 127.0.0.1:50100
+	LocalForward 50101 127.0.0.1:50101
+ 	LocalForward 50102 127.0.0.1:50102
+	LocalForward 50103 127.0.0.1:50103
+	LocalForward 50104 127.0.0.1:50104
+	LocalForward 50105 127.0.0.1:50105
+	LocalForward 50106 127.0.0.1:50106
+	LocalForward 50107 127.0.0.1:50107
+	LocalForward 50108 127.0.0.1:50108
+	LocalForward 50109 127.0.0.1:50109
+	LocalForward 50110 127.0.0.1:50110
+	RequestTTY force
+    RemoteCommand screen -RqUd
+
+Host miami3-scrcpy
+	HostName miami3
+	User rechka
+	IdentityFile ~/.ssh/id_rsa
+	LocalForward 5037 127.0.0.1:5037
+	RemoteForward 27180 127.0.0.1:27180
+	RemoteForward 27181 127.0.0.1:27181
+	RemoteForward 27182 127.0.0.1:27182
+	RemoteForward 27183 127.0.0.1:27183
+	RemoteForward 27184 127.0.0.1:27184
+	RemoteForward 27185 127.0.0.1:27185
+	RemoteForward 27186 127.0.0.1:27186
+	RemoteForward 27187 127.0.0.1:27187
+	RemoteForward 27188 127.0.0.1:27188
+	RemoteForward 27189 127.0.0.1:27189
+	RemoteForward 27190 127.0.0.1:27190
+	RemoteForward 27191 127.0.0.1:27191
+	RemoteForward 27192 127.0.0.1:27192
+	RemoteForward 27193 127.0.0.1:27193
+	RemoteForward 27194 127.0.0.1:27194
+	RemoteForward 27195 127.0.0.1:27195
+	RemoteForward 27196 127.0.0.1:27196
+	RemoteForward 27197 127.0.0.1:27197
+	RemoteForward 27198 127.0.0.1:27198
+	RemoteForward 27199 127.0.0.1:27199
+	RemoteForward 27200 127.0.0.1:27200
+	LocalForward 50095 127.0.0.1:50095
+	LocalForward 50096 127.0.0.1:50096
+	LocalForward 50097 127.0.0.1:50097
+	LocalForward 50098 127.0.0.1:50098
+	LocalForward 50099 127.0.0.1:50099
+	LocalForward 50100 127.0.0.1:50100
+	LocalForward 50101 127.0.0.1:50101
+ 	LocalForward 50102 127.0.0.1:50102
+	LocalForward 50103 127.0.0.1:50103
+	LocalForward 50104 127.0.0.1:50104
+	LocalForward 50105 127.0.0.1:50105
+	LocalForward 50106 127.0.0.1:50106
+	LocalForward 50107 127.0.0.1:50107
+	LocalForward 50108 127.0.0.1:50108
+	LocalForward 50109 127.0.0.1:50109
+	LocalForward 50110 127.0.0.1:50110
+	RequestTTY force
+    RemoteCommand screen -RqUd
+
+Host nj1-scrcpy
+	HostName nj1
+	User gleb
+	IdentityFile ~/.ssh/id_rsa
+	LocalForward 5037 127.0.0.1:5037
+	RemoteForward 27180 127.0.0.1:27180
+	RemoteForward 27181 127.0.0.1:27181
+	RemoteForward 27182 127.0.0.1:27182
+	RemoteForward 27183 127.0.0.1:27183
+	RemoteForward 27184 127.0.0.1:27184
+	RemoteForward 27185 127.0.0.1:27185
+	RemoteForward 27186 127.0.0.1:27186
+	RemoteForward 27187 127.0.0.1:27187
+	RemoteForward 27188 127.0.0.1:27188
+	RemoteForward 27189 127.0.0.1:27189
+	RemoteForward 27190 127.0.0.1:27190
+	RemoteForward 27191 127.0.0.1:27191
+	RemoteForward 27192 127.0.0.1:27192
+	RemoteForward 27193 127.0.0.1:27193
+	RemoteForward 27194 127.0.0.1:27194
+	RemoteForward 27195 127.0.0.1:27195
+	RemoteForward 27196 127.0.0.1:27196
+	RemoteForward 27197 127.0.0.1:27197
+	RemoteForward 27198 127.0.0.1:27198
+	RemoteForward 27199 127.0.0.1:27199
+	RemoteForward 27200 127.0.0.1:27200
+	LocalForward 50095 127.0.0.1:50095
+	LocalForward 50096 127.0.0.1:50096
+	LocalForward 50097 127.0.0.1:50097
+	LocalForward 50098 127.0.0.1:50098
+	LocalForward 50099 127.0.0.1:50099
+	LocalForward 50100 127.0.0.1:50100
+	LocalForward 50101 127.0.0.1:50101
+ 	LocalForward 50102 127.0.0.1:50102
+	LocalForward 50103 127.0.0.1:50103
+	LocalForward 50104 127.0.0.1:50104
+	LocalForward 50105 127.0.0.1:50105
+	LocalForward 50106 127.0.0.1:50106
+	LocalForward 50107 127.0.0.1:50107
+	LocalForward 50108 127.0.0.1:50108
+	LocalForward 50109 127.0.0.1:50109
+	LocalForward 50110 127.0.0.1:50110
+	RequestTTY force
+    RemoteCommand screen -RqUd
+
+Host *
+    User rechka
+    Compression yes
+    IdentityFile ~/.ssh/id_rsa
+   
