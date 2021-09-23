@@ -199,7 +199,7 @@ zinit load aubreypwd/zsh-plugin-reload
 
 zinit ice depth=1; zinit light spaceship-prompt/spaceship-prompt
 
-if ! type "pyenv" &> /dev/null; then
+if ! [[ -z $HOME/.pyenv ]];; then
   curl https://pyenv.run | bash
 fi
 
