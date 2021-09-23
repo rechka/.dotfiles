@@ -199,6 +199,10 @@ zinit load aubreypwd/zsh-plugin-reload
 
 zinit ice depth=1; zinit light spaceship-prompt/spaceship-prompt
 
+if ! type "pyenv" &> /dev/null; then
+  curl https://pyenv.run | bash
+fi
+
 export PATH="$PATH:$HOME/.local/bin"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
