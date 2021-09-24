@@ -108,6 +108,8 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 ### End of Zinit's installer chunk
 
+zinit snippet https://github.com/mafredri/zsh-async/raw/master/async.zsh
+
 # Plugin history-search-multi-word loaded with investigating.
 zinit ice depth=1; zinit load zdharma/history-search-multi-word
 zinit ice depth=1; zinit load supercrabtree/k
